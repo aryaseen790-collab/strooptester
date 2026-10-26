@@ -1,5 +1,13 @@
 // Shared behaviour for every page: mobile menu, FAQ accordions, cookie consent.
 (() => {
+  // A freshly opened page (not back/forward, no #section in the link) starts at the top.
+  // Browsers do this already; embedded previews sometimes keep the old scroll position.
+  const entry = performance.getEntriesByType('navigation')[0];
+  if (!location.hash && (!entry || entry.type === 'navigate')) {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollIntoView({ block: 'start' });
+  }
+
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.getElementById('site-nav');
   if (toggle && nav) {
