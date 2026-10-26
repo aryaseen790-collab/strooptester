@@ -28,7 +28,8 @@ export function layout(site, page) {
 <link rel="canonical" href="${url}">
 ${page.noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">'}
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#0f2747">
+<meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="light">
 ${site.googleSiteVerification ? `<meta name="google-site-verification" content="${esc(site.googleSiteVerification)}">` : ''}
 <meta property="og:locale" content="${site.locale}">
 <meta property="og:type" content="${page.ogType || 'website'}">
@@ -101,6 +102,7 @@ ${page.body}
   <div class="actions"><button class="btn" data-consent="yes">Allow analytics</button><button class="btn btn--ghost" data-consent="no">No thanks</button></div>
 </div>
 <script src="/assets/js/site.js?v=${page.version}" defer></script>
+<script src="/assets/js/motion.js?v=${page.version}" defer></script>
 ${page.scripts || ''}
 </body>
 </html>

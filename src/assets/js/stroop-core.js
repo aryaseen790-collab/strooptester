@@ -2,12 +2,12 @@
 // No DOM access here, so the same file runs in the browser and in `node --test`.
 
 export const INKS = {
-  RED: { hex: '#EF4444', key: 'r' },
-  BLUE: { hex: '#3B82F6', key: 'b' },
-  GREEN: { hex: '#22C55E', key: 'g' },
-  YELLOW: { hex: '#FACC15', key: 'y' },
-  PURPLE: { hex: '#A855F7', key: 'p' },
-  ORANGE: { hex: '#FB923C', key: 'o' },
+  RED: { hex: '#DC2626', key: 'r' },
+  BLUE: { hex: '#2563EB', key: 'b' },
+  GREEN: { hex: '#16A34A', key: 'g' },
+  YELLOW: { hex: '#E0A800', key: 'y' },
+  PURPLE: { hex: '#9333EA', key: 'p' },
+  ORANGE: { hex: '#F97316', key: 'o' },
   WHITE: { hex: '#F8FAFC', key: 'w' },
 };
 
@@ -24,7 +24,7 @@ export const MODES = {
     inks: ['RED', 'BLUE', 'GREEN', 'YELLOW', 'PURPLE', 'ORANGE'],
     deadline: 1500,
   },
-  // Blue, yellow and white stay distinct for the common red-green colour vision types.
+  // Shown on a grey panel. Blue, yellow and white stay distinct for the common red-green colour vision types.
   cvd: { label: 'Colour-vision friendly', trials: 30, inks: ['BLUE', 'YELLOW', 'WHITE'], deadline: null },
 };
 

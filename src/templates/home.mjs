@@ -40,12 +40,16 @@ const FAQ = [
   ],
 ];
 
-export function homePage({ site, posts, postCard, picture }) {
+const TICKER = [['RED', '#2563EB'], ['GREEN', '#DC2626'], ['BLUE', '#E0A800'], ['YELLOW', '#9333EA'], ['PURPLE', '#16A34A'], ['ORANGE', '#2563EB'], ['BLUE', '#F97316'], ['RED', '#16A34A'], ['YELLOW', '#DC2626'], ['GREEN', '#9333EA']];
+const ticker = () => TICKER.map(([w, c]) => `<span style="color:${c}">${w}</span>`).join('');
+
+export function homePage({ site, posts, postCard, picture, version }) {
   const faqHtml = FAQ.map(([q, a]) => `<details><summary>${q}</summary><div>${a}</div></details>`).join('\n');
   const strip = (s) => s.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 
   const body = `
 <section class="hero">
+  <div class="hero__bg" aria-hidden="true"></div>
   <div class="wrap">
     <div>
       <span class="eyebrow">Free · No sign-up · Instant results</span>
@@ -61,7 +65,22 @@ export function homePage({ site, posts, postCard, picture }) {
         <li>Answers stay on your device</li>
       </ul>
     </div>
-    <div class="hero__art">${picture('/wp-content/uploads/2026/05/Online-Stroop-Tester-Image.webp', 'An eye reflecting the colour words red, green, blue and yellow', { sizes: '(max-width: 900px) 100vw, 520px', eager: true })}</div>
+    <div class="sphere" data-sphere role="img" aria-label="A spinning globe of colour words, most printed in a clashing ink colour">
+      <canvas></canvas>
+      <span class="sphere__probe" aria-hidden="true"></span>
+      <span class="sphere__hint" aria-hidden="true">Drag to spin · hover a word</span>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div class="ticker__track">${ticker()}${ticker()}</div></div>
+
+<section class="section" style="padding-bottom:0" aria-label="Key facts">
+  <div class="wrap stats">
+    <div class="stat"><div class="stat__num"><span data-count="1935" data-from="1900">1935</span></div><p>Year J. R. Stroop published the effect</p></div>
+    <div class="stat"><div class="stat__num"><span data-count="700">700</span>+</div><p>Studies MacLeod reviewed by 1991</p></div>
+    <div class="stat"><div class="stat__num"><span data-count="74">74</span>%</div><p>Slower naming inks of clashing words in Stroop's study</p></div>
+    <div class="stat"><div class="stat__num">~<span data-count="2">2</span> min</div><p>To take the Standard test here</p></div>
   </div>
 </section>
 
@@ -118,7 +137,7 @@ export function homePage({ site, posts, postCard, picture }) {
         <button class="btn btn--lg" id="btn-real" type="button">Start the scored test</button>
       </div>
 
-      <div class="app__panel" data-phase="results" id="results" tabindex="-1" hidden>
+      <div class="app__panel results-anim" data-phase="results" id="results" tabindex="-1" hidden>
         <div class="results__head">
           <h3>Your results</h3>
           <span class="meta"><span id="r-mode"></span> · <span id="r-date"></span></span>
@@ -163,7 +182,13 @@ export function homePage({ site, posts, postCard, picture }) {
       <p>The reason is that reading is so practised it happens whether you want it to or not. The word arrives in your head first and has to be pushed aside before you can say the colour. That pushing aside takes time, and the time is what this test measures.</p>
       <p>Since then the task has become one of the most studied in psychology. Colin MacLeod's 1991 review already counted more than 700 papers on it. It turns up in research on attention, ageing, brain injury, ADHD and much more, mostly because it is simple, quick and works on nearly anyone who can read. If you'd like the long version, start with <a href="/what-is-the-stroop-test/">what the Stroop test is</a> or the story of <a href="/john-ridley-stroop/">John Ridley Stroop himself</a>.</p>
     </div>
-    <div>${picture('/wp-content/uploads/2026/06/Stroop-Incongruent-Trial-and-Reaction-Time.webp', 'The word BLUE in green ink next to a reaction time of 312 milliseconds', { sizes: '(max-width: 760px) 100vw, 540px' })}</div>
+    <div class="taster card" data-taster>
+      <div class="taster__head"><span class="kicker">Feel it in 10 seconds</span><span class="note" data-status>5 matching words, then 5 clashing ones</span></div>
+      <div class="flip-wrap"><div class="flip"><div class="flip__face flip__front" style="color:#2563EB">READY?</div><div class="flip__face flip__back"></div></div></div>
+      <div class="taster__chips"></div>
+      <button class="btn" type="button" data-start>Try the 10-second version</button>
+      <div data-result hidden></div>
+    </div>
   </div>
 </section>
 
@@ -175,13 +200,18 @@ export function homePage({ site, posts, postCard, picture }) {
       <p>Every word you see belongs to one of three groups. Comparing your speed across them is what turns a colour game into a measurement.</p>
     </div>
     <div class="grid grid--3">
-      <div class="card"><div class="demo-word" style="color:#EF4444">RED</div><h3>Matching (congruent)</h3><p>The word and the ink agree. Reading actually helps you here, so these are your fastest answers. About 30% of trials.</p></div>
-      <div class="card"><div class="demo-word" style="color:#3B82F6">LAMP</div><h3>Neutral</h3><p>An ordinary word in a coloured ink. There's nothing to fight, so this shows your plain colour-naming speed. About 30% of trials.</p></div>
-      <div class="card"><div class="demo-word" style="color:#22C55E">YELLOW</div><h3>Clashing (incongruent)</h3><p>The word names a different colour from its ink. You have to hold back the word to answer, which costs time and causes most mistakes. About 40% of trials.</p></div>
+      <div class="card" data-tilt><div class="demo-word" data-cycle="congruent" style="color:#DC2626">RED</div><h3>Matching (congruent)</h3><p>The word and the ink agree. Reading actually helps you here, so these are your fastest answers. About 30% of trials.</p></div>
+      <div class="card" data-tilt><div class="demo-word" data-cycle="neutral" style="color:#2563EB">LAMP</div><h3>Neutral</h3><p>An ordinary word in a coloured ink. There's nothing to fight, so this shows your plain colour-naming speed. About 30% of trials.</p></div>
+      <div class="card" data-tilt><div class="demo-word" data-cycle="incongruent" style="color:#16A34A">YELLOW</div><h3>Clashing (incongruent)</h3><p>The word names a different colour from its ink. You have to hold back the word to answer, which costs time and causes most mistakes. About 40% of trials.</p></div>
     </div>
     <div class="card" style="margin-top:20px">
       <h3>How your interference score is calculated</h3>
       <p class="formula">Interference = median clashing time − median matching time</p>
+      <div class="gapbars" data-inview aria-label="Example: matching 560 ms, clashing 650 ms, interference 90 ms">
+        <div><span>Matching</span><b style="--w:86%;--c:var(--c-congruent)"></b><em>560 ms</em></div>
+        <div><span>Clashing</span><b style="--w:100%;--c:var(--c-incongruent)"></b><em>650 ms</em></div>
+        <div class="gapbars__gap"><span>Interference</span><b style="--w:14%;--c:var(--violet);margin-left:86%"></b><em>+90 ms</em></div>
+      </div>
       <p>Only correct answers between 200 ms and 3 seconds count, so guesses and lapses don't distort it. We also show the same gap as a percentage of your matching-word time, which takes your general speed out of the picture.</p>
     </div>
   </div>
@@ -250,7 +280,14 @@ export function homePage({ site, posts, postCard, picture }) {
       <p>Sleep, stress, alcohol the night before, a noisy room and an unfamiliar keyboard all move the numbers. Age matters too, mostly through general slowing (Verhaeghen and De Meersman, 1998). Regular aerobic exercise is one of the better-supported ways to help executive function in healthy adults (Guiney and Machado, 2013). To see a real trend, test at the same time of day on the same device and look at several results, not one.</p>
     </div>
     <div>
-      ${picture('/wp-content/uploads/2026/06/Brain-Activation-During-Stroop-Interference.webp', 'Illustration of a brain with glowing connections across the frontal lobes', { sizes: '(max-width: 760px) 100vw, 540px' })}
+      <div class="race card" data-race data-inview>
+        <div class="race__head"><span class="kicker">The race in your head</span><button type="button" class="linkbtn" data-replay>Replay ↻</button></div>
+        <p class="note">The word <strong style="color:#DC2626">BLUE</strong> appears in red ink.</p>
+        <div class="race__lane"><span class="race__label">Reading "BLUE"</span><div class="race__track"><i class="race__runner race__runner--read"></i><span class="race__flag">wrong answer arrives first</span></div></div>
+        <div class="race__lane"><span class="race__label">Naming the ink</span><div class="race__track"><i class="race__runner race__runner--ink"></i><span class="race__flag race__flag--ok">“red”, after the brake</span></div></div>
+        <div class="race__brake">Conflict detected · brake applied</div>
+      </div>
+      ${picture('/wp-content/uploads/2026/06/Two-pathways-racing-in-your-brain.webp', 'Brain diagram with a fast reading pathway and a slower colour-naming pathway', { sizes: '(max-width: 760px) 100vw, 540px' })}
       <h3>References</h3>
       <ol class="refs">
         <li>Stroop, J. R. (1935). Studies of interference in serial verbal reactions. <em>Journal of Experimental Psychology, 18</em>(6), 643–662. <a href="https://doi.org/10.1037/h0054651" rel="noopener">doi:10.1037/h0054651</a></li>
@@ -338,6 +375,6 @@ export function homePage({ site, posts, postCard, picture }) {
     modified: MODIFIED,
     body,
     schema,
-    scripts: '<script type="module" src="/assets/js/stroop-app.js"></script>',
+    scripts: ['stroop-app', 'hero-sphere', 'home-extras'].map((f) => `<script type="module" src="/assets/js/${f}.js?v=${version}"></script>`).join('\n'),
   };
 }

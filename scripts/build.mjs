@@ -156,6 +156,7 @@ function postPage(p, posts, version) {
        <div class="cta-box"><p><strong>Try it yourself.</strong> The free test takes about two minutes and gives you your interference score straight away.</p><a class="btn btn--light" href="/#test">Start the test</a></div></nav>`
     : '';
   const body = `
+<div class="read-progress" aria-hidden="true"><span></span></div>
 <div class="wrap">
   <header class="article-head">
     <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/blog/">Blog</a></li><li><a href="/category/${p.category}/">${esc(cat.name)}</a></li></ol></nav>
@@ -265,12 +266,14 @@ function build() {
   copyDir(path.join(SRC, 'assets'), path.join(OUT, 'assets'));
 
   const hash = crypto.createHash('sha1');
-  for (const f of ['css/site.css', 'js/site.js', 'js/stroop-app.js', 'js/stroop-core.js']) hash.update(fs.readFileSync(path.join(SRC, 'assets', f)));
+  for (const f of fs.readdirSync(path.join(SRC, 'assets/js')).map((f) => `js/${f}`).concat('css/site.css')) hash.update(fs.readFileSync(path.join(SRC, 'assets', f)));
   const version = hash.digest('hex').slice(0, 8);
 
   // Version the module import too, so a cached old engine never pairs with a new UI.
-  const appFile = path.join(OUT, 'assets/js/stroop-app.js');
-  fs.writeFileSync(appFile, fs.readFileSync(appFile, 'utf8').replace("'./stroop-core.js'", `'./stroop-core.js?v=${version}'`));
+  for (const f of ['stroop-app.js', 'hero-sphere.js', 'home-extras.js']) {
+    const file = path.join(OUT, 'assets/js', f);
+    fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replace("'./stroop-core.js'", `'./stroop-core.js?v=${version}'`));
+  }
 
   const posts = loadPosts();
   const urls = [];

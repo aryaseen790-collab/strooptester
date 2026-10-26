@@ -32,8 +32,12 @@ const clearTimers = () => {
   state.timers = [];
 };
 
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 function show(phase) {
   state.phase = phase;
+  // Lets decorative animations elsewhere on the page pause while timing matters.
+  document.dispatchEvent(new CustomEvent('stroop:running', { detail: phase === 'practice' || phase === 'test' }));
   root.querySelectorAll('[data-phase]').forEach((el) => {
     el.hidden = el.dataset.phase !== phase && !(phase === 'practice' && el.dataset.phase === 'test');
   });
@@ -68,9 +72,31 @@ function start(practice) {
   show(practice ? 'practice' : 'test');
   $('stimulus').textContent = '';
   updateProgress();
+  countdown();
   $('arena').focus({ preventScroll: true });
   $('arena').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
-  later(nextTrial, 800);
+}
+
+// 3, 2, 1 before the first word. Only the countdown animates; trial words appear instantly.
+function countdown() {
+  const stim = $('stimulus');
+  let n = 3;
+  const tick = () => {
+    if (n === 0) {
+      stim.className = 'stimulus';
+      stim.textContent = '';
+      later(nextTrial, 150);
+      return;
+    }
+    stim.textContent = String(n);
+    stim.style.color = '';
+    stim.className = 'stimulus';
+    void stim.offsetWidth;
+    stim.className = 'stimulus is-count';
+    n--;
+    later(tick, 600);
+  };
+  tick();
 }
 
 function updateProgress() {
@@ -167,6 +193,8 @@ function renderResults(s) {
   $('r-ies').textContent = fmt(s.inverseEfficiency, ' ms');
   renderTypeChart(s);
   renderTrialChart(state.results);
+  animateNumbers();
+  if (s.accuracy >= 95) confetti();
   renderNarrative(s);
   renderHistory();
 }
@@ -207,7 +235,7 @@ function renderTrialChart(results) {
     .map((r, i) => {
       if (r.rt == null) return `<text x="${x(i)}" y="${y(yMax) + 4}" text-anchor="middle" class="miss">×</text>`;
       const wrong = r.response !== r.ink;
-      return `<circle cx="${x(i)}" cy="${y(r.rt)}" r="4" fill="${wrong ? 'none' : colors[r.type]}" stroke="${colors[r.type]}" stroke-width="${wrong ? 2 : 0}"><title>Trial ${i + 1}: ${r.type}, ${r.rt} ms${wrong ? ', wrong' : ''}</title></circle>`;
+      return `<circle class="dot" style="--i:${i}" cx="${x(i)}" cy="${y(r.rt)}" r="4" fill="${wrong ? 'none' : colors[r.type]}" stroke="${colors[r.type]}" stroke-width="${wrong ? 2 : 0}"><title>Trial ${i + 1}: ${r.type}, ${r.rt} ms${wrong ? ', wrong' : ''}</title></circle>`;
     })
     .join('');
   $('chart-trials').innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Response time for each trial">${grid}<text x="${W / 2}" y="${H - 4}" text-anchor="middle">Trial</text>${dots}</svg>`;
@@ -246,6 +274,77 @@ function renderNarrative(s) {
     parts.push(`${dropped} response${dropped > 1 ? 's were' : ' was'} left out of the timing (too fast to be a real decision, longer than 3 seconds, or past the time limit).`);
   }
   $('narrative').innerHTML = parts.map((p) => `<p>${p}</p>`).join('');
+}
+
+// Count the headline numbers up from zero.
+function animateNumbers() {
+  if (reduceMotion) return;
+  root.querySelectorAll('.metric__value').forEach((el, k) => {
+    const text = el.textContent;
+    const m = text.match(/^([+-]?)(\d+(?:\.\d+)?)(.*)$/);
+    if (!m) return;
+    const [, sign, num, rest] = m;
+    const to = parseFloat(num);
+    const dp = num.includes('.') ? 1 : 0;
+    const t0 = performance.now() + k * 90;
+    const step = (t) => {
+      const p = Math.max(0, Math.min(1, (t - t0) / 900));
+      const v = to * (1 - Math.pow(1 - p, 3));
+      el.textContent = `${sign}${v.toFixed(dp)}${rest}`;
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = text;
+    };
+    requestAnimationFrame(step);
+  });
+}
+
+function confetti() {
+  if (reduceMotion) return;
+  const panel = $('results');
+  const c = document.createElement('canvas');
+  c.className = 'confetti';
+  c.setAttribute('aria-hidden', 'true');
+  panel.appendChild(c);
+  const r = panel.getBoundingClientRect();
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+  c.width = r.width * dpr;
+  c.height = Math.min(r.height, 700) * dpr;
+  const ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+  const colors = Object.values(INKS).slice(0, 6).map((v) => v.hex);
+  const bits = Array.from({ length: 140 }, () => ({
+    x: r.width / 2,
+    y: 90,
+    vx: (Math.random() - 0.5) * 14,
+    vy: -Math.random() * 11 - 4,
+    w: 6 + Math.random() * 6,
+    h: 4 + Math.random() * 4,
+    a: Math.random() * Math.PI,
+    va: (Math.random() - 0.5) * 0.3,
+    c: colors[Math.floor(Math.random() * colors.length)],
+  }));
+  const t0 = performance.now();
+  const step = (t) => {
+    const age = t - t0;
+    ctx.clearRect(0, 0, c.width, c.height);
+    for (const b of bits) {
+      b.vy += 0.35;
+      b.vx *= 0.99;
+      b.x += b.vx;
+      b.y += b.vy;
+      b.a += b.va;
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, 1 - age / 2200);
+      ctx.translate(b.x, b.y);
+      ctx.rotate(b.a);
+      ctx.fillStyle = b.c;
+      ctx.fillRect(-b.w / 2, -b.h / 2, b.w, b.h);
+      ctx.restore();
+    }
+    if (age < 2200) requestAnimationFrame(step);
+    else c.remove();
+  };
+  requestAnimationFrame(step);
 }
 
 // ---------- history (stays in this browser only) ----------
