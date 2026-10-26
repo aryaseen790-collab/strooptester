@@ -68,6 +68,8 @@ Categories are defined in `src/data/site.json`. For a new image, put it in `stat
 
 Pushing to `main` runs `.github/workflows/deploy.yml`, which tests, builds and publishes to GitHub Pages. Pull requests run the same checks without deploying.
 
+The workflow asks Pages where the site is served from. Until the custom domain is connected, that's `https://aryaseen790-collab.github.io/strooptester/`, and every link is prefixed with `/strooptester` so the site works there. Once `strooptester.com` is set as the custom domain, the next deploy builds for the root again. To try a sub-folder build locally, run `BASE_PATH=/strooptester npm run build`.
+
 1. **Merge this branch into `main`.**
 2. **Turn on Pages:** repository *Settings → Pages → Build and deployment → Source: GitHub Actions*.
 3. **Custom domain:** in the same screen, enter `strooptester.com` (the `static/CNAME` file sets this too). Also verify the domain under your GitHub account's *Settings → Pages → Verified domains*, so nobody else can claim it.

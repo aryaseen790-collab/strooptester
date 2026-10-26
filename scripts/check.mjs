@@ -21,8 +21,10 @@ const ids = (file) => {
   if (!idsCache.has(file)) idsCache.set(file, new Set([...fs.readFileSync(file, 'utf8').matchAll(/\sid="([^"]+)"/g)].map((m) => m[1])));
   return idsCache.get(file);
 };
+const BASE = (process.env.BASE_PATH || '').replace(/\/+$/, '');
 const resolve = (url) => {
-  const clean = decodeURI(url.split('#')[0].split('?')[0]);
+  let clean = decodeURI(url.split('#')[0].split('?')[0]);
+  if (BASE && clean.startsWith(BASE + '/')) clean = clean.slice(BASE.length);
   let p = path.join(OUT, clean);
   if (clean.endsWith('/')) p = path.join(p, 'index.html');
   return fs.existsSync(p) ? p : null;

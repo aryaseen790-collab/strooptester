@@ -400,7 +400,8 @@ function downloadCSV() {
 async function share() {
   const s = state.lastScores;
   if (!s) return;
-  const url = `${location.origin}/?r=${encodeShare(s, state.mode)}#test`;
+  const base = document.documentElement.dataset.base || '';
+  const url = `${location.origin}${base}/?r=${encodeShare(s, state.mode)}#test`;
   const text = `My Stroop result: ${s.accuracy}% correct, ${s.interference} ms interference.`;
   try {
     if (navigator.share) {

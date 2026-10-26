@@ -19,7 +19,7 @@ export function layout(site, page) {
     ([href, label, key]) => `<li><a href="${href}"${page.nav === key ? ' aria-current="page"' : ''}>${label}</a></li>`,
   ).join('');
   return `<!doctype html>
-<html lang="${site.lang}" data-ga="${esc(site.gaId || '')}">
+<html lang="${site.lang}" data-ga="${esc(site.gaId || '')}" data-base="${esc((process.env.BASE_PATH || '').replace(/\/+$/, ''))}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">

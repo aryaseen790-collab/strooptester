@@ -24,9 +24,16 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - name: Ask Pages where the site is served from
+        id: pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
       - run: npm ci
       - name: Test, build and check links
         run: npm run ci
+        env:
+          # "" once strooptester.com is connected, "/strooptester" on the github.io address
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
       - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request'
         with:

@@ -10,6 +10,9 @@ const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 const SRC = path.join(ROOT, 'src');
 const OUT = path.join(ROOT, 'dist');
 const site = JSON.parse(fs.readFileSync(path.join(SRC, 'data/site.json'), 'utf8'));
+// Set when the site is served from a sub-folder, e.g. "/strooptester" on username.github.io
+// before the custom domain is connected. Empty for strooptester.com itself.
+const BASE = (process.env.BASE_PATH || '').replace(/\/+$/, '');
 const images = JSON.parse(fs.readFileSync(path.join(SRC, 'data/images.json'), 'utf8'));
 
 marked.use({ gfm: true, mangle: false, headerIds: false });
@@ -374,4 +377,28 @@ ${posts
   console.log(`Built ${urls.length} pages and ${posts.length} posts into dist/ (assets v${version})`);
 }
 
+// Prefix every root-relative link with BASE so the same build works in a sub-folder.
+function applyBase() {
+  if (!BASE) return;
+  const fix = (u) => (u.startsWith('/') && !u.startsWith('//') ? BASE + u : u);
+  const walk = (dir) => {
+    for (const f of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, f.name);
+      if (f.isDirectory()) walk(p);
+      else if (f.name.endsWith('.html')) {
+        let s = fs.readFileSync(p, 'utf8');
+        s = s.replace(/(\s(?:href|src))="([^"]*)"/g, (_, a, u) => `${a}="${fix(u)}"`);
+        s = s.replace(/\ssrcset="([^"]*)"/g, (_, set) => ` srcset="${set.split(', ').map((part) => fix(part)).join(', ')}"`);
+        s = s.replace(/url=(\/[^"]*)"/g, (_, u) => `url=${fix(u)}"`);
+        fs.writeFileSync(p, s);
+      } else if (f.name === 'site.webmanifest') {
+        fs.writeFileSync(p, fs.readFileSync(p, 'utf8').replace(/"(\/[^"]*)"/g, (_, u) => `"${fix(u)}"`));
+      }
+    }
+  };
+  walk(OUT);
+  console.log(`Links prefixed with ${BASE}`);
+}
+
 build();
+applyBase();
