@@ -18,4 +18,4 @@ User-agent: MistralAI-Training
 User-agent: omgili
 Disallow: /
 
-Sitemap: https://strooptester.com/sitemap.xml
+Sitemap: https://strooptester.com/sitemap_index.xml
