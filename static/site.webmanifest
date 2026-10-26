@@ -1,0 +1,13 @@
+{
+  "name": "Stroop Tester",
+  "short_name": "Stroop Test",
+  "description": "A free online Stroop test.",
+  "start_url": "/#test",
+  "display": "standalone",
+  "background_color": "#0f2747",
+  "theme_color": "#0f2747",
+  "icons": [
+    { "src": "/wp-content/uploads/2026/05/cropped-strooptester-icon-192x192.webp", "sizes": "192x192", "type": "image/webp" },
+    { "src": "/wp-content/uploads/2026/05/cropped-strooptester-icon.webp", "sizes": "512x512", "type": "image/webp" }
+  ]
+}

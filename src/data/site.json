@@ -1,0 +1,35 @@
+{
+  "url": "https://strooptester.com",
+  "name": "Stroop Tester",
+  "tagline": "A free online Stroop test, plus plain-English guides to attention and executive function.",
+  "lang": "en",
+  "locale": "en_US",
+  "logo": "/wp-content/uploads/2026/05/strooptester-logo.webp",
+  "icon": "/wp-content/uploads/2026/05/strooptester-icon.webp",
+  "ogImage": "/wp-content/uploads/2026/05/Online-Stroop-Tester-Image.webp",
+  "gaId": "G-9BWTMYLKYL",
+  "googleSiteVerification": "97WSY3oZZd-hTN0X5fqhg6vb3mG27bAqSmDItiR0aUg",
+  "contactEmail": "contact@strooptester.com",
+  "categories": {
+    "stroop-test-basics": {
+      "name": "Stroop Test Basics",
+      "description": "What the Stroop test is, where it came from, the three trial types, and step-by-step help with taking it."
+    },
+    "the-stroop-effect": {
+      "name": "The Stroop Effect",
+      "description": "Why a colour word in the wrong ink slows you down, and the people who worked it out."
+    },
+    "scores-interpretation": {
+      "name": "Scores & Interpretation",
+      "description": "What the numbers on your Stroop results mean, what's typical, and how to compare your scores fairly over time."
+    },
+    "adhd-and-clinical-uses": {
+      "name": "ADHD And Clinical Uses",
+      "description": "How researchers and clinicians use Stroop tasks, and what an online test can and cannot tell you."
+    },
+    "core-cognitive-abilities": {
+      "name": "Core Cognitive Abilities",
+      "description": "Executive function, inhibition, working memory and the skills behind them."
+    }
+  }
+}
