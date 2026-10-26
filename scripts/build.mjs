@@ -280,7 +280,7 @@ function build() {
 
   const posts = loadPosts();
   const urls = [];
-  const add = (p, lastmod, priority = '0.6') => urls.push({ loc: site.url + p, lastmod, priority });
+  const add = (p, lastmod, priority = '0.6', group = 'page') => urls.push({ loc: site.url + p, lastmod, priority, group });
 
   // Home
   const home = homePage({ site, posts: posts.slice(0, 6), postCard, picture, version });
@@ -290,7 +290,7 @@ function build() {
   // Posts
   for (const p of posts) {
     write(`${p.slug}/index.html`, postPage(p, posts, version));
-    add(p.path, p.updated || p.date, '0.8');
+    add(p.path, p.updated || p.date, '0.8', 'post');
   }
 
   // Blog index
@@ -324,7 +324,7 @@ function build() {
         crumbs: [['Home', '/'], ['Blog', '/blog/'], [cat.name, `/category/${slug}/`]],
       }),
     );
-    add(`/category/${slug}/`, list[0].updated || list[0].date, '0.5');
+    add(`/category/${slug}/`, list[0].updated || list[0].date, '0.5', 'category');
   }
 
   // Static pages
@@ -354,12 +354,20 @@ function build() {
   );
 
   // Sitemaps, feed, robots
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls
-    .map((u) => `  <url><loc>${u.loc}</loc>${u.lastmod ? `<lastmod>${u.lastmod}</lastmod>` : ''}<priority>${u.priority}</priority></url>`)
-    .join('\n')}\n</urlset>\n`;
-  write('sitemap.xml', sitemap);
-  // Search Console was given /sitemap_index.xml by the old WordPress site.
-  write('sitemap_index.xml', sitemap);
+  const urlset = (list) =>
+    `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${list
+      .map((u) => `  <url><loc>${u.loc}</loc>${u.lastmod ? `<lastmod>${u.lastmod}</lastmod>` : ''}<priority>${u.priority}</priority></url>`)
+      .join('\n')}\n</urlset>\n`;
+  write('sitemap.xml', urlset(urls));
+  // Same layout as the old WordPress (Rank Math) sitemaps, which Search Console already knows:
+  // /sitemap_index.xml pointing at post-, page- and category-sitemap.xml.
+  const parts = ['post', 'page', 'category'].map((group) => {
+    const list = urls.filter((u) => u.group === group);
+    write(`${group}-sitemap.xml`, urlset(list));
+    const lastmod = list.map((u) => u.lastmod).filter(Boolean).sort().pop();
+    return `  <sitemap><loc>${site.url}/${group}-sitemap.xml</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}</sitemap>`;
+  });
+  write('sitemap_index.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${parts.join('\n')}\n</sitemapindex>\n`);
 
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>

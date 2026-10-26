@@ -80,7 +80,7 @@ The workflow asks Pages where the site is served from. Until the custom domain i
 
    Set the records to **DNS only** (grey cloud) at first, so GitHub can issue the HTTPS certificate. Once *Enforce HTTPS* is available in the Pages settings, tick it. You can then switch the records back to **Proxied** (orange cloud) with SSL/TLS mode **Full (strict)**.
 5. **Security headers.** GitHub Pages can't send custom headers. With Cloudflare proxying, add them with *Rules → Transform Rules → Modify Response Header*, using the values in `static/_headers`. (If you'd rather host on Cloudflare Pages or Netlify, `_headers` is picked up automatically: build command `npm run build`, output directory `dist`.)
-6. **Search Console.** The verification tag is already in the page head. Submit `https://strooptester.com/sitemap.xml`. The old `/sitemap_index.xml` is still served, so nothing breaks in the meantime.
+6. **Search Console.** The verification tag is already in the page head. The sitemaps have the same layout as the WordPress ones: `/sitemap_index.xml` points to `post-sitemap.xml`, `page-sitemap.xml` and `category-sitemap.xml`. Search Console keeps reading the index it already knows. `/sitemap.xml` is a single full list as well.
 7. **Email.** The site lists `contact@strooptester.com`. Make sure that mailbox exists, for example with Cloudflare Email Routing, or change `contactEmail` in `src/data/site.json`.
 8. Keep a backup of the WordPress site, then shut it down.
 
