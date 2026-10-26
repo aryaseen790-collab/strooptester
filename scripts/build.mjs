@@ -270,7 +270,7 @@ function build() {
   const version = hash.digest('hex').slice(0, 8);
 
   // Version the module import too, so a cached old engine never pairs with a new UI.
-  for (const f of ['stroop-app.js', 'hero-sphere.js', 'home-extras.js']) {
+  for (const f of ['stroop-app.js', 'hero-demo.js', 'home-extras.js']) {
     const file = path.join(OUT, 'assets/js', f);
     fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replace("'./stroop-core.js'", `'./stroop-core.js?v=${version}'`));
   }

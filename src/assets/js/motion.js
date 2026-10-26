@@ -2,7 +2,6 @@
 // the page reads fine without it, and it all switches off for prefers-reduced-motion.
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const root = document.documentElement;
 
   // Header gains a shadow once the page scrolls.
@@ -117,44 +116,4 @@
   );
   document.querySelectorAll('[data-count]').forEach((el) => counter.observe(el));
 
-  if (!fine) return;
-
-  // 3D tilt with a moving highlight on cards.
-  const tiltables = document.querySelectorAll('[data-tilt], .post-card, .stat');
-  tiltables.forEach((el) => {
-    el.classList.add('tilt');
-    el.addEventListener('pointermove', (e) => {
-      const r = el.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width;
-      const py = (e.clientY - r.top) / r.height;
-      el.style.setProperty('--rx', `${(0.5 - py) * 7}deg`);
-      el.style.setProperty('--ry', `${(px - 0.5) * 9}deg`);
-      el.style.setProperty('--gx', `${px * 100}%`);
-      el.style.setProperty('--gy', `${py * 100}%`);
-    });
-    el.addEventListener('pointerleave', () => {
-      el.style.setProperty('--rx', '0deg');
-      el.style.setProperty('--ry', '0deg');
-    });
-  });
-
-  // Magnetic primary buttons.
-  document.querySelectorAll('.btn--lg').forEach((b) => {
-    b.addEventListener('pointermove', (e) => {
-      const r = b.getBoundingClientRect();
-      b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.18}px, ${(e.clientY - r.top - r.height / 2) * 0.25}px)`;
-    });
-    b.addEventListener('pointerleave', () => (b.style.transform = ''));
-  });
-
-  // Hero glow follows the cursor.
-  const hero = document.querySelector('.hero');
-  const bg = document.querySelector('.hero__bg');
-  if (hero && bg) {
-    hero.addEventListener('pointermove', (e) => {
-      const r = hero.getBoundingClientRect();
-      bg.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`);
-      bg.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
-    });
-  }
 })();
