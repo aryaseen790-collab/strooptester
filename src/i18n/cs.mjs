@@ -26,7 +26,7 @@ export default {
     research: 'Vychází z výzkumu, který začal článkem J. R. Stroopa z roku 1935.',
     disclaimer: 'Pouze pro vzdělávací účely. Tento web nic nediagnostikuje. Pokud vás trápí pozornost, paměť nebo myšlení, obraťte se na lékaře nebo psychologa.',
     explore: 'Prozkoumat',
-    exploreLinks: { test: 'Stroopův test online', blog: 'Blog (anglicky)', what: 'Co je Stroopův test? (anglicky)', score: 'Jaký výsledek je dobrý? (anglicky)' },
+    exploreLinks: { test: 'Stroopův test online', blog: 'Blog', what: 'Co je Stroopův test?', score: 'Jaký výsledek je dobrý?' },
     site: 'Web',
     siteLinks: { about: 'O nás a redakční zásady', contact: 'Kontakt', privacy: 'Zásady ochrany soukromí', cookies: 'Nastavení cookies' },
     copyright: 'Texty a obrázky na tomto webu patří Stroop Tester, pokud není uvedeno jinak.',
@@ -35,7 +35,52 @@ export default {
     allow: 'Povolit statistiky',
     deny: 'Ne, děkuji',
     languages: 'Jazyky',
-    englishOnly: 'Články jsou zatím k dispozici jen v angličtině.',
+  },
+
+  blog: {
+    home: 'Úvod',
+    blog: 'Blog',
+    indexTitle: 'Blog: průvodci Stroopovým testem a výzkum pozornosti',
+    indexHeading: 'Náš blog',
+    indexIntro: 'Srozumitelní průvodci Stroopovým testem, tím, co znamenají vaše výsledky, a výzkumem pozornosti a exekutivních funkcí.',
+    categoryTitle: 'Články: {name}',
+    categories: {
+      'stroop-test-basics': {
+        name: 'Základy Stroopova testu',
+        description: 'Co je Stroopův test, odkud pochází, tři typy pokusů a návod krok za krokem, jak ho absolvovat.',
+      },
+      'the-stroop-effect': {
+        name: 'Stroopův efekt',
+        description: 'Proč vás zpomalí název barvy napsaný jinou barvou a kdo na to přišel.',
+      },
+      'scores-interpretation': {
+        name: 'Výsledky a jejich výklad',
+        description: 'Co znamenají čísla ve vašem výsledku Stroopova testu, co je běžné a jak férově porovnávat výsledky v čase.',
+      },
+      'adhd-and-clinical-uses': {
+        name: 'ADHD a klinické využití',
+        description: 'Jak výzkumníci a klinici používají Stroopovy úlohy a co vám online test může a nemůže říct.',
+      },
+      'core-cognitive-abilities': {
+        name: 'Základní kognitivní schopnosti',
+        description: 'Exekutivní funkce, inhibice, pracovní paměť a dovednosti, které za nimi stojí.',
+      },
+    },
+    inShort: 'Ve zkratce',
+    onThisPage: 'Na této stránce',
+    tryTitle: 'Vyzkoušejte si to.',
+    tryText: 'Bezplatný test trvá asi dvě minuty a hned vám ukáže vaše skóre interference.',
+    tryBtn: 'Spustit test',
+    byline: 'Napsal <a href="/about/">redakční tým Stroop Tester</a>',
+    published: 'Publikováno {date}',
+    updated: 'Aktualizováno {date}',
+    lastUpdated: 'Naposledy aktualizováno {date}',
+    minRead: '{n} min čtení',
+    disclaimer: 'Tento článek slouží k obecnému vzdělávání. Nejde o lékařskou radu a online test nemůže diagnostikovat žádnou poruchu.',
+    keepReading: 'Čtěte dál',
+    ctaText: 'Zjistěte své vlastní skóre interference zhruba za dvě minuty. Zdarma, bez registrace a vaše odpovědi zůstanou v prohlížeči.',
+    ctaBtn: 'Udělat Stroopův test zdarma',
+    faqHeading: 'Časté otázky',
   },
 
   ui: {

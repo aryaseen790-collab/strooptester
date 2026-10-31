@@ -26,7 +26,7 @@ export default {
     research: 'Gebaseerd op onderzoek dat begon met het artikel van J. R. Stroop uit 1935.',
     disclaimer: 'Alleen voor educatief gebruik. Deze site stelt geen diagnoses. Maak je je zorgen over je aandacht, geheugen of denken, praat dan met een zorgverlener.',
     explore: 'Ontdekken',
-    exploreLinks: { test: 'Stroop-test online', blog: 'Blog (Engels)', what: 'Wat is de Stroop-test? (Engels)', score: 'Wat is een goede score? (Engels)' },
+    exploreLinks: { test: 'Stroop-test online', blog: 'Blog', what: 'Wat is de Stroop-test?', score: 'Wat is een goede score?' },
     site: 'Site',
     siteLinks: { about: 'Over ons en redactionele richtlijnen', contact: 'Contact', privacy: 'Privacybeleid', cookies: 'Cookie-instellingen' },
     copyright: 'Teksten en afbeeldingen op deze site zijn eigendom van Stroop Tester, tenzij anders vermeld.',
@@ -35,7 +35,52 @@ export default {
     allow: 'Statistieken toestaan',
     deny: 'Nee, bedankt',
     languages: 'Talen',
-    englishOnly: 'De artikelen zijn voorlopig alleen in het Engels beschikbaar.',
+  },
+
+  blog: {
+    home: 'Home',
+    blog: 'Blog',
+    indexTitle: 'Blog: uitleg over de Stroop-test en onderzoek naar aandacht',
+    indexHeading: 'Ons blog',
+    indexIntro: 'Heldere uitleg over de Stroop-test, wat je scores betekenen en het onderzoek naar aandacht en executieve functies daarachter.',
+    categoryTitle: 'Artikelen over {name}',
+    categories: {
+      'stroop-test-basics': {
+        name: 'Basis van de Stroop-test',
+        description: 'Wat de Stroop-test is, waar hij vandaan komt, de drie soorten opgaven en stap voor stap hulp bij het maken.',
+      },
+      'the-stroop-effect': {
+        name: 'Het Stroop-effect',
+        description: 'Waarom een kleurwoord in de verkeerde inktkleur je vertraagt, en wie dat heeft uitgezocht.',
+      },
+      'scores-interpretation': {
+        name: 'Scores en interpretatie',
+        description: 'Wat de getallen in je Stroop-uitslag betekenen, wat gebruikelijk is en hoe je je scores eerlijk vergelijkt in de tijd.',
+      },
+      'adhd-and-clinical-uses': {
+        name: 'ADHD en klinisch gebruik',
+        description: 'Hoe onderzoekers en clinici Stroop-taken gebruiken, en wat een online test wel en niet kan vertellen.',
+      },
+      'core-cognitive-abilities': {
+        name: 'Cognitieve basisvaardigheden',
+        description: 'Executieve functies, remming, werkgeheugen en de vaardigheden die erachter zitten.',
+      },
+    },
+    inShort: 'In het kort',
+    onThisPage: 'Op deze pagina',
+    tryTitle: 'Probeer het zelf.',
+    tryText: 'De gratis test duurt ongeveer twee minuten en geeft je meteen je interferentiescore.',
+    tryBtn: 'Start de test',
+    byline: 'Door de <a href="/about/">redactie van Stroop Tester</a>',
+    published: 'Gepubliceerd op {date}',
+    updated: 'Bijgewerkt op {date}',
+    lastUpdated: 'Laatst bijgewerkt: {date}',
+    minRead: '{n} min lezen',
+    disclaimer: 'Dit artikel is bedoeld als algemene informatie. Het is geen medisch advies, en een online test kan geen aandoening vaststellen.',
+    keepReading: 'Lees verder',
+    ctaText: 'Zie je eigen interferentiescore in ongeveer twee minuten. Gratis, zonder account, en je antwoorden blijven in je browser.',
+    ctaBtn: 'Doe de gratis Stroop-test',
+    faqHeading: 'Veelgestelde vragen',
   },
 
   ui: {

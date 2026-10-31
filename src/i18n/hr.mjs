@@ -26,7 +26,7 @@ export default {
     research: 'Temeljen na istraživanjima koja su počela radom J. R. Stroopa iz 1935.',
     disclaimer: 'Samo u obrazovne svrhe. Ova stranica ne postavlja dijagnoze. Ako vas brine pažnja, pamćenje ili razmišljanje, razgovarajte sa zdravstvenim stručnjakom.',
     explore: 'Istraži',
-    exploreLinks: { test: 'Stroopov test online', blog: 'Blog (na engleskom)', what: 'Što je Stroopov test? (na engleskom)', score: 'Koji je rezultat dobar? (na engleskom)' },
+    exploreLinks: { test: 'Stroopov test online', blog: 'Blog', what: 'Što je Stroopov test?', score: 'Koji je rezultat dobar?' },
     site: 'Stranica',
     siteLinks: { about: 'O nama i urednička načela', contact: 'Kontakt', privacy: 'Pravila privatnosti', cookies: 'Postavke kolačića' },
     copyright: 'Tekstovi i slike na ovoj stranici vlasništvo su Stroop Testera, osim ako nije drukčije navedeno.',
@@ -35,7 +35,52 @@ export default {
     allow: 'Dopusti statistiku',
     deny: 'Ne, hvala',
     languages: 'Jezici',
-    englishOnly: 'Članci su zasad dostupni samo na engleskom.',
+  },
+
+  blog: {
+    home: 'Početna',
+    blog: 'Blog',
+    indexTitle: 'Blog: vodiči za Stroopov test i istraživanja pažnje',
+    indexHeading: 'Naš blog',
+    indexIntro: 'Jasni vodiči o Stroopovu testu, o tome što znače tvoji rezultati i o istraživanjima pažnje i izvršnih funkcija.',
+    categoryTitle: 'Članci: {name}',
+    categories: {
+      'stroop-test-basics': {
+        name: 'Osnove Stroopova testa',
+        description: 'Što je Stroopov test, odakle potječe, tri vrste zadataka i vodič korak po korak kako ga riješiti.',
+      },
+      'the-stroop-effect': {
+        name: 'Stroopov efekt',
+        description: 'Zašto te usporava naziv boje napisan drugom bojom i tko je to otkrio.',
+      },
+      'scores-interpretation': {
+        name: 'Rezultati i tumačenje',
+        description: 'Što znače brojevi u tvom rezultatu Stroopova testa, što je uobičajeno i kako pošteno uspoređivati rezultate kroz vrijeme.',
+      },
+      'adhd-and-clinical-uses': {
+        name: 'ADHD i klinička primjena',
+        description: 'Kako istraživači i kliničari koriste Stroopove zadatke i što ti online test može, a što ne može reći.',
+      },
+      'core-cognitive-abilities': {
+        name: 'Osnovne kognitivne sposobnosti',
+        description: 'Izvršne funkcije, inhibicija, radno pamćenje i vještine koje stoje iza njih.',
+      },
+    },
+    inShort: 'Ukratko',
+    onThisPage: 'Na ovoj stranici',
+    tryTitle: 'Isprobaj sam.',
+    tryText: 'Besplatni test traje oko dvije minute i odmah ti daje tvoj rezultat interferencije.',
+    tryBtn: 'Pokreni test',
+    byline: 'Napisao <a href="/about/">urednički tim Stroop Testera</a>',
+    published: 'Objavljeno {date}',
+    updated: 'Ažurirano {date}',
+    lastUpdated: 'Zadnje ažuriranje: {date}',
+    minRead: '{n} min čitanja',
+    disclaimer: 'Ovaj članak služi općem informiranju. Nije liječnički savjet, a online test ne može dijagnosticirati nikakvo stanje.',
+    keepReading: 'Nastavi čitati',
+    ctaText: 'Saznaj svoj rezultat interferencije za otprilike dvije minute. Besplatno, bez registracije, a tvoji odgovori ostaju u pregledniku.',
+    ctaBtn: 'Riješi besplatni Stroopov test',
+    faqHeading: 'Česta pitanja',
   },
 
   ui: {

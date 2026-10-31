@@ -26,7 +26,7 @@ export default {
     research: 'J. R. 스트룹의 1935년 논문에서 시작된 연구를 바탕으로 합니다.',
     disclaimer: '교육 목적으로만 제공됩니다. 이 사이트는 어떤 질환도 진단하지 않습니다. 주의력, 기억력, 사고에 대해 걱정된다면 의료 전문가와 상담하세요.',
     explore: '둘러보기',
-    exploreLinks: { test: '스트룹 검사 온라인', blog: '블로그(영어)', what: '스트룹 검사란? (영어)', score: '좋은 점수란? (영어)' },
+    exploreLinks: { test: '스트룹 검사 온라인', blog: '블로그', what: '스트룹 검사란?', score: '좋은 점수란?' },
     site: '사이트',
     siteLinks: { about: '소개 및 편집 원칙', contact: '문의', privacy: '개인정보 처리방침', cookies: '쿠키 설정' },
     copyright: '별도 표시가 없는 한 이 사이트의 글과 이미지는 Stroop Tester에 있습니다.',
@@ -35,7 +35,52 @@ export default {
     allow: '분석 허용',
     deny: '허용 안 함',
     languages: '언어',
-    englishOnly: '현재 글은 영어로만 제공됩니다.',
+  },
+
+  blog: {
+    home: '홈',
+    blog: '블로그',
+    indexTitle: '블로그: 스트룹 검사 가이드와 주의력 연구',
+    indexHeading: '블로그',
+    indexIntro: '스트룹 검사, 점수가 뜻하는 것, 그리고 그 바탕이 되는 주의력과 실행 기능 연구를 쉽게 풀어 쓴 가이드입니다.',
+    categoryTitle: '{name} 관련 글',
+    categories: {
+      'stroop-test-basics': {
+        name: '스트룹 검사 기초',
+        description: '스트룹 검사가 무엇인지, 어디서 시작되었는지, 세 가지 시행 유형과 검사 방법을 단계별로 안내합니다.',
+      },
+      'the-stroop-effect': {
+        name: '스트룹 효과',
+        description: '다른 색 잉크로 쓴 색 이름이 왜 반응을 늦추는지, 그리고 그 원리를 밝혀낸 사람들.',
+      },
+      'scores-interpretation': {
+        name: '점수와 해석',
+        description: '스트룹 검사 결과의 숫자가 무엇을 뜻하는지, 보통은 어느 정도인지, 시간에 따라 점수를 공정하게 비교하는 방법.',
+      },
+      'adhd-and-clinical-uses': {
+        name: 'ADHD와 임상 활용',
+        description: '연구자와 임상가가 스트룹 과제를 어떻게 쓰는지, 그리고 온라인 검사로 알 수 있는 것과 없는 것.',
+      },
+      'core-cognitive-abilities': {
+        name: '핵심 인지 능력',
+        description: '실행 기능, 억제, 작업 기억, 그리고 그 바탕이 되는 기술에 대해 알아봅니다.',
+      },
+    },
+    inShort: '요약',
+    onThisPage: '이 페이지의 내용',
+    tryTitle: '직접 해 보세요.',
+    tryText: '무료 검사는 약 2분이 걸리며 간섭 점수를 바로 알려 줍니다.',
+    tryBtn: '검사 시작',
+    byline: '<a href="/about/">Stroop Tester 편집팀</a>',
+    published: '게시일: {date}',
+    updated: '수정일: {date}',
+    lastUpdated: '최종 수정일: {date}',
+    minRead: '{n}분 분량',
+    disclaimer: '이 글은 일반적인 정보 제공을 위한 것입니다. 의학적 조언이 아니며, 온라인 검사로는 어떤 질환도 진단할 수 없습니다.',
+    keepReading: '더 읽어 보기',
+    ctaText: '약 2분 만에 나의 간섭 점수를 확인해 보세요. 무료이고 가입이 필요 없으며, 답변은 브라우저 밖으로 나가지 않습니다.',
+    ctaBtn: '무료 스트룹 검사 하기',
+    faqHeading: '자주 묻는 질문',
   },
 
   ui: {

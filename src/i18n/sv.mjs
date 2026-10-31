@@ -26,7 +26,7 @@ export default {
     research: 'Byggt på forskning som började med J. R. Stroops artikel från 1935.',
     disclaimer: 'Endast i utbildningssyfte. Webbplatsen ställer inga diagnoser. Om du är orolig för din uppmärksamhet, ditt minne eller ditt tänkande, prata med vården.',
     explore: 'Utforska',
-    exploreLinks: { test: 'Stroop-test online', blog: 'Blogg (på engelska)', what: 'Vad är Stroop-testet? (på engelska)', score: 'Vad är ett bra resultat? (på engelska)' },
+    exploreLinks: { test: 'Stroop-test online', blog: 'Blogg', what: 'Vad är Stroop-testet?', score: 'Vad är ett bra resultat?' },
     site: 'Webbplats',
     siteLinks: { about: 'Om oss och redaktionella riktlinjer', contact: 'Kontakt', privacy: 'Integritetspolicy', cookies: 'Cookieinställningar' },
     copyright: 'Texter och bilder på webbplatsen tillhör Stroop Tester om inget annat anges.',
@@ -35,7 +35,52 @@ export default {
     allow: 'Tillåt statistik',
     deny: 'Nej tack',
     languages: 'Språk',
-    englishOnly: 'Artiklarna finns än så länge bara på engelska.',
+  },
+
+  blog: {
+    home: 'Start',
+    blog: 'Blogg',
+    indexTitle: 'Blogg: guider om Stroop-testet och forskning om uppmärksamhet',
+    indexHeading: 'Vår blogg',
+    indexIntro: 'Lättlästa guider om Stroop-testet, vad dina resultat betyder och forskningen om uppmärksamhet och exekutiva funktioner bakom dem.',
+    categoryTitle: 'Artiklar om {name}',
+    categories: {
+      'stroop-test-basics': {
+        name: 'Grunderna i Stroop-testet',
+        description: 'Vad Stroop-testet är, var det kommer ifrån, de tre typerna av försök och hjälp steg för steg att göra det.',
+      },
+      'the-stroop-effect': {
+        name: 'Stroop-effekten',
+        description: 'Varför ett färgord i fel bläckfärg gör dig långsammare, och vilka som listade ut det.',
+      },
+      'scores-interpretation': {
+        name: 'Resultat och tolkning',
+        description: 'Vad siffrorna i ditt Stroop-resultat betyder, vad som är vanligt och hur du jämför dina resultat rättvist över tid.',
+      },
+      'adhd-and-clinical-uses': {
+        name: 'ADHD och klinisk användning',
+        description: 'Hur forskare och kliniker använder Stroop-uppgifter, och vad ett onlinetest kan och inte kan säga dig.',
+      },
+      'core-cognitive-abilities': {
+        name: 'Grundläggande kognitiva förmågor',
+        description: 'Exekutiva funktioner, hämning, arbetsminne och förmågorna bakom dem.',
+      },
+    },
+    inShort: 'Kort sagt',
+    onThisPage: 'På den här sidan',
+    tryTitle: 'Testa själv.',
+    tryText: 'Det kostnadsfria testet tar ungefär två minuter och ger dig ditt interferensvärde direkt.',
+    tryBtn: 'Starta testet',
+    byline: 'Av <a href="/about/">redaktionen på Stroop Tester</a>',
+    published: 'Publicerad {date}',
+    updated: 'Uppdaterad {date}',
+    lastUpdated: 'Senast uppdaterad {date}',
+    minRead: '{n} min läsning',
+    disclaimer: 'Den här artikeln är allmän information. Den är inte medicinsk rådgivning, och ett onlinetest kan inte ställa någon diagnos.',
+    keepReading: 'Läs vidare',
+    ctaText: 'Se ditt eget interferensvärde på ungefär två minuter. Gratis, utan konto, och dina svar stannar i din webbläsare.',
+    ctaBtn: 'Gör det gratis Stroop-testet',
+    faqHeading: 'Vanliga frågor',
   },
 
   ui: {

@@ -26,7 +26,7 @@ export default {
     research: 'J. R. Stroop’un 1935 tarihli makalesiyle başlayan araştırmalara dayanır.',
     disclaimer: 'Yalnızca eğitim amaçlıdır. Bu site hiçbir durumu teşhis etmez. Dikkatiniz, hafızanız veya düşünmeniz konusunda endişeleriniz varsa bir sağlık profesyoneliyle konuşun.',
     explore: 'Keşfet',
-    exploreLinks: { test: 'Online Stroop testi', blog: 'Blog (İngilizce)', what: 'Stroop testi nedir? (İngilizce)', score: 'İyi bir puan nedir? (İngilizce)' },
+    exploreLinks: { test: 'Online Stroop testi', blog: 'Blog', what: 'Stroop testi nedir?', score: 'İyi bir puan nedir?' },
     site: 'Site',
     siteLinks: { about: 'Hakkımızda ve yayın ilkeleri', contact: 'İletişim', privacy: 'Gizlilik politikası', cookies: 'Çerez ayarları' },
     copyright: 'Aksi belirtilmedikçe bu sitedeki metinler ve görseller Stroop Tester’a aittir.',
@@ -35,7 +35,52 @@ export default {
     allow: 'Analitiğe izin ver',
     deny: 'Hayır, teşekkürler',
     languages: 'Diller',
-    englishOnly: 'Makaleler şimdilik yalnızca İngilizce.',
+  },
+
+  blog: {
+    home: 'Ana sayfa',
+    blog: 'Blog',
+    indexTitle: 'Blog: Stroop testi rehberleri ve dikkat araştırmaları',
+    indexHeading: 'Blogumuz',
+    indexIntro: 'Stroop testi, sonuçlarınızın ne anlama geldiği ve bunların arkasındaki dikkat ve yürütücü işlev araştırmaları hakkında anlaşılır rehberler.',
+    categoryTitle: '{name} yazıları',
+    categories: {
+      'stroop-test-basics': {
+        name: 'Stroop testinin temelleri',
+        description: 'Stroop testi nedir, nereden gelir, üç deneme türü nelerdir ve test adım adım nasıl yapılır.',
+      },
+      'the-stroop-effect': {
+        name: 'Stroop etkisi',
+        description: 'Yanlış mürekkeple yazılmış bir renk adı sizi neden yavaşlatır ve bunu kimler keşfetti.',
+      },
+      'scores-interpretation': {
+        name: 'Puanlar ve yorumlama',
+        description: 'Stroop sonuçlarınızdaki sayıların anlamı, neyin olağan olduğu ve puanlarınızı zaman içinde nasıl adil karşılaştıracağınız.',
+      },
+      'adhd-and-clinical-uses': {
+        name: 'DEHB ve klinik kullanım',
+        description: 'Araştırmacıların ve klinisyenlerin Stroop görevlerini nasıl kullandığı ve çevrim içi bir testin size neyi söyleyip neyi söyleyemeyeceği.',
+      },
+      'core-cognitive-abilities': {
+        name: 'Temel bilişsel yetenekler',
+        description: 'Yürütücü işlevler, ketleme, çalışma belleği ve bunların arkasındaki beceriler.',
+      },
+    },
+    inShort: 'Kısaca',
+    onThisPage: 'Bu sayfada',
+    tryTitle: 'Kendiniz deneyin.',
+    tryText: 'Ücretsiz test yaklaşık iki dakika sürer ve interferans puanınızı hemen gösterir.',
+    tryBtn: 'Teste başla',
+    byline: '<a href="/about/">Stroop Tester editör ekibi</a> tarafından',
+    published: 'Yayın tarihi: {date}',
+    updated: 'Güncellendi: {date}',
+    lastUpdated: 'Son güncelleme: {date}',
+    minRead: '{n} dk okuma',
+    disclaimer: 'Bu yazı genel bilgilendirme amaçlıdır. Tıbbi tavsiye değildir ve çevrim içi bir test hiçbir durumu teşhis edemez.',
+    keepReading: 'Okumaya devam edin',
+    ctaText: 'Kendi interferans puanınızı yaklaşık iki dakikada görün. Ücretsiz, üyelik yok ve yanıtlarınız tarayıcınızda kalır.',
+    ctaBtn: 'Ücretsiz Stroop testini yap',
+    faqHeading: 'Sık sorulan sorular',
   },
 
   ui: {

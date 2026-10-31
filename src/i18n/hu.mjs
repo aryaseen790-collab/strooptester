@@ -26,7 +26,7 @@ export default {
     research: 'J. R. Stroop 1935-ös cikkével kezdődött kutatásokra épül.',
     disclaimer: 'Csak oktatási célra. Ez az oldal semmit nem diagnosztizál. Ha a figyelmed, a memóriád vagy a gondolkodásod miatt aggódsz, fordulj egészségügyi szakemberhez.',
     explore: 'Felfedezés',
-    exploreLinks: { test: 'Stroop-teszt online', blog: 'Blog (angolul)', what: 'Mi a Stroop-teszt? (angolul)', score: 'Mi számít jó eredménynek? (angolul)' },
+    exploreLinks: { test: 'Stroop-teszt online', blog: 'Blog', what: 'Mi a Stroop-teszt?', score: 'Mi számít jó eredménynek?' },
     site: 'Oldal',
     siteLinks: { about: 'Rólunk és szerkesztési elvek', contact: 'Kapcsolat', privacy: 'Adatvédelem', cookies: 'Sütibeállítások' },
     copyright: 'Az oldal szövegei és képei a Stroop Tester tulajdonát képezik, hacsak másként nem jelöljük.',
@@ -35,7 +35,52 @@ export default {
     allow: 'Statisztika engedélyezése',
     deny: 'Nem, köszönöm',
     languages: 'Nyelvek',
-    englishOnly: 'A cikkek egyelőre csak angolul érhetők el.',
+  },
+
+  blog: {
+    home: 'Főoldal',
+    blog: 'Blog',
+    indexTitle: 'Blog: útmutatók a Stroop-tesztről és a figyelemkutatásról',
+    indexHeading: 'Blogunk',
+    indexIntro: 'Érthető útmutatók a Stroop-tesztről, arról, mit jelentenek az eredményeid, és a figyelem és a végrehajtó funkciók kutatásáról.',
+    categoryTitle: 'Cikkek: {name}',
+    categories: {
+      'stroop-test-basics': {
+        name: 'A Stroop-teszt alapjai',
+        description: 'Mi a Stroop-teszt, honnan ered, a háromféle próba, és lépésről lépésre segítség a kitöltéséhez.',
+      },
+      'the-stroop-effect': {
+        name: 'A Stroop-hatás',
+        description: 'Miért lassít le egy rossz színnel írt színnév, és kik jöttek rá erre.',
+      },
+      'scores-interpretation': {
+        name: 'Eredmények és értelmezés',
+        description: 'Mit jelentenek a számok a Stroop-eredményedben, mi számít átlagosnak, és hogyan hasonlítsd össze korrektül az eredményeidet.',
+      },
+      'adhd-and-clinical-uses': {
+        name: 'ADHD és klinikai felhasználás',
+        description: 'Hogyan használják a kutatók és a klinikusok a Stroop-feladatokat, és mit árulhat el egy online teszt, és mit nem.',
+      },
+      'core-cognitive-abilities': {
+        name: 'Alapvető kognitív képességek',
+        description: 'Végrehajtó funkciók, gátlás, munkamemória és a mögöttük álló készségek.',
+      },
+    },
+    inShort: 'Röviden',
+    onThisPage: 'Ezen az oldalon',
+    tryTitle: 'Próbáld ki te is.',
+    tryText: 'Az ingyenes teszt körülbelül két perc, és azonnal megkapod az interferenciaértékedet.',
+    tryBtn: 'Teszt indítása',
+    byline: 'Írta: a <a href="/about/">Stroop Tester szerkesztősége</a>',
+    published: 'Megjelent: {date}',
+    updated: 'Frissítve: {date}',
+    lastUpdated: 'Utoljára frissítve: {date}',
+    minRead: '{n} perc olvasás',
+    disclaimer: 'Ez a cikk általános tájékoztatásra szolgál. Nem orvosi tanács, és egy online teszt semmilyen betegséget nem tud diagnosztizálni.',
+    keepReading: 'További cikkek',
+    ctaText: 'Nézd meg a saját interferenciaértékedet nagyjából két perc alatt. Ingyenes, regisztráció nélküli, és a válaszaid a böngésződben maradnak.',
+    ctaBtn: 'Ingyenes Stroop-teszt',
+    faqHeading: 'Gyakori kérdések',
   },
 
   ui: {

@@ -26,7 +26,7 @@ export default {
     research: 'Berdasarkan penelitian yang dimulai dari makalah J. R. Stroop tahun 1935.',
     disclaimer: 'Hanya untuk tujuan edukasi. Situs ini tidak mendiagnosis kondisi apa pun. Jika Anda khawatir tentang perhatian, ingatan, atau cara berpikir Anda, bicarakan dengan tenaga kesehatan.',
     explore: 'Jelajahi',
-    exploreLinks: { test: 'Tes Stroop online', blog: 'Blog (bahasa Inggris)', what: 'Apa itu tes Stroop? (bahasa Inggris)', score: 'Berapa skor yang baik? (bahasa Inggris)' },
+    exploreLinks: { test: 'Tes Stroop online', blog: 'Blog', what: 'Apa itu tes Stroop?', score: 'Berapa skor yang baik?' },
     site: 'Situs',
     siteLinks: { about: 'Tentang kami dan standar redaksi', contact: 'Kontak', privacy: 'Kebijakan privasi', cookies: 'Pengaturan cookie' },
     copyright: 'Teks dan gambar di situs ini milik Stroop Tester kecuali disebutkan lain.',
@@ -35,7 +35,52 @@ export default {
     allow: 'Izinkan analitik',
     deny: 'Tidak, terima kasih',
     languages: 'Bahasa',
-    englishOnly: 'Untuk saat ini artikel hanya tersedia dalam bahasa Inggris.',
+  },
+
+  blog: {
+    home: 'Beranda',
+    blog: 'Blog',
+    indexTitle: 'Blog: panduan tes Stroop dan riset tentang perhatian',
+    indexHeading: 'Blog kami',
+    indexIntro: 'Panduan yang mudah dipahami tentang tes Stroop, arti skor Anda, dan riset tentang perhatian dan fungsi eksekutif di baliknya.',
+    categoryTitle: 'Artikel {name}',
+    categories: {
+      'stroop-test-basics': {
+        name: 'Dasar-dasar tes Stroop',
+        description: 'Apa itu tes Stroop, asal-usulnya, tiga jenis percobaan, dan panduan langkah demi langkah untuk mengerjakannya.',
+      },
+      'the-stroop-effect': {
+        name: 'Efek Stroop',
+        description: 'Mengapa nama warna yang ditulis dengan tinta berbeda membuat Anda lebih lambat, dan siapa yang menemukannya.',
+      },
+      'scores-interpretation': {
+        name: 'Skor dan interpretasi',
+        description: 'Arti angka-angka pada hasil tes Stroop Anda, apa yang umum, dan cara membandingkan skor Anda secara adil dari waktu ke waktu.',
+      },
+      'adhd-and-clinical-uses': {
+        name: 'ADHD dan penggunaan klinis',
+        description: 'Bagaimana peneliti dan klinisi memakai tugas Stroop, dan apa yang bisa dan tidak bisa diberitahukan oleh tes online.',
+      },
+      'core-cognitive-abilities': {
+        name: 'Kemampuan kognitif inti',
+        description: 'Fungsi eksekutif, inhibisi, memori kerja, dan keterampilan di baliknya.',
+      },
+    },
+    inShort: 'Singkatnya',
+    onThisPage: 'Di halaman ini',
+    tryTitle: 'Coba sendiri.',
+    tryText: 'Tes gratis ini memakan waktu sekitar dua menit dan langsung memberi skor interferensi Anda.',
+    tryBtn: 'Mulai tes',
+    byline: 'Oleh <a href="/about/">tim editorial Stroop Tester</a>',
+    published: 'Terbit {date}',
+    updated: 'Diperbarui {date}',
+    lastUpdated: 'Terakhir diperbarui {date}',
+    minRead: '{n} menit baca',
+    disclaimer: 'Artikel ini untuk edukasi umum. Ini bukan nasihat medis, dan tes online tidak dapat mendiagnosis kondisi apa pun.',
+    keepReading: 'Baca juga',
+    ctaText: 'Lihat skor interferensi Anda sendiri dalam sekitar dua menit. Gratis, tanpa daftar, dan jawaban Anda tetap di browser.',
+    ctaBtn: 'Ikuti tes Stroop gratis',
+    faqHeading: 'Pertanyaan yang sering diajukan',
   },
 
   ui: {
