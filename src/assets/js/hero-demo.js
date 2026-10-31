@@ -2,11 +2,11 @@
 // so the point of the test is visible at a glance. "Try 6 words" turns it into a tiny live
 // version with a running stopwatch, then shows how much the clashing words slowed you down.
 import { INKS, median, shuffle } from './stroop-core.js';
+import { t, display, colorName, keyFor, idForKey } from './i18n.js';
 
 const FOUR = ['RED', 'BLUE', 'GREEN', 'YELLOW'];
 const pick = (a) => a[Math.floor(Math.random() * a.length)];
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const lower = (c) => c.toLowerCase();
 
 function mount(el) {
   const $ = (sel) => el.querySelector(sel);
@@ -36,11 +36,11 @@ function mount(el) {
   let looping = false;
 
   chips.innerHTML = FOUR.map(
-    (c) => `<button type="button" class="chip-btn" data-c="${c}" aria-label="${lower(c)}"><i style="background:${INKS[c].hex}"></i>${lower(c)}<kbd>${INKS[c].key.toUpperCase()}</kbd></button>`,
+    (c) => `<button type="button" class="chip-btn" data-c="${c}" aria-label="${colorName(c)}"><i style="background:${INKS[c].hex}"></i>${colorName(c)}<kbd>${keyFor(c, FOUR).toUpperCase()}</kbd></button>`,
   ).join('');
 
   const setWord = (w, c) => {
-    word.textContent = w;
+    word.textContent = display(w);
     word.style.color = INKS[c].hex;
     word.classList.remove('is-in');
     void word.offsetWidth;
@@ -69,10 +69,10 @@ function mount(el) {
     const c = pick(FOUR);
     const w = clash ? pick(FOUR.filter((x) => x !== c)) : c;
     el.classList.toggle('is-clash', clash);
-    step.textContent = clash ? 'Example · clashing word' : 'Example · matching word';
+    step.textContent = clash ? t('dExClashing') : t('dExMatching');
     setWord(w, c);
-    read.innerHTML = `The word says <b>${w}</b>`;
-    ink.innerHTML = clash ? `The ink is <b>${lower(c)}</b>, so the answer is ${lower(c)}` : `The ink is <b>${lower(c)}</b> too, so it's easy`;
+    read.innerHTML = t('dWordSays', { w: display(w) });
+    ink.innerHTML = clash ? t('dInkClash', { c: colorName(c) }) : t('dInkMatch', { c: colorName(c) });
     read.classList.remove('is-on');
     ink.classList.remove('is-on');
     bar.style.width = '0%';
@@ -115,7 +115,7 @@ function mount(el) {
     el.classList.remove('is-done', 'is-clash');
     chips.hidden = false;
     go.hidden = true;
-    msg.textContent = 'Answer with the ink colour as fast as you can.';
+    msg.textContent = t('dAnswerFast');
     read.classList.remove('is-on');
     ink.classList.remove('is-on');
     const types = shuffle(['m', 'm', 'm', 'c', 'c', 'c']);
@@ -129,17 +129,17 @@ function mount(el) {
   }
 
   function next() {
-    step.textContent = `Word ${i + 1} of ${trials.length}`;
+    step.textContent = t('dWordN', { i: i + 1, n: trials.length });
     word.textContent = '+';
     word.style.color = '';
     word.classList.remove('is-in');
     bar.style.width = '0%';
     ms.textContent = '0 ms';
     later(() => {
-      const t = trials[i];
+      const trial = trials[i];
       // The word itself appears without animation so the timing is fair.
-      word.textContent = t.word;
-      word.style.color = INKS[t.ink].hex;
+      word.textContent = display(trial.word);
+      word.style.color = INKS[trial.ink].hex;
       requestAnimationFrame((ts) => {
         t0 = ts;
         live = true;
@@ -159,15 +159,15 @@ function mount(el) {
     if (!live) return;
     live = false;
     cancelAnimationFrame(raf);
-    const t = trials[i];
+    const trial = trials[i];
     const rt = Math.round((when ?? performance.now()) - t0);
-    const ok = c === t.ink;
+    const ok = c === trial.ink;
     ms.textContent = `${rt} ms`;
-    results.push({ ...t, rt, ok });
+    results.push({ ...trial, rt, ok });
     el.classList.remove('is-good', 'is-bad');
     void el.offsetWidth;
     el.classList.add(ok ? 'is-good' : 'is-bad');
-    msg.textContent = ok ? `Right · ${t.clash ? 'clashing' : 'matching'} word` : `The ink was ${lower(t.ink)}`;
+    msg.textContent = ok ? t(trial.clash ? 'dRightClashing' : 'dRightMatching') : t('dInkWas', { c: colorName(trial.ink) });
     i++;
     if (i < trials.length) later(next, 650);
     else later(finish, 650);
@@ -180,22 +180,19 @@ function mount(el) {
     el.classList.add('is-done');
     const m = median(results.filter((r) => r.ok && !r.clash).map((r) => r.rt));
     const c = median(results.filter((r) => r.ok && r.clash).map((r) => r.rt));
-    cm.textContent = m == null ? 'n/a' : `${Math.round(m)} ms`;
-    cc.textContent = c == null ? 'n/a' : `${Math.round(c)} ms`;
-    step.textContent = 'Your result';
+    cm.textContent = m == null ? t('na') : `${Math.round(m)} ms`;
+    cc.textContent = c == null ? t('na') : `${Math.round(c)} ms`;
+    step.textContent = t('dYourResult');
     word.style.color = 'var(--teal)';
     if (m != null && c != null) {
       const gap = Math.round(c - m);
       word.textContent = gap > 0 ? `+${gap} ms` : `${gap} ms`;
-      msg.innerHTML =
-        gap > 0
-          ? `Clashing words cost you about <b>${gap} ms</b> each. That's the Stroop effect. <a href="#test">Measure it properly with 40 words</a>`
-          : `No slowdown this time. Six words is very noisy, so <a href="#test">try the full 40-word test</a> for a real number.`;
+      msg.innerHTML = gap > 0 ? t('dGap', { ms: gap }) : t('dNoGap');
     } else {
-      word.textContent = 'Oops';
-      msg.innerHTML = `Too many slips to compare. <a href="#test">The full test</a> has a practice round.`;
+      word.textContent = t('dOops');
+      msg.innerHTML = t('dSlips');
     }
-    go.textContent = 'Try again';
+    go.textContent = t('dTryAgain');
     go.hidden = false;
   }
 
@@ -212,7 +209,7 @@ function mount(el) {
   });
   document.addEventListener('keydown', (e) => {
     if (mode !== 'try' || !live || e.repeat || e.metaKey || e.ctrlKey || e.altKey) return;
-    const c = FOUR.find((n) => INKS[n].key === e.key.toLowerCase());
+    const c = idForKey(e.key, FOUR);
     if (!c) return;
     e.preventDefault();
     answer(c, e.timeStamp);

@@ -8,6 +8,8 @@ category: the-stroop-effect
 image: /wp-content/uploads/2026/08/1930s-psychology-lab.webp
 imageAlt: Illustration of a 1930s psychology laboratory with colour word cards on the desk
 excerpt: One short paper from 1935, written by a man who then mostly left the field. How John Ridley Stroop ended up with his name on one of psychology's best-known effects.
+keywords: john ridley stroop, who discovered the stroop effect, stroop 1935 study, stroop experiment, history of the stroop test
+summary: John Ridley Stroop (1897–1973) published the Stroop effect in 1935 in the Journal of Experimental Psychology.|In his key experiment, naming the inks of clashing colour words took about 74% longer than naming plain colour squares.|Reading was hardly slowed by the ink, which showed that reading is the stronger, more automatic habit.
 ---
 
 The Stroop effect is named after a man who wrote one famous paper on it and then, more or less, moved on. John Ridley Stroop published *Studies of Interference in Serial Verbal Reactions* in 1935. It came out of his doctoral research, and it showed something you can check for yourself in a couple of minutes: naming the ink colour of a word is much harder when the word spells a different colour.

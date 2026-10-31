@@ -8,6 +8,8 @@ category: adhd-and-clinical-uses
 image: /wp-content/uploads/2026/06/Inhibitory-control-in-the-brain.webp
 imageAlt: Illustration of a head in profile with a brake pedal symbol next to the front of the brain
 excerpt: The Stroop test leans on exactly the kind of self-control ADHD affects, so it seems like an obvious fit. The research is more interesting, and more cautious, than that.
+keywords: stroop test adhd, adhd stroop test, stroop interference adhd, inhibitory control adhd
+summary: As groups, people with ADHD often show a little more Stroop interference, but the overlap with everyone else is large.|Meta-analyses (2005, 2007) found the interference measure on its own separates the groups poorly.|The Stroop test cannot diagnose ADHD; a clinician does that.
 ---
 
 The word RED is in front of you, printed in blue ink. Someone asks you for the ink colour. Easy. Except part of you says "red" anyway, and you have to pull it back.

@@ -49,3 +49,9 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v4
+        if: startsWith(steps.deployment.outputs.page_url, 'https://strooptester.com')
+      - name: Notify IndexNow (Bing, Yandex and others)
+        if: startsWith(steps.deployment.outputs.page_url, 'https://strooptester.com')
+        continue-on-error: true
+        run: sleep 30 && node scripts/indexnow.mjs

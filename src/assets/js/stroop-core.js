@@ -62,10 +62,12 @@ export function typeCounts(n) {
   return { congruent, neutral, incongruent: n - congruent - neutral };
 }
 
-function makeTrial(type, inks, rand) {
+// `word` is a colour id (RED, BLUE...) for colour words, or the neutral word itself.
+// Pages show colour ids in their own language.
+function makeTrial(type, inks, rand, neutral = NEUTRAL_WORDS) {
   const ink = pick(inks, rand);
   if (type === 'congruent') return { type, word: ink, ink };
-  if (type === 'neutral') return { type, word: pick(NEUTRAL_WORDS, rand), ink };
+  if (type === 'neutral') return { type, word: pick(neutral, rand), ink };
   const word = pick(inks.filter((c) => c !== ink), rand);
   return { type, word, ink };
 }
@@ -83,22 +85,22 @@ function sequenceOk(trials) {
 
 // Builds a balanced, shuffled list: no identical stimulus twice in a row,
 // no more than three trials of one type or two of one ink in a row.
-export function makeTrials(n, inks, rand = Math.random) {
+export function makeTrials(n, inks, rand = Math.random, neutral = NEUTRAL_WORDS) {
   const counts = typeCounts(n);
   const types = [];
   for (const [type, count] of Object.entries(counts)) for (let i = 0; i < count; i++) types.push(type);
   let best = null;
   for (let attempt = 0; attempt < 400; attempt++) {
-    const trials = shuffle(types, rand).map((t) => makeTrial(t, inks, rand));
+    const trials = shuffle(types, rand).map((t) => makeTrial(t, inks, rand, neutral));
     if (sequenceOk(trials)) return trials;
     best = trials;
   }
   return best;
 }
 
-export function makePractice(inks, rand = Math.random) {
+export function makePractice(inks, rand = Math.random, neutral = NEUTRAL_WORDS) {
   const trials = shuffle(['congruent', 'incongruent', 'neutral', 'incongruent', 'congruent', 'incongruent'], rand);
-  return trials.map((t) => makeTrial(t, inks, rand));
+  return trials.map((t) => makeTrial(t, inks, rand, neutral));
 }
 
 export function median(values) {
@@ -182,10 +184,10 @@ function fatigue(tagged) {
 // Plain-language bands for the interference cost on a keyboard or touch task.
 // These are rough guides, not clinical norms.
 export const INTERFERENCE_BANDS = [
-  { max: 40, label: 'Very small', tone: 'good' },
-  { max: 120, label: 'Typical', tone: 'ok' },
-  { max: 200, label: 'Larger than typical', tone: 'warn' },
-  { max: Infinity, label: 'Large', tone: 'warn' },
+  { max: 40, id: 'verySmall', label: 'Very small', tone: 'good' },
+  { max: 120, id: 'typical', label: 'Typical', tone: 'ok' },
+  { max: 200, id: 'larger', label: 'Larger than typical', tone: 'warn' },
+  { max: Infinity, id: 'large', label: 'Large', tone: 'warn' },
 ];
 
 export function interferenceBand(ms) {
@@ -195,10 +197,10 @@ export function interferenceBand(ms) {
 
 export function accuracyBand(pct) {
   if (pct == null) return null;
-  if (pct >= 95) return { label: 'Very high', tone: 'good' };
-  if (pct >= 88) return { label: 'Typical', tone: 'ok' };
-  if (pct >= 75) return { label: 'A little low', tone: 'warn' };
-  return { label: 'Low', tone: 'warn' };
+  if (pct >= 95) return { id: 'veryHigh', label: 'Very high', tone: 'good' };
+  if (pct >= 88) return { id: 'typical', label: 'Typical', tone: 'ok' };
+  if (pct >= 75) return { id: 'littleLow', label: 'A little low', tone: 'warn' };
+  return { id: 'low', label: 'Low', tone: 'warn' };
 }
 
 // Compact encoding for share links: only summary numbers, never trial data.

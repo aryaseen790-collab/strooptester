@@ -1,13 +1,15 @@
 ---
 title: What Is a Good Stroop Test Score? Norms by Age Explained
-seoTitle: "What Is a Good Stroop Test Score? Accuracy, Speed and Age"
-description: What counts as a good Stroop score: typical accuracy, response times and interference on online tests, how age changes them, and how to compare fairly.
+seoTitle: What Is a Good Stroop Test Score? Average Results & Norms
+description: What a good Stroop test score looks like: average Stroop test results, typical response times and interference, how scoring works, norms by age and how to read yours.
 date: 2026-06-09
-updated: 2026-10-26
+updated: 2026-10-31
 category: scores-interpretation
 image: /wp-content/uploads/2026/06/Good-Stroop-Test-Score-Gauge.webp
 imageAlt: Score gauge with accuracy, speed and interference panels
 excerpt: There's no single pass mark for the Stroop test. What counts as good depends on which number you look at, your age and the test you used. Here's how to read yours.
+keywords: good stroop test score, average stroop test results, stroop test scoring, stroop test norms, stroop test results interpretation, stroop test average time, stroop score
+summary: A good Stroop result means high accuracy (90% or more) and a small gap between clashing and matching words.|On keyboard or touch tests, typical adult interference is about 40 to 120 ms and a typical correct response takes roughly 0.5 to 0.8 seconds.|Raw times slow with age, mostly through general slowing, so relative interference is the fairer number to compare across ages.|Compare yourself with your own earlier results on the same device; there is no official pass mark.
 ---
 
 You've taken the test, the results are on screen, and you want to know if they're any good. Fair question. The honest answer is that there isn't one magic number. What counts as good depends on which figure you're looking at, how old you are, and which version of the test you took.
@@ -31,6 +33,23 @@ They're separate because they can point in different directions. One person flie
 ### Why one number on its own can mislead
 
 Psychologists call this the speed-accuracy trade-off. Almost anyone can go faster by being sloppier, or be more accurate by going slower. A sensible reading of your results weighs both. The strongest results don't give up one for the other.
+
+## Average Stroop test results
+
+People usually want a number to compare against, so here are the averages you can expect on a computer or phone version like ours. They describe healthy adults paying attention, on a keyboard or touchscreen, with four colours.
+
+| Measure | Typical adult range | What pulls it up or down |
+| --- | --- | --- |
+| Accuracy | 90 to 98% | Rushing, distractions, a cramped phone screen |
+| Typical response on matching words | about 450 to 650 ms | Age, device lag, how awake you are |
+| Typical response on clashing words | about 520 to 750 ms | The same, plus how strongly the word pulls you |
+| Interference (clashing minus matching) | about 40 to 120 ms | Tiredness, practice, age |
+| Average time per word, including the pause | about 1.2 to 1.5 seconds | Mostly fixed by the test's timing |
+| Time to finish the 40-word Standard test | about 1.5 to 2 minutes | Add 30 seconds for the practice round |
+
+These are ranges, not a pass mark. They come from the spread of results commonly reported for keyboard and touch versions of the task, not from a formal normative study.
+
+Paper versions are scored differently. In the Golden Stroop, which clinicians often use, people name as many items as they can in 45 seconds on each of three cards, and the raw counts are converted to T-scores adjusted for age and education. A T-score of 50 is average, and most people land between 40 and 60. Some online tests also roll speed and accuracy into a single "performance index". Ours reports inverse efficiency for the same purpose: your median correct time divided by the proportion you got right, so lower is better.
 
 ## Accuracy
 

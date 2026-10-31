@@ -1,13 +1,15 @@
 ---
 title: Understanding Your Stroop Interference Score
 seoTitle: Stroop Interference Score: What It Means and How It's Calculated
-description: What the Stroop interference score measures, how it's calculated step by step, why it cancels out raw speed, and how to read your own number sensibly.
+description: What the Stroop interference score measures, how it is calculated step by step, why it cancels out raw speed, what a normal Stroop score is and how to read your own.
 date: 2026-09-30
 updated: 2026-10-26
 category: scores-interpretation
 image: /wp-content/uploads/2026/09/Interference-formula-visual.webp
 imageAlt: Stroop interference score formula shown as a subtraction
 excerpt: The interference score is one subtraction, but it's the number the whole Stroop test exists to produce. Here's what goes into it and how to read yours.
+keywords: stroop interference score, interference score, stroop score, how to calculate stroop interference, stroop test scoring
+summary: Stroop interference = median time on clashing words minus median time on matching words.|Subtracting the matching time removes your general speed and most device lag.|On keyboard or touch tests, adults commonly score about 40 to 120 ms.
 ---
 
 Finish a Stroop test and you get a handful of numbers. Most of them are what you'd expect: how many you got right, how fast you were. One of them is different. The interference score doesn't measure speed as such. It measures how much one particular thing, a colour word in the wrong ink, slowed you down.

@@ -9,7 +9,8 @@
     "test": "node --test test/*.test.mjs",
     "check": "node scripts/check.mjs",
     "serve": "node scripts/serve.mjs",
-    "ci": "npm test && npm run build && npm run check"
+    "ci": "npm test && npm run check-i18n && npm run build && npm run check",
+    "check-i18n": "node scripts/check-i18n.mjs"
   },
   "engines": {
     "node": ">=20"

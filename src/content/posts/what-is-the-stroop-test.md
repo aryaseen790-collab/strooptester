@@ -1,13 +1,15 @@
 ---
 title: What Is the Stroop Test?
-seoTitle: "What Is the Stroop Test? How It Works and What It Measures"
-description: A clear guide to the Stroop test: where it came from, the three trial types, what it measures, how the scores work and how to take it online for free.
+seoTitle: What Is the Stroop Test? Purpose, Procedure & What It Measures
+description: What the Stroop test is: its purpose, the procedure, the three trial types and what it measures (selective attention, processing speed, inhibitory control).
 date: 2026-06-04
-updated: 2026-10-26
+updated: 2026-10-31
 category: stroop-test-basics
 image: /wp-content/uploads/2026/06/Stroop-test-colour-and-word-cards.webp
 imageAlt: Cards showing colour words printed in mismatched bright ink colours
 excerpt: You name the ink colour, not the word. It sounds trivial until RED appears in blue. Here's where the Stroop test came from, what it measures and how it's scored.
+keywords: what is the stroop test, purpose of the stroop test, what does the stroop test measure, stroop task, stroop test procedure, stroop color and word test
+summary: The Stroop test asks you to name the ink colour of words while ignoring what the words say.|Its purpose is to measure how well you hold back an automatic response: inhibitory control and selective attention.|It was introduced by John Ridley Stroop in 1935 and is still one of the most used tasks in psychology.
 ---
 
 Look at the word **RED** printed in blue ink and say the colour of the ink. Your mouth wants to say red. You know the answer is blue. For a split second the two fight, and you can feel it.
@@ -27,6 +29,12 @@ That hesitation is called the **Stroop effect**, and the test exists to catch it
 ### Why does such an easy task trip us up?
 
 Because you've read so much that reading runs on autopilot. Your brain reads the word whether you want it to or not, and then you have to push that reflex aside to give the slower, correct answer. How long the pushing takes, measured in thousandths of a second, says a surprising amount about how your attention behaves under pressure. For the full explanation, see [the Stroop effect explained](/stroop-effect-explained/).
+
+## What is the purpose of the Stroop test?
+
+The purpose of the Stroop test is to measure how well you can ignore an automatic response and follow a rule instead. Reading the word is automatic; naming the ink colour is the rule. The extra time you need when the two disagree shows how strong your inhibitory control and selective attention are at that moment.
+
+That is why researchers and clinicians use it to look at attention, impulse control and processing speed, and to track how these change with age, tiredness, stress or some health conditions.
 
 ## A short history
 
@@ -71,6 +79,18 @@ The word and the ink disagree, like BLUE in red, and the answer is red. These ar
 ### Neutral trials
 
 No clash at all. Depending on the test, you might see a row of Xs, coloured shapes, or an ordinary word like LAMP printed in colour. They show your plain colour-naming speed, which helps separate the cost of the clash from the general effort of naming a colour. Our test uses ordinary words, so every neutral trial still involves reading something.
+
+## The Stroop test procedure
+
+Whatever the version, the procedure follows the same pattern:
+
+1. **Instructions.** You are told to name the ink colour and ignore the word.
+2. **Practice.** A few trials let you learn the responses (spoken, or keys and buttons).
+3. **Baseline trials.** You name colours without a clash: matching words, coloured patches or neutral words.
+4. **Interference trials.** You name the ink of colour words printed in a different colour.
+5. **Scoring.** The difference in speed (and errors) between the baseline and interference trials gives the Stroop interference score.
+
+In computer versions like ours, the trial types are mixed in a random order and every response is timed. In paper versions, each condition is a separate card and you name as many items as you can in a fixed time.
 
 ## Versions you might come across
 
