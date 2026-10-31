@@ -1,13 +1,15 @@
 ---
 title: "The Stroop Effect Explained: Why Your Brain Gets Confused"
-seoTitle: "The Stroop Effect Explained: Why Colour Words Trip You Up"
-description: What the Stroop effect is, why reading gets in the way of naming colours, which brain areas sort out the conflict, and why psychologists still use it.
+seoTitle: What Is the Stroop Effect? Definition, Examples & Why It Happens
+description: The Stroop effect explained: a simple definition, everyday examples, why reading gets in the way of naming colours, and the purpose of the Stroop experiment.
 date: 2026-06-08
-updated: 2026-10-26
+updated: 2026-10-31
 category: the-stroop-effect
 image: /wp-content/uploads/2026/06/Stroop-Test-explained.webp
 imageAlt: Colour words printed in mismatched ink colours with the title Stroop Test
 excerpt: Say the ink colour of GREEN printed in red, and for half a second two answers shove at each other. That shove is the Stroop effect. Here's what causes it.
+keywords: stroop effect, what is the stroop effect, stroop effect definition, purpose of the stroop effect, stroop effect psychology, why does the stroop effect occur, stroop experiment
+summary: The Stroop effect is the delay, and extra mistakes, when you name the ink colour of a word that spells a different colour.|It happens because reading is automatic and faster than colour naming, so the word has to be held back.|Psychologists use it to study attention and self-control because it is quick, cheap and works on almost anyone who reads.
 ---
 
 Try something. Say the word "green" out loud. No problem.
@@ -17,6 +19,8 @@ Now imagine the word GREEN printed in bright red ink, and your job is to say the
 That push is the Stroop effect. It's the small delay, and the occasional mistake, that happens when your brain has to ignore something it normally does without thinking. In this case, the thing it can't help doing is reading.
 
 ![Colour words printed in mismatched ink colours](/wp-content/uploads/2026/06/Stroop-Test-explained.webp "The classic set-up: colour words in the wrong ink.")
+
+> **Stroop effect (definition):** the slower responses and extra mistakes that happen when you have to name the ink colour of a word that spells a different colour, such as the word BLUE printed in red. It shows that reading is automatic and hard to switch off.
 
 ## What the Stroop effect is
 
@@ -65,6 +69,18 @@ The first is the **anterior cingulate cortex**. Think of it as a smoke alarm for
 The second is the **dorsolateral prefrontal cortex**. It responds to the alarm by keeping your attention on the rule you've been given, name the ink, and away from the tempting word. In 2000, Angus MacDonald and colleagues used fMRI to show these two jobs happening in different places: one region keeping the goal in mind, the other flagging the conflict.
 
 All of this falls under what psychologists call [executive function](/what-is-executive-function/), the set of skills you use to stay on task and ignore distractions. The Stroop effect gives researchers a simple window into how the brain settles its own arguments.
+
+## What is the purpose of the Stroop effect experiment?
+
+The Stroop experiment was designed to answer a simple question: what happens when two of your mental habits disagree? Stroop's 1935 study showed that reading wins, and that naming a colour has to wait while the word is pushed aside.
+
+Today the experiment is used for three main purposes:
+
+- **To measure inhibitory control.** The size of the delay shows how well someone can hold back an automatic response. That makes it a quick test of [executive function](/what-is-executive-function/).
+- **To study selective attention.** It shows how well people focus on one feature (the ink) while ignoring a stronger one (the word).
+- **To compare groups and conditions.** Researchers run it before and after sleep loss, in different age groups, or in people with ADHD, depression or brain injury, to see how attention control changes.
+
+In short, the Stroop effect demonstrates that well-practised skills run automatically, and that overriding them takes measurable time and effort.
 
 ## Why researchers love it
 

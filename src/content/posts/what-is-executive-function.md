@@ -8,6 +8,8 @@ category: core-cognitive-abilities
 image: /wp-content/uploads/2026/07/Executive-Function-Hub.webp
 imageAlt: Illustration of a brain control hub linking three core skills
 excerpt: You're halfway through an email when the phone buzzes and the kettle boils, and somehow you still finish the sentence. That's executive function at work.
+keywords: executive function, what is executive function, inhibitory control, working memory, cognitive flexibility
+summary: Executive function is the set of skills you use to plan, focus, hold information in mind and control impulses.|Its three core parts are working memory, inhibitory control and cognitive flexibility.|The Stroop test is a classic measure of inhibitory control.
 ---
 
 You're halfway through an email when your phone buzzes, the kettle starts to whistle and your kid wanders in asking where the scissors went. Somehow you finish the sentence. You ignore the phone, park the kettle in the back of your mind and say "kitchen drawer" without looking up.

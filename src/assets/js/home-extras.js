@@ -1,5 +1,6 @@
 // Homepage interactions: cycling example words and the race diagram replay.
-import { INKS, NEUTRAL_WORDS } from './stroop-core.js';
+import { INKS } from './stroop-core.js';
+import { L, display } from './i18n.js';
 
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const FOUR = ['RED', 'BLUE', 'GREEN', 'YELLOW'];
@@ -14,12 +15,12 @@ function cycleWords() {
     for (const el of els) {
       const ink = pick(FOUR);
       const type = el.dataset.cycle;
-      const word = type === 'congruent' ? ink : type === 'neutral' ? pick(NEUTRAL_WORDS) : pick(FOUR.filter((c) => c !== ink));
+      const word = type === 'congruent' ? ink : type === 'neutral' ? pick(L.neutral) : pick(FOUR.filter((c) => c !== ink));
       el.classList.remove('is-swap');
       void el.offsetWidth;
       el.classList.add('is-swap');
       setTimeout(() => {
-        el.textContent = word;
+        el.textContent = display(word);
         el.style.color = INKS[ink].hex;
       }, 180);
     }

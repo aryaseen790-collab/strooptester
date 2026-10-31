@@ -9,6 +9,7 @@ import {
   encodeShare,
   decodeShare,
 } from './stroop-core.js';
+import { L, t, display, colorName, keyFor, idForKey } from './i18n.js';
 
 const $ = (id) => document.getElementById(id);
 const root = $('stroop-app');
@@ -42,7 +43,7 @@ function show(phase) {
     el.hidden = el.dataset.phase !== phase && !(phase === 'practice' && el.dataset.phase === 'test');
   });
   root.classList.toggle('is-running', phase === 'practice' || phase === 'test');
-  $('arena-label').textContent = phase === 'practice' ? 'Practice round (not scored)' : 'Scored test';
+  $('arena-label').textContent = phase === 'practice' ? t('arenaPractice') : t('arenaScored');
 }
 
 function buildPad(inks) {
@@ -54,8 +55,9 @@ function buildPad(inks) {
     b.type = 'button';
     b.className = 'resp';
     b.dataset.color = name;
-    b.innerHTML = `<span class="resp__dot" style="background:${INKS[name].hex}" aria-hidden="true"></span><span class="resp__name">${name}</span><kbd>${INKS[name].key.toUpperCase()}</kbd>`;
-    b.setAttribute('aria-label', `${name.toLowerCase()} (key ${INKS[name].key.toUpperCase()})`);
+    const key = keyFor(name, inks).toUpperCase();
+    b.innerHTML = `<span class="resp__dot" style="background:${INKS[name].hex}" aria-hidden="true"></span><span class="resp__name">${colorName(name)}</span><kbd>${key}</kbd>`;
+    b.setAttribute('aria-label', `${colorName(name)} (${t('keyLabel', { k: key })})`);
     pad.appendChild(b);
   }
 }
@@ -64,7 +66,7 @@ function start(practice) {
   const mode = MODES[state.mode];
   clearTimers();
   state.practice = practice;
-  state.trials = practice ? makePractice(mode.inks) : makeTrials(mode.trials, mode.inks);
+  state.trials = practice ? makePractice(mode.inks, Math.random, L.neutral) : makeTrials(mode.trials, mode.inks, Math.random, L.neutral);
   state.results = [];
   state.idx = 0;
   buildPad(mode.inks);
@@ -114,10 +116,10 @@ function nextTrial() {
   stim.style.color = '';
   // Jittered fixation so the next word cannot be anticipated.
   later(() => {
-    const t = state.trials[state.idx];
-    stim.textContent = t.word;
+    const trial = state.trials[state.idx];
+    stim.textContent = display(trial.word);
     stim.className = 'stimulus';
-    stim.style.color = INKS[t.ink].hex;
+    stim.style.color = INKS[trial.ink].hex;
     // Start the clock on the frame that paints the word.
     requestAnimationFrame((ts) => {
       state.shownAt = ts;
@@ -132,21 +134,21 @@ function respond(color, eventTime) {
   if (!state.awaiting) return;
   state.awaiting = false;
   clearTimers();
-  const t = state.trials[state.idx];
+  const trial = state.trials[state.idx];
   const rt = color == null ? null : Math.round((eventTime ?? performance.now()) - state.shownAt);
-  state.results.push({ ...t, response: color, rt });
+  state.results.push({ ...trial, response: color, rt });
   state.idx++;
   const stim = $('stimulus');
   if (state.practice) {
-    const ok = color === t.ink;
-    $('feedback').textContent = color == null ? 'Too slow' : ok ? `Correct · ${rt} ms` : `Not quite. The ink was ${t.ink.toLowerCase()}.`;
+    const ok = color === trial.ink;
+    $('feedback').textContent = color == null ? t('tooSlow') : ok ? t('correctMs', { ms: rt }) : t('wrongInk', { ink: colorName(trial.ink) });
     $('feedback').className = `feedback ${ok ? 'is-good' : 'is-bad'}`;
     later(() => {
       $('feedback').textContent = '';
       nextTrial();
     }, 900);
   } else {
-    if (color == null) $('feedback').textContent = 'Too slow';
+    if (color == null) $('feedback').textContent = t('tooSlow');
     later(() => {
       $('feedback').textContent = '';
       nextTrial();
@@ -159,7 +161,7 @@ function finish() {
   clearTimers();
   if (state.practice) {
     const s = score(state.results);
-    $('practice-summary').textContent = `You got ${s.correct} of ${s.total} right${s.medianRT ? `, with a typical response of ${s.medianRT} ms` : ''}.`;
+    $('practice-summary').textContent = s.medianRT ? t('practiceSummaryRt', { c: s.correct, n: s.total, ms: s.medianRT }) : t('practiceSummary', { c: s.correct, n: s.total });
     show('practice-done');
     return;
   }
@@ -174,22 +176,24 @@ function finish() {
 
 // ---------- results ----------
 
-const fmt = (v, unit = '') => (v == null ? 'n/a' : `${v}${unit}`);
+const fmt = (v, unit = '') => (v == null ? t('na') : `${v}${unit}`);
+const modeLabel = (m) => t(`mode_${m}`);
+const bandLabel = (band, kind) => (band ? t(`${kind}_${band.id}`) : '');
 
-function badge(el, band) {
-  el.textContent = band ? band.label : '';
+function badge(el, band, kind) {
+  el.textContent = bandLabel(band, kind);
   el.className = `badge ${band ? `badge--${band.tone}` : ''}`;
 }
 
 function renderResults(s) {
-  $('r-date').textContent = new Date().toLocaleString(undefined, { dateStyle: 'long', timeStyle: 'short' });
-  $('r-mode').textContent = MODES[state.mode].label;
+  $('r-date').textContent = new Date().toLocaleString(L.lang, { dateStyle: 'long', timeStyle: 'short' });
+  $('r-mode').textContent = modeLabel(state.mode);
   $('r-accuracy').textContent = fmt(s.accuracy, '%');
   $('r-rt').textContent = fmt(s.medianRT, ' ms');
-  $('r-interference').textContent = s.interference == null ? 'n/a' : `${s.interference > 0 ? '+' : ''}${s.interference} ms`;
-  $('r-ratio').textContent = s.interferenceRatio == null ? 'n/a' : `${s.interferenceRatio}%`;
-  badge($('b-accuracy'), accuracyBand(s.accuracy));
-  badge($('b-interference'), interferenceBand(s.interference));
+  $('r-interference').textContent = s.interference == null ? t('na') : `${s.interference > 0 ? '+' : ''}${s.interference} ms`;
+  $('r-ratio').textContent = s.interferenceRatio == null ? t('na') : `${s.interferenceRatio}%`;
+  badge($('b-accuracy'), accuracyBand(s.accuracy), 'acc');
+  badge($('b-interference'), interferenceBand(s.interference), 'band');
   $('r-ies').textContent = fmt(s.inverseEfficiency, ' ms');
   renderTypeChart(s);
   renderTrialChart(state.results);
@@ -201,9 +205,9 @@ function renderResults(s) {
 
 function renderTypeChart(s) {
   const rows = [
-    ['Matching', s.byType.congruent, 'var(--c-congruent)'],
-    ['Neutral', s.byType.neutral, 'var(--c-neutral)'],
-    ['Clashing', s.byType.incongruent, 'var(--c-incongruent)'],
+    [t('typeMatching'), s.byType.congruent, 'var(--c-congruent)'],
+    [t('typeNeutral'), s.byType.neutral, 'var(--c-neutral)'],
+    [t('typeClashing'), s.byType.incongruent, 'var(--c-incongruent)'],
   ];
   const max = Math.max(...rows.map(([, r]) => r.medianRT || 0), 1);
   $('chart-types').innerHTML = rows
@@ -212,7 +216,7 @@ function renderTypeChart(s) {
       <div class="bar-row">
         <span class="bar-row__label">${label}</span>
         <span class="bar-row__track"><span class="bar-row__fill" style="width:${((r.medianRT || 0) / max) * 100}%;background:${color}"></span></span>
-        <span class="bar-row__value">${fmt(r.medianRT, ' ms')}<small>${fmt(r.accuracy, '% right')}</small></span>
+        <span class="bar-row__value">${fmt(r.medianRT, ' ms')}<small>${r.accuracy == null ? t('na') : t('pctRight', { p: r.accuracy })}</small></span>
       </div>`,
     )
     .join('');
@@ -227,6 +231,7 @@ function renderTrialChart(results) {
   const x = (i) => pad.l + (i / Math.max(results.length - 1, 1)) * (W - pad.l - pad.r);
   const y = (v) => pad.t + (1 - Math.min(v, yMax) / yMax) * (H - pad.t - pad.b);
   const colors = { congruent: 'var(--c-congruent)', neutral: 'var(--c-neutral)', incongruent: 'var(--c-incongruent)' };
+  const typeName = { congruent: t('typeMatching'), neutral: t('typeNeutral'), incongruent: t('typeClashing') };
   let grid = '';
   for (let v = 0; v <= yMax; v += yMax / 4) {
     grid += `<line x1="${pad.l}" x2="${W - pad.r}" y1="${y(v)}" y2="${y(v)}" class="grid"/><text x="${pad.l - 6}" y="${y(v) + 4}" text-anchor="end">${Math.round(v)}</text>`;
@@ -235,44 +240,30 @@ function renderTrialChart(results) {
     .map((r, i) => {
       if (r.rt == null) return `<text x="${x(i)}" y="${y(yMax) + 4}" text-anchor="middle" class="miss">×</text>`;
       const wrong = r.response !== r.ink;
-      return `<circle class="dot" style="--i:${i}" cx="${x(i)}" cy="${y(r.rt)}" r="4" fill="${wrong ? 'none' : colors[r.type]}" stroke="${colors[r.type]}" stroke-width="${wrong ? 2 : 0}"><title>Trial ${i + 1}: ${r.type}, ${r.rt} ms${wrong ? ', wrong' : ''}</title></circle>`;
+      return `<circle class="dot" style="--i:${i}" cx="${x(i)}" cy="${y(r.rt)}" r="4" fill="${wrong ? 'none' : colors[r.type]}" stroke="${colors[r.type]}" stroke-width="${wrong ? 2 : 0}"><title>${t('trialTitle', { i: i + 1, type: typeName[r.type], ms: r.rt })}${wrong ? ` · ${t('wrong')}` : ''}</title></circle>`;
     })
     .join('');
-  $('chart-trials').innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Response time for each trial">${grid}<text x="${W / 2}" y="${H - 4}" text-anchor="middle">Trial</text>${dots}</svg>`;
+  $('chart-trials').innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${t('chartAria')}">${grid}<text x="${W / 2}" y="${H - 4}" text-anchor="middle">${t('chartTrial')}</text>${dots}</svg>`;
 }
 
 function renderNarrative(s) {
   const parts = [];
   const band = interferenceBand(s.interference);
   if (s.interference != null) {
-    const dir = s.interference >= 0 ? 'slower' : 'faster';
-    parts.push(
-      `On words that clashed with their ink you were <strong>${Math.abs(s.interference)} ms ${dir}</strong> than on words that matched. That gap is your Stroop interference${band ? `, and it falls in the <strong>${band.label.toLowerCase()}</strong> range for a keyboard or touchscreen test` : ''}.`,
-    );
+    parts.push(t(s.interference >= 0 ? 'nSlower' : 'nFaster', { ms: Math.abs(s.interference) }) + (band ? ' ' + t('nBand', { band: bandLabel(band, 'band') }) : ''));
   }
-  if (s.interference != null && s.interference < 0) {
-    parts.push(
-      'A negative gap is unusual. It mostly happens on short runs, when there are only a few trials of each type or a couple of slow answers on matching words. Try the Standard level again for a steadier number.',
-    );
-  } else if (s.interferenceRatio != null) {
-    parts.push(
-      `As a share of your own matching-word speed, the clash cost you about <strong>${s.interferenceRatio}%</strong>. This version of the number is fairer across ages, because it cancels out general speed.`,
-    );
-  }
-  parts.push(`You answered <strong>${s.correct} of ${s.total}</strong> correctly (${s.accuracy}%).`);
-  if (s.errorCost != null && s.errorCost > 8) {
-    parts.push(`Most slips came on clashing words, where accuracy was ${s.errorCost} points lower than on matching words. That is the same pull showing up as errors instead of delay.`);
-  }
+  if (s.interference != null && s.interference < 0) parts.push(t('nNegative'));
+  else if (s.interferenceRatio != null) parts.push(t('nRatio', { p: s.interferenceRatio }));
+  parts.push(t('nCorrect', { c: s.correct, n: s.total, p: s.accuracy }));
+  if (s.errorCost != null && s.errorCost > 8) parts.push(t('nErrors', { p: s.errorCost }));
   if (s.fatigue) {
     const c = s.fatigue.change;
-    if (c > 60) parts.push(`You slowed by about ${c} ms in the second half, which usually just means attention dipped as the run went on.`);
-    else if (c < -60) parts.push(`You sped up by about ${-c} ms in the second half, a normal warm-up effect.`);
+    if (c > 60) parts.push(t('nSlowedDown', { ms: c }));
+    else if (c < -60) parts.push(t('nSpedUp', { ms: -c }));
   }
   const ex = s.excluded;
   const dropped = ex.anticipations + ex.slow + ex.misses;
-  if (dropped) {
-    parts.push(`${dropped} response${dropped > 1 ? 's were' : ' was'} left out of the timing (too fast to be a real decision, longer than 3 seconds, or past the time limit).`);
-  }
+  if (dropped) parts.push(t('nDropped', { n: dropped }));
   $('narrative').innerHTML = parts.map((p) => `<p>${p}</p>`).join('');
 }
 
@@ -379,7 +370,7 @@ function renderHistory() {
     .slice(-8)
     .reverse()
     .map(
-      (r) => `<tr><td>${new Date(r.at).toLocaleDateString()}</td><td>${MODES[r.mode]?.label || r.mode}</td><td>${fmt(r.accuracy, '%')}</td><td>${fmt(r.medianRT, ' ms')}</td><td>${fmt(r.interference, ' ms')}</td></tr>`,
+      (r) => `<tr><td>${new Date(r.at).toLocaleDateString(L.lang)}</td><td>${MODES[r.mode] ? modeLabel(r.mode) : r.mode}</td><td>${fmt(r.accuracy, '%')}</td><td>${fmt(r.medianRT, ' ms')}</td><td>${fmt(r.interference, ' ms')}</td></tr>`,
     )
     .join('');
 }
@@ -388,7 +379,7 @@ function renderHistory() {
 
 function downloadCSV() {
   const head = 'trial,type,word,ink,response,rt_ms,correct';
-  const rows = state.results.map((r, i) => [i + 1, r.type, r.word, r.ink, r.response ?? '', r.rt ?? '', r.response === r.ink ? 1 : 0].join(','));
+  const rows = state.results.map((r, i) => [i + 1, r.type, `"${display(r.word)}"`, r.ink, r.response ?? '', r.rt ?? '', r.response === r.ink ? 1 : 0].join(','));
   const blob = new Blob([[head, ...rows].join('\n')], { type: 'text/csv' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
@@ -400,16 +391,15 @@ function downloadCSV() {
 async function share() {
   const s = state.lastScores;
   if (!s) return;
-  const base = document.documentElement.dataset.base || '';
-  const url = `${location.origin}${base}/?r=${encodeShare(s, state.mode)}#test`;
-  const text = `My Stroop result: ${s.accuracy}% correct, ${s.interference} ms interference.`;
+  const url = `${location.origin}${location.pathname}?r=${encodeShare(s, state.mode)}#test`;
+  const text = t('shareText', { p: s.accuracy, ms: s.interference });
   try {
     if (navigator.share) {
-      await navigator.share({ title: 'My Stroop test result', text, url });
+      await navigator.share({ title: t('shareTitle'), text, url });
       return;
     }
     await navigator.clipboard.writeText(url);
-    $('share-status').textContent = 'Link copied.';
+    $('share-status').textContent = t('linkCopied');
   } catch {
     $('share-status').textContent = url;
   }
@@ -422,8 +412,7 @@ function showShared() {
   if (!s) return;
   const box = $('shared');
   box.hidden = false;
-  box.querySelector('[data-shared]').innerHTML =
-    `Someone shared a ${MODES[s.mode].label.toLowerCase()} result with you: <strong>${fmt(s.accuracy, '%')}</strong> correct, typical response <strong>${fmt(s.medianRT, ' ms')}</strong>, interference <strong>${fmt(s.interference, ' ms')}</strong>. How do you compare?`;
+  box.querySelector('[data-shared]').innerHTML = t('sharedMsg', { mode: modeLabel(s.mode), p: fmt(s.accuracy, '%'), rt: fmt(s.medianRT, ' ms'), ms: fmt(s.interference, ' ms') });
 }
 
 // ---------- wiring ----------
@@ -469,7 +458,7 @@ $('response-pad').addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
   if (state.phase !== 'practice' && state.phase !== 'test') return;
   if (e.repeat || e.metaKey || e.ctrlKey || e.altKey) return;
-  const name = MODES[state.mode].inks.find((n) => INKS[n].key === e.key.toLowerCase());
+  const name = idForKey(e.key, MODES[state.mode].inks);
   if (!name) return;
   e.preventDefault();
   const b = root.querySelector(`.resp[data-color="${name}"]`);

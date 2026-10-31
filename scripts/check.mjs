@@ -60,7 +60,19 @@ for (const file of pages) {
   if ((html.match(/<title>/g) || []).length !== 1) errors.push(`${rel}: needs exactly one <title>`);
   const title = html.match(/<title>(.*?)<\/title>/)?.[1];
   const desc = html.match(/<meta name="description" content="([^"]*)"/)?.[1] || '';
-  if (desc.length < 70 || desc.length > 170) errors.push(`${rel}: description is ${desc.length} chars`);
+  // CJK characters take about two Latin characters of space in search results.
+  const width = [...desc].reduce((n, ch) => n + (/[\u3000-\u9fff\uac00-\ud7af\uff00-\uffef]/.test(ch) ? 2 : 1), 0);
+  if (width < 70 || width > 170) errors.push(`${rel}: description is ${width} chars wide`);
+  // hreflang: every alternate must exist and link back to this page.
+  const self = html.match(/<link rel="canonical" href="https:\/\/strooptester\.com([^"]*)"/)?.[1];
+  for (const [, lang, href] of html.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="https:\/\/strooptester\.com([^"]*)"/g)) {
+    const target = resolve(href);
+    if (!target) errors.push(`${rel}: hreflang ${lang} points to missing ${href}`);
+    else if (lang !== 'x-default' && self && !fs.readFileSync(target, 'utf8').includes(`href="https://strooptester.com${self}"`)) errors.push(`${rel}: ${href} does not link back`);
+  }
+  const htmlLang = html.match(/<html lang="([^"]+)"/)?.[1];
+  const own = html.match(new RegExp(`<link rel="alternate" hreflang="${htmlLang}" href="https://strooptester.com([^"]*)"`))?.[1];
+  if (own && self && own !== self) errors.push(`${rel}: hreflang for its own language (${htmlLang}) is ${own}, canonical is ${self}`);
   if (titles.has(title)) errors.push(`${rel}: duplicate title with ${titles.get(title)}`);
   if (descs.has(desc)) errors.push(`${rel}: duplicate description with ${descs.get(desc)}`);
   titles.set(title, rel);

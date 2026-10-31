@@ -8,6 +8,8 @@ category: adhd-and-clinical-uses
 image: /wp-content/uploads/2026/09/Online-ADHD-test-hero.webp
 imageAlt: Person taking an online ADHD attention test on a laptop
 excerpt: Online ADHD tests are quick and private, which is exactly why so many people try one. Here's what they can tell you, and the bigger thing they can't.
+keywords: online adhd test, adhd attention test, can an online test diagnose adhd, adhd screening test, asrs
+summary: No online test can diagnose ADHD; only a clinician can, after a full assessment.|Screeners like the ASRS are useful for deciding whether to seek an assessment.|Timed tasks such as the Stroop test add information but separate groups poorly on their own.
 ---
 
 If concentrating has felt harder than it should for a while, typing "ADHD test" into a search bar is a very normal thing to do. A few minutes later you have a score. It feels personal and immediate, and that's the appeal.

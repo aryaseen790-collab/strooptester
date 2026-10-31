@@ -5,6 +5,7 @@ import crypto from 'node:crypto';
 import { marked } from 'marked';
 import { layout, esc } from '../src/templates/layout.mjs';
 import { homePage } from '../src/templates/home.mjs';
+import { LOCALES, EN } from '../src/i18n/index.mjs';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const SRC = path.join(ROOT, 'src');
@@ -14,6 +15,11 @@ const site = JSON.parse(fs.readFileSync(path.join(SRC, 'data/site.json'), 'utf8'
 // before the custom domain is connected. Empty for strooptester.com itself.
 const BASE = (process.env.BASE_PATH || '').replace(/\/+$/, '');
 const images = JSON.parse(fs.readFileSync(path.join(SRC, 'data/images.json'), 'utf8'));
+const LANGS = LOCALES.map(({ code, lang, name }) => ({ code, lang, name }));
+const homePath = (L) => (L.code === 'en' ? '/' : `/${L.code}/`);
+const HOME_ALTERNATES = LOCALES.map((L) => ({ lang: L.lang, path: homePath(L), ogLocale: L.ogLocale }));
+// Every page goes through here; English unless a locale is passed.
+const page = (opts) => layout(site, { L: EN, languages: LANGS, ...opts });
 
 marked.use({ gfm: true, mangle: false, headerIds: false });
 
@@ -133,7 +139,8 @@ function loadPosts() {
       const slug = f.replace(/\.md$/, '');
       if (!site.categories[data.category]) throw new Error(`${f}: unknown category ${data.category}`);
       const rendered = renderMarkdown(body);
-      return { ...data, slug, path: `/${slug}/`, ...rendered, words: words(rendered.html) };
+      const keywordList = (data.keywords || '').split(',').map((k) => k.trim()).filter(Boolean);
+      return { ...data, keywordList, slug, path: `/${slug}/`, ...rendered, words: words(rendered.html), source: body };
     })
     .sort((a, b) => b.date.localeCompare(a.date));
 }
@@ -158,6 +165,12 @@ function postPage(p, posts, version) {
     ? `<nav class="toc" aria-label="On this page"><h2>On this page</h2><ol>${p.toc.map((t) => `<li><a href="#${t.id}">${esc(t.text)}</a></li>`).join('')}</ol>
        <div class="cta-box"><p><strong>Try it yourself.</strong> The free test takes about two minutes and gives you your interference score straight away.</p><a class="btn btn--light" href="/#test">Start the test</a></div></nav>`
     : '';
+  const summary = p.summary
+    ? `<aside class="keypoints"><p class="keypoints__title">In short</p><ul>${p.summary
+        .split('|')
+        .map((x) => `<li>${esc(x.trim())}</li>`)
+        .join('')}</ul></aside>`
+    : '';
   const body = `
 <div class="read-progress" aria-hidden="true"><span></span></div>
 <div class="wrap">
@@ -173,7 +186,7 @@ function postPage(p, posts, version) {
   </header>
   <figure class="article__feature">${picture(p.image, p.imageAlt, { sizes: '(max-width: 1160px) 100vw, 1120px', eager: true })}</figure>
   <div class="article">
-    <article class="article__body">${p.html}
+    <article class="article__body">${summary}${p.html}
       <p class="note"><em>This article is for general education. It is not medical advice, and an online test cannot diagnose any condition.</em></p>
     </article>
     <aside>${toc}</aside>
@@ -194,14 +207,18 @@ function postPage(p, posts, version) {
     articleSection: cat.name,
     wordCount: p.words,
     inLanguage: 'en',
+    keywords: p.keywordList.join(', '),
+    abstract: p.summary ? p.summary.split('|').map((x) => x.trim()).join(' ') : undefined,
   };
-  return layout(site, {
+  return page({
     path: p.path,
     title: p.seoTitle || p.title,
     description: p.description,
     image: p.image,
     imageAlt: p.imageAlt,
     ogType: 'article',
+    keywords: p.keywordList,
+    tags: p.keywordList,
     published: p.date,
     modified: p.updated || p.date,
     nav: 'blog',
@@ -224,7 +241,7 @@ function listingPage({ pathName, title, heading, intro, posts, version, crumbs, 
   </header>
   <div class="post-grid" style="margin-bottom:64px">${posts.map((p) => postCard(p, 'h2')).join('')}</div>
 </div>`;
-  return layout(site, {
+  return page({
     path: pathName,
     title,
     description: intro,
@@ -246,7 +263,7 @@ function simplePage(file, version) {
   return {
     path: p,
     data,
-    html: layout(site, {
+    html: page({
       path: p,
       title: data.title,
       description: data.description,
@@ -280,12 +297,16 @@ function build() {
 
   const posts = loadPosts();
   const urls = [];
-  const add = (p, lastmod, priority = '0.6', group = 'page') => urls.push({ loc: site.url + p, lastmod, priority, group });
+  const add = (p, lastmod, priority = '0.6', group = 'page', alts = null) => urls.push({ loc: site.url + p, lastmod, priority, group, alts });
 
   // Home
-  const home = homePage({ site, posts: posts.slice(0, 6), postCard, picture, version });
-  write('index.html', layout(site, { ...home, version }));
-  add('/', home.modified, '1.0');
+  // Home, once per language. Only the homepage (and the test on it) is translated.
+  for (const L of LOCALES) {
+    const p = homePath(L);
+    const home = homePage({ site, L, posts: posts.slice(0, 6), postCard, picture, version, path: p, alternates: HOME_ALTERNATES });
+    write(`${p.slice(1)}index.html`, page({ ...home, L, version, alternates: HOME_ALTERNATES }));
+    add(p, home.modified, L.code === 'en' ? '1.0' : '0.9', 'page', HOME_ALTERNATES);
+  }
 
   // Posts
   for (const p of posts) {
@@ -339,11 +360,24 @@ function build() {
   write('blog/page/2/index.html', redirectPage('/blog/'));
   write('frontpage/index.html', redirectPage('/'));
   write('feed/index.html', redirectPage('/feed.xml'));
+  // Addresses Search Console has seen (old links, typos, old internal links) that would otherwise 404.
+  for (const [from, to] of Object.entries({
+    'stroop-effect-test': '/',
+    'stroop-test-adhd': '/stroop-test-and-adhd/',
+    'the-stroop-test-and-adhd': '/stroop-test-and-adhd/',
+    'the-complete-beginners-guide': '/what-is-the-stroop-test/',
+    'good-squab-test-score': '/good-stroop-test-score/',
+    'stroop-test': '/what-is-the-stroop-test/',
+    'stroop-effect': '/stroop-effect-explained/',
+    'what-causes-the-stroop-effect': '/stroop-effect-explained/',
+    'stroop-test-examples': '/what-is-the-stroop-test/',
+  }))
+    write(`${from}/index.html`, redirectPage(to));
 
   // 404
   write(
     '404.html',
-    layout(site, {
+    page({
       path: '/404.html',
       title: 'Page not found',
       description: 'This page does not exist.',
@@ -355,8 +389,14 @@ function build() {
 
   // Sitemaps, feed, robots
   const urlset = (list) =>
-    `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${list
-      .map((u) => `  <url><loc>${u.loc}</loc>${u.lastmod ? `<lastmod>${u.lastmod}</lastmod>` : ''}<priority>${u.priority}</priority></url>`)
+    `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${list
+      .map((u) => {
+        const alts = u.alts
+          ? u.alts.map((a) => `<xhtml:link rel="alternate" hreflang="${a.lang}" href="${site.url}${a.path}"/>`).join('') +
+            `<xhtml:link rel="alternate" hreflang="x-default" href="${site.url}/"/>`
+          : '';
+        return `  <url><loc>${u.loc}</loc>${u.lastmod ? `<lastmod>${u.lastmod}</lastmod>` : ''}<priority>${u.priority}</priority>${alts}</url>`;
+      })
       .join('\n')}\n</urlset>\n`;
   write('sitemap.xml', urlset(urls));
   // Same layout as the old WordPress (Rank Math) sitemaps, which Search Console already knows:
@@ -382,7 +422,68 @@ ${posts
 </channel></rss>\n`;
   write('feed.xml', rss);
 
+  writeLlms(posts);
+
   console.log(`Built ${urls.length} pages and ${posts.length} posts into dist/ (assets v${version})`);
+}
+
+// llms.txt (https://llmstxt.org): a plain summary of the site for AI assistants and crawlers,
+// plus llms-full.txt with the complete text of every article.
+function writeLlms(posts) {
+  const strip = (md) =>
+    md
+      .replace(/^\{\{cta(?::.*)?\}\}$/gm, '')
+      .replace(/!\[([^\]]*)\]\([^)]*\)/g, '')
+      .replace(/\]\(\//g, `](${site.url}/`)
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
+  const byCat = Object.entries(site.categories)
+    .map(([slug, cat]) => {
+      const list = posts.filter((p) => p.category === slug);
+      return list.length ? `### ${cat.name}\n\n${list.map((p) => `- [${p.title}](${site.url}${p.path}): ${p.description}`).join('\n')}` : '';
+    })
+    .filter(Boolean)
+    .join('\n\n');
+  const llms = `# Stroop Tester
+
+> Stroop Tester (strooptester.com) is a free online Stroop test, also called the Stroop task or Stroop Color and Word Test, with plain-English guides to the Stroop effect, Stroop test scores and attention research. The test runs in the browser in ${LOCALES.length} languages, needs no sign-up, and keeps answers on the user's device.
+
+Key facts about the test:
+
+- Trials: matching (RED in red), neutral (an ordinary word such as LAMP in a colour) and clashing (RED in blue) words, in a 30/30/40 mix.
+- Levels: Easy (20 trials, 4 colours), Standard (40 trials, 4 colours), Hard (60 trials, 6 colours, 1.5 s limit), and a colour-vision friendly level (30 trials; blue, yellow, white).
+- Main score: Stroop interference = median correct response time on clashing words minus median on matching words. Responses under 200 ms or over 3 s are excluded from timing.
+- Also reported: relative interference (interference as a % of matching-word time), accuracy, median response time and inverse efficiency (median correct time / proportion correct).
+- Rough interference bands for keyboard/touch versions: under 40 ms very small, 40-120 ms typical, 120-200 ms larger than typical, 200 ms or more large. These are guides, not clinical norms.
+- The test is educational. It does not diagnose ADHD, dementia or any other condition.
+
+## Take the test
+
+- [Free Stroop test online (English)](${site.url}/): the test, how scoring works, the research and FAQs.
+${LOCALES.filter((L) => L.code !== 'en')
+  .map((L) => `- [${L.name}](${site.url}/${L.code}/): ${L.seo.title}`)
+  .join('\n')}
+
+## Guides
+
+${byCat}
+
+## About
+
+- [About and editorial standards](${site.url}/about/): who runs the site, how the test works and what it does not claim.
+- [Privacy policy](${site.url}/privacy-policy/): test answers never leave the device; analytics only with consent.
+- [Contact](${site.url}/contact/)
+
+## Optional
+
+- [Full text of every article](${site.url}/llms-full.txt)
+- [Sitemap](${site.url}/sitemap_index.xml)
+`;
+  write('llms.txt', llms);
+  const full = `# Stroop Tester: full article text\n\nSource: ${site.url}/ · Licence: all rights reserved, quoting with a link is welcome.\n\n${posts
+    .map((p) => `---\n\n# ${p.title}\n\nURL: ${site.url}${p.path}\nPublished: ${p.date} · Updated: ${p.updated || p.date}\n\n${p.summary ? p.summary.split('|').map((x) => `- ${x.trim()}`).join('\n') + '\n\n' : ''}${strip(p.source)}`)
+    .join('\n\n')}\n`;
+  write('llms-full.txt', full);
 }
 
 // Prefix every root-relative link with BASE so the same build works in a sub-folder.

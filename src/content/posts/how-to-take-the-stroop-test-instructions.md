@@ -1,13 +1,15 @@
 ---
 title: How to Take the Stroop Test: Step by Step Instructions
-seoTitle: How to Take the Stroop Test: Step-by-Step Instructions and Tips
-description: Clear Stroop test instructions: how to set up, which level to pick, how to answer, what your report shows, and the common mistakes that spoil a score.
+seoTitle: "Stroop Test Instructions: How to Do the Stroop Test, Step by Step"
+description: Stroop test instructions in plain English: how to do the Stroop test, which level to choose, how to answer, what the results show and the mistakes that spoil a score.
 date: 2026-07-17
 updated: 2026-10-26
 category: stroop-test-basics
 image: /wp-content/uploads/2026/07/Numbered-Step-Illustration.webp
 imageAlt: Three numbered steps for taking the Stroop test
 excerpt: You see RED printed in blue, and your mouth still wants to say red. The rule is simple and hard to follow. Here's how to take the test properly, from setup to report.
+keywords: stroop test instructions, how to do the stroop test, how to take the stroop test, stroop task instructions, how to play stroop
+summary: Name the ink colour, never the word: if GREEN is printed in red, the answer is red.|Do the short practice round first, then answer quickly without guessing.|The report shows your interference score, accuracy and typical response time straight away.
 ---
 
 You see the word RED printed in blue ink. The answer is blue. Your mouth still wants to say red.
