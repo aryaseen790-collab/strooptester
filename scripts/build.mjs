@@ -373,6 +373,11 @@ function build() {
       out(p.path, postPage(p, posts, version, ctx));
       add(L, p.path, p.updated || p.date, '0.8', 'post');
     }
+    // About, contact, privacy
+    for (const pg of pages) {
+      out(pg.path, simplePage(pg, version, ctx));
+      add(L, pg.path, pg.data.updated, '0.3', 'page');
+    }
     if (!posts.length) continue;
 
     // Blog index and categories
@@ -390,11 +395,6 @@ function build() {
       add(L, pathName, list[0].updated || list[0].date, '0.5', 'category');
     }
 
-    // About, contact, privacy
-    for (const pg of pages) {
-      out(pg.path, simplePage(pg, version, ctx));
-      add(L, pg.path, pg.data.updated, '0.3', 'page');
-    }
   }
   const posts = english;
 
