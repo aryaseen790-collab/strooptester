@@ -63,7 +63,7 @@ export default {
       },
       'core-cognitive-abilities': {
         name: 'Kemampuan kognitif inti',
-        description: 'Fungsi eksekutif, inhibisi, memori kerja, dan keterampilan di baliknya.',
+        description: 'Fungsi eksekutif, inhibisi, memori kerja, dan keterampilan sehari-hari di baliknya.',
       },
     },
     inShort: 'Singkatnya',

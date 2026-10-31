@@ -63,7 +63,7 @@ export default {
       },
       'core-cognitive-abilities': {
         name: '基本的な認知能力',
-        description: '実行機能、抑制、ワーキングメモリ、そしてそれらを支えるスキルについて。',
+        description: '実行機能、抑制、ワーキングメモリ、そしてそれらを支える毎日のスキルについて解説します。',
       },
     },
     inShort: '要点',

@@ -51,7 +51,7 @@ export default {
       },
       'the-stroop-effect': {
         name: 'Stroopov efekt',
-        description: 'Zašto te usporava naziv boje napisan drugom bojom i tko je to otkrio.',
+        description: 'Zašto te usporava naziv boje napisan drugom bojom i tko je to prvi otkrio.',
       },
       'scores-interpretation': {
         name: 'Rezultati i tumačenje',

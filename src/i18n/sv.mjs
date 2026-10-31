@@ -63,7 +63,7 @@ export default {
       },
       'core-cognitive-abilities': {
         name: 'Grundläggande kognitiva förmågor',
-        description: 'Exekutiva funktioner, hämning, arbetsminne och förmågorna bakom dem.',
+        description: 'Exekutiva funktioner, hämning, arbetsminne och de vardagliga förmågorna bakom dem.',
       },
     },
     inShort: 'Kort sagt',

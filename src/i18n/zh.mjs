@@ -47,11 +47,11 @@ export default {
     categories: {
       'stroop-test-basics': {
         name: '斯特鲁普测试入门',
-        description: '斯特鲁普测试是什么、从何而来、三种试次类型，以及一步一步教你完成测试。',
+        description: '斯特鲁普测试是什么、从何而来、有哪三种试次类型，以及一步一步教你完成测试。',
       },
       'the-stroop-effect': {
         name: '斯特鲁普效应',
-        description: '为什么用另一种颜色写的颜色词会让你变慢，以及是谁弄清了其中的原因。',
+        description: '为什么用另一种颜色写的颜色词会让你变慢，以及是哪些研究者最先弄清了其中的原因。',
       },
       'scores-interpretation': {
         name: '分数与解读',
@@ -63,7 +63,7 @@ export default {
       },
       'core-cognitive-abilities': {
         name: '核心认知能力',
-        description: '执行功能、抑制控制、工作记忆，以及支撑它们的各项能力。',
+        description: '执行功能、抑制控制、工作记忆，以及在日常生活中支撑它们的各项能力，用通俗的语言讲清楚。',
       },
     },
     inShort: '要点',

@@ -51,7 +51,7 @@ export default {
       },
       'the-stroop-effect': {
         name: 'Stroopův efekt',
-        description: 'Proč vás zpomalí název barvy napsaný jinou barvou a kdo na to přišel.',
+        description: 'Proč vás zpomalí název barvy napsaný jinou barvou a kdo na to jako první přišel.',
       },
       'scores-interpretation': {
         name: 'Výsledky a jejich výklad',

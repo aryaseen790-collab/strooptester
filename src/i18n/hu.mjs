@@ -51,7 +51,7 @@ export default {
       },
       'the-stroop-effect': {
         name: 'A Stroop-hatás',
-        description: 'Miért lassít le egy rossz színnel írt színnév, és kik jöttek rá erre.',
+        description: 'Miért lassít le egy rossz színnel írt színnév, és kik jöttek rá elsőként erre.',
       },
       'scores-interpretation': {
         name: 'Eredmények és értelmezés',
@@ -63,7 +63,7 @@ export default {
       },
       'core-cognitive-abilities': {
         name: 'Alapvető kognitív képességek',
-        description: 'Végrehajtó funkciók, gátlás, munkamemória és a mögöttük álló készségek.',
+        description: 'Végrehajtó funkciók, gátlás, munkamemória és a mögöttük álló mindennapi készségek.',
       },
     },
     inShort: 'Röviden',

@@ -53,7 +53,7 @@ export default {
       'the-stroop-effect': { name: 'The Stroop Effect', description: "Why a colour word in the wrong ink slows you down, and the people who worked it out." },
       'scores-interpretation': { name: 'Scores & Interpretation', description: "What the numbers on your Stroop results mean, what's typical, and how to compare your scores fairly over time." },
       'adhd-and-clinical-uses': { name: 'ADHD And Clinical Uses', description: 'How researchers and clinicians use Stroop tasks, and what an online test can and cannot tell you.' },
-      'core-cognitive-abilities': { name: 'Core Cognitive Abilities', description: 'Executive function, inhibition, working memory and the skills behind them.' },
+      'core-cognitive-abilities': { name: 'Core Cognitive Abilities', description: 'Executive function, inhibition, working memory and the everyday skills behind them.' },
     },
     inShort: 'In short',
     onThisPage: 'On this page',
