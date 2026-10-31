@@ -26,7 +26,7 @@ export default {
     research: 'Baseado em pesquisas que começaram com o artigo de J. R. Stroop de 1935.',
     disclaimer: 'Apenas para fins educativos. Este site não diagnostica nenhuma condição. Se você está preocupado com sua atenção, memória ou raciocínio, procure um profissional de saúde.',
     explore: 'Explorar',
-    exploreLinks: { test: 'Teste de Stroop online', blog: 'Blog (em inglês)', what: 'O que é o teste de Stroop? (em inglês)', score: 'O que é uma boa pontuação? (em inglês)' },
+    exploreLinks: { test: 'Teste de Stroop online', blog: 'Blog', what: 'O que é o teste de Stroop?', score: 'O que é uma boa pontuação?' },
     site: 'Site',
     siteLinks: { about: 'Sobre e normas editoriais', contact: 'Contato', privacy: 'Política de privacidade', cookies: 'Configurações de cookies' },
     copyright: 'Os textos e as imagens deste site pertencem ao Stroop Tester, salvo indicação em contrário.',
@@ -35,7 +35,52 @@ export default {
     allow: 'Permitir análise',
     deny: 'Não, obrigado',
     languages: 'Idiomas',
-    englishOnly: 'Por enquanto, os artigos estão disponíveis apenas em inglês.',
+  },
+
+  blog: {
+    home: 'Início',
+    blog: 'Blog',
+    indexTitle: 'Blog: guias do teste de Stroop e pesquisa sobre atenção',
+    indexHeading: 'Nosso blog',
+    indexIntro: 'Guias claros sobre o teste de Stroop, o que seus resultados significam e a pesquisa sobre atenção e funções executivas por trás deles.',
+    categoryTitle: 'Artigos sobre {name}',
+    categories: {
+      'stroop-test-basics': {
+        name: 'Noções básicas do teste de Stroop',
+        description: 'O que é o teste de Stroop, de onde ele vem, os três tipos de tentativa e um passo a passo para fazê-lo.',
+      },
+      'the-stroop-effect': {
+        name: 'O efeito Stroop',
+        description: 'Por que uma palavra de cor escrita na tinta errada deixa você mais lento, e quem descobriu isso.',
+      },
+      'scores-interpretation': {
+        name: 'Pontuações e interpretação',
+        description: 'O que significam os números do seu resultado no teste de Stroop, o que é comum e como comparar suas pontuações ao longo do tempo.',
+      },
+      'adhd-and-clinical-uses': {
+        name: 'TDAH e usos clínicos',
+        description: 'Como pesquisadores e clínicos usam tarefas de Stroop, e o que um teste online pode e não pode dizer.',
+      },
+      'core-cognitive-abilities': {
+        name: 'Habilidades cognitivas essenciais',
+        description: 'Funções executivas, inibição, memória de trabalho e as habilidades por trás delas.',
+      },
+    },
+    inShort: 'Em resumo',
+    onThisPage: 'Nesta página',
+    tryTitle: 'Experimente você mesmo.',
+    tryText: 'O teste gratuito leva cerca de dois minutos e mostra sua pontuação de interferência na hora.',
+    tryBtn: 'Começar o teste',
+    byline: 'Pela <a href="/about/">equipe editorial do Stroop Tester</a>',
+    published: 'Publicado em {date}',
+    updated: 'Atualizado em {date}',
+    lastUpdated: 'Última atualização: {date}',
+    minRead: '{n} min de leitura',
+    disclaimer: 'Este artigo tem fins educativos. Não é aconselhamento médico, e um teste online não pode diagnosticar nenhuma condição.',
+    keepReading: 'Continue lendo',
+    ctaText: 'Veja sua própria pontuação de interferência em cerca de dois minutos. Grátis, sem cadastro, e suas respostas ficam no seu navegador.',
+    ctaBtn: 'Fazer o teste de Stroop grátis',
+    faqHeading: 'Perguntas frequentes',
   },
 
   ui: {

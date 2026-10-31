@@ -16,8 +16,6 @@ const site = JSON.parse(fs.readFileSync(path.join(SRC, 'data/site.json'), 'utf8'
 const BASE = (process.env.BASE_PATH || '').replace(/\/+$/, '');
 const images = JSON.parse(fs.readFileSync(path.join(SRC, 'data/images.json'), 'utf8'));
 const LANGS = LOCALES.map(({ code, lang, name }) => ({ code, lang, name }));
-const homePath = (L) => (L.code === 'en' ? '/' : `/${L.code}/`);
-const HOME_ALTERNATES = LOCALES.map((L) => ({ lang: L.lang, path: homePath(L), ogLocale: L.ogLocale }));
 // Every page goes through here; English unless a locale is passed.
 const page = (opts) => layout(site, { L: EN, languages: LANGS, ...opts });
 
@@ -31,16 +29,20 @@ const write = (rel, content) => {
   fs.writeFileSync(file, content);
 };
 const copyDir = (from, to) => fs.cpSync(from, to, { recursive: true });
+// Heading ids: lower-case letters and digits in any script (accents kept), joined by hyphens.
 const slugify = (s) =>
   s
     .toLowerCase()
     .replace(/<[^>]+>/g, '')
     .replace(/&[a-z]+;/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/[^\p{L}\p{N}\p{M}]+/gu, '-')
     .replace(/^-|-$/g, '');
 const stripTags = (s) => s.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 const decode = (s) => s.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-const fmtDate = (iso) => new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const fmtDate = (iso, L = EN) =>
+  new Intl.DateTimeFormat(L.code === 'en' ? 'en-GB' : L.lang, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(iso));
+const fill = (s, vars) => s.replace(/\{(\w+)\}/g, (_, k) => vars[k]);
+const reRaw = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 export function picture(src, alt, { sizes = '(max-width: 760px) 100vw, 720px', eager = false, cls = '' } = {}) {
   const info = images[src];
@@ -61,14 +63,14 @@ function frontMatter(raw, file) {
   return { data, body: m[2] };
 }
 
-const ctaBlock = (text = 'See your own interference score in about two minutes. Free, no sign-up, and your answers stay in your browser.') =>
-  `<div class="cta-inline no-print"><p>${text}</p><a class="btn" href="/#test">Take the free Stroop test</a></div>`;
+const ctaBlock = (L, text = L.blog.ctaText) =>
+  `<div class="cta-inline no-print"><p>${text}</p><a class="btn" href="/#test">${L.blog.ctaBtn}</a></div>`;
 
 // Markdown -> HTML with figures, heading ids, CTA blocks and an extracted FAQ.
-function renderMarkdown(md) {
+function renderMarkdown(md, L = EN) {
   const ctas = [];
   md = md.replace(/^\{\{cta(?::\s*(.+?))?\}\}$/gm, (_, text) => {
-    ctas.push(ctaBlock(text));
+    ctas.push(ctaBlock(L, text));
     return `\n\nCTA_${ctas.length - 1}\n\n`;
   });
   let html = marked.parse(md);
@@ -77,8 +79,11 @@ function renderMarkdown(md) {
     return `<figure>${picture(src, decode(alt))}${cap ? `<figcaption>${cap}</figcaption>` : ''}</figure>`;
   });
   const toc = [];
+  const seen = new Set();
   html = html.replace(/<h([23])>(.*?)<\/h\1>/g, (_, level, inner) => {
-    const id = slugify(inner);
+    let id = slugify(inner) || `section-${seen.size + 1}`;
+    while (seen.has(id)) id += '-2';
+    seen.add(id);
     if (level === '2') toc.push({ id, text: stripTags(decode(inner)) });
     return `<h${level} id="${id}">${inner}</h${level}>`;
   });
@@ -86,7 +91,7 @@ function renderMarkdown(md) {
   html = html.replace(/<a href="(https?:\/\/(?!strooptester\.com)[^"]+)"/g, '<a href="$1" rel="noopener"');
 
   const faq = [];
-  const faqStart = html.search(/<h2 id="[^"]*">Frequently asked questions<\/h2>/i);
+  const faqStart = html.search(new RegExp(`<h2 id="[^"]*">${reRaw(L.blog.faqHeading)}</h2>`, 'i'));
   if (faqStart >= 0) {
     const tail = html.slice(faqStart);
     const end = tail.slice(5).search(/<h2 /);
@@ -104,7 +109,10 @@ function renderMarkdown(md) {
   return { html, toc, faq };
 }
 
-const words = (html) => stripTags(html).split(' ').length;
+// Words for the schema; reading time counts CJK characters separately (about 500 a minute).
+const CJK = /[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]/g;
+const words = (html) => stripTags(html).replace(CJK, '').split(' ').filter(Boolean).length + Math.round((stripTags(html).match(CJK) || []).length / 2);
+const minutes = (p) => Math.max(1, Math.round(p.words / 230));
 
 // ---------- schema ----------
 
@@ -128,74 +136,107 @@ const faqSchema = (faq) =>
     : null;
 
 // ---------- content ----------
+// English articles live in src/content/posts and pages in src/content/pages.
+// A translation sits at src/content/i18n/<code>/posts/<slug>.md (or pages/<slug>.md) with the same
+// slug. It only needs the words: date, category and image come from the English file.
 
-function loadPosts() {
-  const dir = path.join(SRC, 'content/posts');
-  return fs
-    .readdirSync(dir)
-    .filter((f) => f.endsWith('.md'))
+const LOC = Object.fromEntries(LOCALES.map((L) => [L.code, L]));
+const prefix = (L) => (L.code === 'en' ? '' : `/${L.code}`);
+const contentDir = (L, kind) => (L.code === 'en' ? path.join(SRC, 'content', kind) : path.join(SRC, 'content/i18n', L.code, kind));
+const mdFiles = (dir) => (fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith('.md')) : []);
+
+function loadPosts(L, english = null) {
+  return mdFiles(contentDir(L, 'posts'))
     .map((f) => {
-      const { data, body } = frontMatter(fs.readFileSync(path.join(dir, f), 'utf8'), f);
       const slug = f.replace(/\.md$/, '');
+      let { data, body } = frontMatter(fs.readFileSync(path.join(contentDir(L, 'posts'), f), 'utf8'), f);
+      if (english) {
+        const base = english.find((p) => p.slug === slug);
+        if (!base) throw new Error(`${L.code}/posts/${f}: no English article with this slug`);
+        data = { date: base.date, updated: base.updated, category: base.category, image: base.image, ...data };
+      }
       if (!site.categories[data.category]) throw new Error(`${f}: unknown category ${data.category}`);
-      const rendered = renderMarkdown(body);
+      const rendered = renderMarkdown(body, L);
       const keywordList = (data.keywords || '').split(',').map((k) => k.trim()).filter(Boolean);
-      return { ...data, keywordList, slug, path: `/${slug}/`, ...rendered, words: words(rendered.html), source: body };
+      return { ...data, keywordList, slug, path: `/${slug}/`, ...rendered, words: words(rendered.html), source: body, L };
     })
-    .sort((a, b) => b.date.localeCompare(a.date));
+    .sort((a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug));
 }
 
-function postCard(p, heading = 'h3') {
-  const cat = site.categories[p.category];
+function loadPages(L) {
+  return mdFiles(contentDir(L, 'pages')).map((f) => {
+    const { data, body } = frontMatter(fs.readFileSync(path.join(contentDir(L, 'pages'), f), 'utf8'), f);
+    if (L.code !== 'en') {
+      const en = frontMatter(fs.readFileSync(path.join(SRC, 'content/pages', f), 'utf8'), f).data;
+      for (const k of ['updated', 'nav', 'schemaType']) data[k] ??= en[k];
+    }
+    return { data, html: renderMarkdown(body, L).html, path: `/${f.replace(/\.md$/, '')}/`, L };
+  });
+}
+
+const catName = (L, slug) => L.blog.categories[slug]?.name || site.categories[slug].name;
+
+function postCard(p, L = EN, heading = 'h3') {
   return `<article class="post-card">
   <a href="${p.path}" tabindex="-1" aria-hidden="true">${picture(p.image, p.imageAlt, { sizes: '(max-width: 760px) 100vw, 380px' })}</a>
   <div class="post-card__body">
-    <a class="chip" href="/category/${p.category}/">${esc(cat.name)}</a>
+    <a class="chip" href="/category/${p.category}/">${esc(catName(L, p.category))}</a>
     <${heading}><a href="${p.path}">${esc(p.title)}</a></${heading}>
     <p>${esc(p.excerpt)}</p>
-    <span class="meta"><time datetime="${p.date}">${fmtDate(p.date)}</time> · ${Math.max(1, Math.round(p.words / 230))} min read</span>
+    <span class="meta"><time datetime="${p.date}">${fmtDate(p.date, L)}</time> · ${fill(L.blog.minRead, { n: minutes(p) })}</span>
   </div>
 </article>`;
 }
 
-function postPage(p, posts, version) {
-  const cat = site.categories[p.category];
+// Every page is written with English paths; on a translated page, links to anything that exists in
+// that language are rewritten to the translated address (/es/blog/ and so on). The language menu
+// (links with hreflang) is left alone.
+function localize(html, L, available) {
+  if (L.code === 'en') return html;
+  return html.replace(/href="(\/[^"#?]*)([#?][^"]*)?"(?! hreflang)/g, (m, p, rest = '') => (available.has(p) ? `href="/${L.code}${p}${rest}"` : m));
+}
+
+function postPage(p, posts, version, ctx) {
+  const L = p.L;
+  const B = L.blog;
+  const cat = catName(L, p.category);
   const related = posts.filter((x) => x.slug !== p.slug).sort((a, b) => (b.category === p.category) - (a.category === p.category)).slice(0, 3);
   const toc = p.toc.length > 2
-    ? `<nav class="toc" aria-label="On this page"><h2>On this page</h2><ol>${p.toc.map((t) => `<li><a href="#${t.id}">${esc(t.text)}</a></li>`).join('')}</ol>
-       <div class="cta-box"><p><strong>Try it yourself.</strong> The free test takes about two minutes and gives you your interference score straight away.</p><a class="btn btn--light" href="/#test">Start the test</a></div></nav>`
+    ? `<nav class="toc" aria-label="${esc(B.onThisPage)}"><h2>${B.onThisPage}</h2><ol>${p.toc.map((t) => `<li><a href="#${t.id}">${esc(t.text)}</a></li>`).join('')}</ol>
+       <div class="cta-box"><p><strong>${B.tryTitle}</strong> ${B.tryText}</p><a class="btn btn--light" href="/#test">${B.tryBtn}</a></div></nav>`
     : '';
   const summary = p.summary
-    ? `<aside class="keypoints"><p class="keypoints__title">In short</p><ul>${p.summary
+    ? `<aside class="keypoints"><p class="keypoints__title">${B.inShort}</p><ul>${p.summary
         .split('|')
         .map((x) => `<li>${esc(x.trim())}</li>`)
         .join('')}</ul></aside>`
     : '';
+  const lp = (x) => prefix(L) + x;
   const body = `
 <div class="read-progress" aria-hidden="true"><span></span></div>
 <div class="wrap">
   <header class="article-head">
-    <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/blog/">Blog</a></li><li><a href="/category/${p.category}/">${esc(cat.name)}</a></li></ol></nav>
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">${B.home}</a></li><li><a href="/blog/">${B.blog}</a></li><li><a href="/category/${p.category}/">${esc(cat)}</a></li></ol></nav>
     <h1>${esc(p.title)}</h1>
     <div class="byline">
-      <span>By the <a href="/about/">Stroop Tester editorial team</a></span>
-      <span>Published <time datetime="${p.date}">${fmtDate(p.date)}</time></span>
-      ${p.updated && p.updated !== p.date ? `<span>Updated <time datetime="${p.updated}">${fmtDate(p.updated)}</time></span>` : ''}
-      <span>${Math.max(1, Math.round(p.words / 230))} min read</span>
+      <span>${B.byline}</span>
+      <span>${fill(B.published, { date: `<time datetime="${p.date}">${fmtDate(p.date, L)}</time>` })}</span>
+      ${p.updated && p.updated !== p.date ? `<span>${fill(B.updated, { date: `<time datetime="${p.updated}">${fmtDate(p.updated, L)}</time>` })}</span>` : ''}
+      <span>${fill(B.minRead, { n: minutes(p) })}</span>
     </div>
   </header>
   <figure class="article__feature">${picture(p.image, p.imageAlt, { sizes: '(max-width: 1160px) 100vw, 1120px', eager: true })}</figure>
   <div class="article">
     <article class="article__body">${summary}${p.html}
-      <p class="note"><em>This article is for general education. It is not medical advice, and an online test cannot diagnose any condition.</em></p>
+      <p class="note"><em>${B.disclaimer}</em></p>
     </article>
     <aside>${toc}</aside>
   </div>
 </div>
-<section class="related"><div class="wrap"><h2>Keep reading</h2><div class="post-grid">${related.map((r) => postCard(r)).join('')}</div></div></section>`;
+<section class="related"><div class="wrap"><h2>${B.keepReading}</h2><div class="post-grid">${related.map((r) => postCard(r, L)).join('')}</div></div></section>`;
   const posting = {
     '@type': 'BlogPosting',
-    '@id': `${site.url}${p.path}#article`,
+    '@id': `${site.url}${lp(p.path)}#article`,
     headline: p.title,
     description: p.description,
     image: site.url + p.image,
@@ -203,15 +244,18 @@ function postPage(p, posts, version) {
     dateModified: p.updated || p.date,
     author: { '@id': `${site.url}/#org` },
     publisher: { '@id': `${site.url}/#org` },
-    mainEntityOfPage: site.url + p.path,
-    articleSection: cat.name,
+    mainEntityOfPage: site.url + lp(p.path),
+    articleSection: cat,
     wordCount: p.words,
-    inLanguage: 'en',
+    inLanguage: L.lang,
     keywords: p.keywordList.join(', '),
     abstract: p.summary ? p.summary.split('|').map((x) => x.trim()).join(' ') : undefined,
+    ...(L.code !== 'en' ? { translationOfWork: { '@id': `${site.url}${p.path}#article` } } : {}),
   };
   return page({
-    path: p.path,
+    L,
+    path: lp(p.path),
+    alternates: ctx.alternates(p.path),
     title: p.seoTitle || p.title,
     description: p.description,
     image: p.image,
@@ -224,55 +268,55 @@ function postPage(p, posts, version) {
     nav: 'blog',
     version,
     body,
-    schema: graph(posting, breadcrumbs([['Home', '/'], ['Blog', '/blog/'], [cat.name, `/category/${p.category}/`], [p.title, p.path]]), faqSchema(p.faq)).map((g) => ({
-      ...g,
-      '@graph': g['@graph'].filter(Boolean),
-    })),
+    schema: graph(
+      posting,
+      breadcrumbs([[B.home, lp('/')], [B.blog, lp('/blog/')], [cat, lp(`/category/${p.category}/`)], [p.title, lp(p.path)]]),
+      faqSchema(p.faq),
+    ).map((g) => ({ ...g, '@graph': g['@graph'].filter(Boolean) })),
   });
 }
 
-function listingPage({ pathName, title, heading, intro, posts, version, crumbs, noindex }) {
+function listingPage({ L, pathName, title, heading, intro, posts, version, crumbs, ctx }) {
+  const lp = (x) => prefix(L) + x;
   const body = `
 <div class="wrap">
   <header class="article-head">
-    ${crumbs ? `<nav class="breadcrumbs" aria-label="Breadcrumb"><ol>${crumbs.map(([n, p]) => `<li><a href="${p}">${esc(n)}</a></li>`).join('')}</ol></nav>` : ''}
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><ol>${crumbs.map(([n, p]) => `<li><a href="${p}">${esc(n)}</a></li>`).join('')}</ol></nav>
     <h1>${esc(heading)}</h1>
     <p class="prose">${esc(intro)}</p>
   </header>
-  <div class="post-grid" style="margin-bottom:64px">${posts.map((p) => postCard(p, 'h2')).join('')}</div>
+  <div class="post-grid" style="margin-bottom:64px">${posts.map((p) => postCard(p, L, 'h2')).join('')}</div>
 </div>`;
   return page({
-    path: pathName,
+    L,
+    path: lp(pathName),
+    alternates: ctx.alternates(pathName),
     title,
     description: intro,
     nav: 'blog',
     version,
     body,
-    noindex,
     schema: graph(
-      { '@type': 'CollectionPage', name: heading, url: site.url + pathName, isPartOf: { '@id': `${site.url}/#website` } },
-      crumbs ? breadcrumbs(crumbs) : null,
-    ).map((g) => ({ ...g, '@graph': g['@graph'].filter(Boolean) })),
+      { '@type': 'CollectionPage', name: heading, url: site.url + lp(pathName), inLanguage: L.lang, isPartOf: { '@id': `${site.url}/#website` } },
+      breadcrumbs(crumbs.map(([n, p]) => [n, lp(p)])),
+    ),
   });
 }
 
-function simplePage(file, version) {
-  const { data, body } = frontMatter(fs.readFileSync(path.join(SRC, 'content/pages', file), 'utf8'), file);
-  const { html } = renderMarkdown(body);
-  const p = `/${file.replace(/\.md$/, '')}/`;
-  return {
+function simplePage(pg, version, ctx) {
+  const { data, html, L } = pg;
+  const p = prefix(L) + pg.path;
+  return page({
+    L,
     path: p,
-    data,
-    html: page({
-      path: p,
-      title: data.title,
-      description: data.description,
-      nav: data.nav,
-      version,
-      body: `<div class="wrap"><header class="article-head"><h1>${esc(data.title)}</h1>${data.updated ? `<p class="meta">Last updated <time datetime="${data.updated}">${fmtDate(data.updated)}</time></p>` : ''}</header><div class="prose article__body" style="padding-bottom:64px">${html}</div></div>`,
-      schema: graph({ '@type': data.schemaType || 'WebPage', name: data.title, url: site.url + p }),
-    }),
-  };
+    alternates: ctx.alternates(pg.path),
+    title: data.title,
+    description: data.description,
+    nav: data.nav,
+    version,
+    body: `<div class="wrap"><header class="article-head"><h1>${esc(data.title)}</h1>${data.updated ? `<p class="meta">${fill(L.blog.lastUpdated, { date: `<time datetime="${data.updated}">${fmtDate(data.updated, L)}</time>` })}</p>` : ''}</header><div class="prose article__body" style="padding-bottom:64px">${html}</div></div>`,
+    schema: graph({ '@type': data.schemaType || 'WebPage', name: data.title, url: site.url + p, inLanguage: L.lang }),
+  });
 }
 
 const redirectPage = (to) =>
@@ -295,65 +339,64 @@ function build() {
     fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replace("'./stroop-core.js'", `'./stroop-core.js?v=${version}'`));
   }
 
-  const posts = loadPosts();
+  // Load every language first, so each page knows which translations of it exist.
+  const english = loadPosts(EN);
+  const content = LOCALES.map((L) => {
+    const posts = L.code === 'en' ? english : loadPosts(L, english);
+    const pages = loadPages(L);
+    const cats = Object.keys(site.categories).filter((c) => posts.some((p) => p.category === c));
+    const available = new Set(['/', ...posts.map((p) => p.path), ...pages.map((p) => p.path), ...(posts.length ? ['/blog/'] : []), ...cats.map((c) => `/category/${c}/`)]);
+    return { L, posts, pages, cats, available };
+  });
+  const ctx = {
+    alternates: (p) => content.filter((c) => c.available.has(p)).map(({ L }) => ({ code: L.code, lang: L.lang, ogLocale: L.ogLocale, path: prefix(L) + p })),
+  };
+
   const urls = [];
-  const add = (p, lastmod, priority = '0.6', group = 'page', alts = null) => urls.push({ loc: site.url + p, lastmod, priority, group, alts });
+  // English pages go in post-, page- and category-sitemap.xml (the old WordPress names Search
+  // Console already knows); every other language gets its own <code>-sitemap.xml.
+  const add = (L, p, lastmod, priority, group) => urls.push({ loc: site.url + prefix(L) + p, lastmod, priority, group: L.code === 'en' ? group : L.code, alts: ctx.alternates(p) });
 
-  // Home
-  // Home, once per language. Only the homepage (and the test on it) is translated.
-  for (const L of LOCALES) {
-    const p = homePath(L);
-    const home = homePage({ site, L, posts: posts.slice(0, 6), postCard, picture, version, path: p, alternates: HOME_ALTERNATES });
-    write(`${p.slice(1)}index.html`, page({ ...home, L, version, alternates: HOME_ALTERNATES }));
-    add(p, home.modified, L.code === 'en' ? '1.0' : '0.9', 'page', HOME_ALTERNATES);
+  for (const { L, posts, pages, cats, available } of content) {
+    const out = (p, html) => write(`${(prefix(L) + p).slice(1)}index.html`, localize(html, L, available));
+    const lp = (x) => prefix(L) + x;
+    const B = L.blog;
+
+    // Home
+    const homeUrl = lp('/');
+    const home = homePage({ site, L, posts: (posts.length ? posts : english).slice(0, 6), postCard, picture, version, path: homeUrl, alternates: ctx.alternates('/') });
+    out('/', page({ ...home, L, version, alternates: ctx.alternates('/') }));
+    add(L, '/', home.modified, L.code === 'en' ? '1.0' : '0.9', 'page');
+
+    // Posts
+    for (const p of posts) {
+      out(p.path, postPage(p, posts, version, ctx));
+      add(L, p.path, p.updated || p.date, '0.8', 'post');
+    }
+    // About, contact, privacy
+    for (const pg of pages) {
+      out(pg.path, simplePage(pg, version, ctx));
+      add(L, pg.path, pg.data.updated, '0.3', 'page');
+    }
+    if (!posts.length) continue;
+
+    // Blog index and categories
+    out('/blog/', listingPage({ L, pathName: '/blog/', title: B.indexTitle, heading: B.indexHeading, intro: B.indexIntro, posts, version, ctx, crumbs: [[B.home, '/'], [B.blog, '/blog/']] }));
+    add(L, '/blog/', posts[0].updated || posts[0].date, '0.7', 'page');
+    for (const slug of cats) {
+      const list = posts.filter((p) => p.category === slug);
+      const name = catName(L, slug);
+      const pathName = `/category/${slug}/`;
+      out(pathName, listingPage({
+        L, pathName, title: fill(B.categoryTitle, { name }), heading: name,
+        intro: B.categories[slug]?.description || site.categories[slug].description,
+        posts: list, version, ctx, crumbs: [[B.home, '/'], [B.blog, '/blog/'], [name, pathName]],
+      }));
+      add(L, pathName, list[0].updated || list[0].date, '0.5', 'category');
+    }
+
   }
-
-  // Posts
-  for (const p of posts) {
-    write(`${p.slug}/index.html`, postPage(p, posts, version));
-    add(p.path, p.updated || p.date, '0.8', 'post');
-  }
-
-  // Blog index
-  write(
-    'blog/index.html',
-    listingPage({
-      pathName: '/blog/',
-      title: 'Blog: Stroop test guides and attention research',
-      heading: 'Our blog',
-      intro: 'Plain-English guides to the Stroop test, what your scores mean, and the research on attention and executive function behind them.',
-      posts,
-      version,
-      crumbs: [['Home', '/'], ['Blog', '/blog/']],
-    }),
-  );
-  add('/blog/', posts[0].updated || posts[0].date, '0.7');
-
-  // Categories
-  for (const [slug, cat] of Object.entries(site.categories)) {
-    const list = posts.filter((p) => p.category === slug);
-    if (!list.length) continue;
-    write(
-      `category/${slug}/index.html`,
-      listingPage({
-        pathName: `/category/${slug}/`,
-        title: `${cat.name} articles`,
-        heading: cat.name,
-        intro: cat.description,
-        posts: list,
-        version,
-        crumbs: [['Home', '/'], ['Blog', '/blog/'], [cat.name, `/category/${slug}/`]],
-      }),
-    );
-    add(`/category/${slug}/`, list[0].updated || list[0].date, '0.5', 'category');
-  }
-
-  // Static pages
-  for (const f of fs.readdirSync(path.join(SRC, 'content/pages'))) {
-    const pg = simplePage(f, version);
-    write(`${pg.path.slice(1)}index.html`, pg.html);
-    add(pg.path, pg.data.updated, '0.3');
-  }
+  const posts = english;
 
   // Old WordPress URLs that should keep working
   write('page/2/index.html', redirectPage('/blog/'));
@@ -391,17 +434,16 @@ function build() {
   const urlset = (list) =>
     `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${list
       .map((u) => {
-        const alts = u.alts
+        const alts = u.alts.length > 1
           ? u.alts.map((a) => `<xhtml:link rel="alternate" hreflang="${a.lang}" href="${site.url}${a.path}"/>`).join('') +
-            `<xhtml:link rel="alternate" hreflang="x-default" href="${site.url}/"/>`
+            `<xhtml:link rel="alternate" hreflang="x-default" href="${site.url}${u.alts.find((a) => a.code === 'en').path}"/>`
           : '';
         return `  <url><loc>${u.loc}</loc>${u.lastmod ? `<lastmod>${u.lastmod}</lastmod>` : ''}<priority>${u.priority}</priority>${alts}</url>`;
       })
       .join('\n')}\n</urlset>\n`;
   write('sitemap.xml', urlset(urls));
-  // Same layout as the old WordPress (Rank Math) sitemaps, which Search Console already knows:
-  // /sitemap_index.xml pointing at post-, page- and category-sitemap.xml.
-  const parts = ['post', 'page', 'category'].map((group) => {
+  const groups = ['post', 'page', 'category', ...content.filter(({ L }) => L.code !== 'en').map(({ L }) => L.code)];
+  const parts = groups.map((group) => {
     const list = urls.filter((u) => u.group === group);
     write(`${group}-sitemap.xml`, urlset(list));
     const lastmod = list.map((u) => u.lastmod).filter(Boolean).sort().pop();
@@ -422,14 +464,16 @@ ${posts
 </channel></rss>\n`;
   write('feed.xml', rss);
 
-  writeLlms(posts);
+  writeLlms(content);
 
-  console.log(`Built ${urls.length} pages and ${posts.length} posts into dist/ (assets v${version})`);
+  const translated = content.filter(({ L }) => L.code !== 'en').reduce((n, c) => n + c.posts.length, 0);
+  console.log(`Built ${urls.length} pages (${posts.length} English articles, ${translated} translations) into dist/ (assets v${version})`);
 }
 
 // llms.txt (https://llmstxt.org): a plain summary of the site for AI assistants and crawlers,
 // plus llms-full.txt with the complete text of every article.
-function writeLlms(posts) {
+function writeLlms(content) {
+  const posts = content[0].posts;
   const strip = (md) =>
     md
       .replace(/^\{\{cta(?::.*)?\}\}$/gm, '')
@@ -460,8 +504,9 @@ Key facts about the test:
 ## Take the test
 
 - [Free Stroop test online (English)](${site.url}/): the test, how scoring works, the research and FAQs.
-${LOCALES.filter((L) => L.code !== 'en')
-  .map((L) => `- [${L.name}](${site.url}/${L.code}/): ${L.seo.title}`)
+${content
+  .filter(({ L }) => L.code !== 'en')
+  .map(({ L }) => `- [${L.name}](${site.url}/${L.code}/): ${L.seo.title}`)
   .join('\n')}
 
 ## Guides
@@ -473,6 +518,15 @@ ${byCat}
 - [About and editorial standards](${site.url}/about/): who runs the site, how the test works and what it does not claim.
 - [Privacy policy](${site.url}/privacy-policy/): test answers never leave the device; analytics only with consent.
 - [Contact](${site.url}/contact/)
+
+## Other languages
+
+Every article is also published in ${content.length - 1} other languages at /<language code>/<same slug>/, for example ${site.url}/es/what-is-the-stroop-test/. Each language has its own sitemap.
+
+${content
+  .filter((c) => c.posts.length)
+  .map(({ L, posts: list }) => `- ${L.name}: [${L.blog.indexHeading}](${site.url}/${L.code}/blog/) (${list.length} articles), [sitemap](${site.url}/${L.code}-sitemap.xml)`)
+  .join('\n')}
 
 ## Optional
 

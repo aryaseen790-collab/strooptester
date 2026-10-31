@@ -26,7 +26,7 @@ export default {
     research: 'J・R・ストループの1935年の論文に始まる研究にもとづいています。',
     disclaimer: '教育目的のみのサイトです。いかなる病気も診断しません。注意力や記憶、考え方に不安がある場合は、医療の専門家に相談してください。',
     explore: 'コンテンツ',
-    exploreLinks: { test: 'ストループテスト（オンライン）', blog: 'ブログ（英語）', what: 'ストループテストとは？（英語）', score: '良いスコアとは？（英語）' },
+    exploreLinks: { test: 'ストループテスト（オンライン）', blog: 'ブログ', what: 'ストループテストとは？', score: '良いスコアとは？' },
     site: 'サイト',
     siteLinks: { about: '運営者情報と編集方針', contact: 'お問い合わせ', privacy: 'プライバシーポリシー', cookies: 'Cookie の設定' },
     copyright: '特に記載のない限り、本サイトの文章と画像は Stroop Tester に帰属します。',
@@ -35,7 +35,52 @@ export default {
     allow: '分析を許可',
     deny: '許可しない',
     languages: '言語',
-    englishOnly: '記事は現在、英語のみです。',
+  },
+
+  blog: {
+    home: 'ホーム',
+    blog: 'ブログ',
+    indexTitle: 'ブログ：ストループテストの解説と注意に関する研究',
+    indexHeading: 'ブログ',
+    indexIntro: 'ストループテストの基本、スコアの読み方、そしてその背景にある注意と実行機能の研究を、わかりやすく解説します。',
+    categoryTitle: '{name}の記事',
+    categories: {
+      'stroop-test-basics': {
+        name: 'ストループテストの基本',
+        description: 'ストループテストとは何か、その起源、3種類の試行、そして受け方を順を追って説明します。',
+      },
+      'the-stroop-effect': {
+        name: 'ストループ効果',
+        description: '違う色で書かれた色の名前でなぜ反応が遅れるのか、そしてそれを解き明かした人たち。',
+      },
+      'scores-interpretation': {
+        name: 'スコアと解釈',
+        description: 'ストループテストの結果の数字が何を意味するか、どのくらいが一般的か、時間をおいて公平に比べる方法。',
+      },
+      'adhd-and-clinical-uses': {
+        name: 'ADHDと臨床での利用',
+        description: '研究者や臨床家がストループ課題をどう使うか、そしてオンラインテストでわかること・わからないこと。',
+      },
+      'core-cognitive-abilities': {
+        name: '基本的な認知能力',
+        description: '実行機能、抑制、ワーキングメモリ、そしてそれらを支える毎日のスキルについて解説します。',
+      },
+    },
+    inShort: '要点',
+    onThisPage: 'このページの内容',
+    tryTitle: '自分で試してみましょう。',
+    tryText: '無料のテストは約2分で、干渉スコアがすぐにわかります。',
+    tryBtn: 'テストを始める',
+    byline: '<a href="/about/">Stroop Tester編集チーム</a>',
+    published: '公開日：{date}',
+    updated: '更新日：{date}',
+    lastUpdated: '最終更新日：{date}',
+    minRead: '{n}分で読めます',
+    disclaimer: 'この記事は一般的な情報提供を目的としています。医学的な助言ではなく、オンラインテストで病気を診断することはできません。',
+    keepReading: 'あわせて読みたい',
+    ctaText: '約2分で自分の干渉スコアを確かめましょう。無料・登録不要で、回答はブラウザの外に送られません。',
+    ctaBtn: '無料のストループテストを受ける',
+    faqHeading: 'よくある質問',
   },
 
   ui: {

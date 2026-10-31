@@ -15,8 +15,16 @@ export const colorName = (id) => L.colorNames[id] ?? id.toLowerCase();
 export function keyFor(id, inks) {
   return (L.keys && L.keys[id]) || String(inks.indexOf(id) + 1);
 }
+// Persian, Arabic and Hindi keyboard layouts type their own digits on the number row (۱, ١, १);
+// treat them like 1–9 so the number keys work whatever layout is active.
+const DIGIT_ZEROS = [0x660, 0x6f0, 0x966];
+const toAsciiDigit = (k) =>
+  k.replace(/[\u0660-\u0669\u06F0-\u06F9\u0966-\u096F]/g, (d) => {
+    const c = d.charCodeAt(0);
+    return String(c - DIGIT_ZEROS.find((z) => c >= z && c <= z + 9));
+  });
 export function idForKey(key, inks) {
-  const k = key.toLowerCase();
+  const k = toAsciiDigit(key.toLowerCase());
   const byNumber = /^[1-9]$/.test(k) ? inks[Number(k) - 1] : null;
   return byNumber || inks.find((id) => L.keys && L.keys[id] === k) || null;
 }

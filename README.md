@@ -34,13 +34,16 @@ You need Node 20 or newer.
 
 ## Languages
 
-The homepage and the test are available in 21 languages: English at `/` and translations at `/es/`, `/pt/`, `/fr/`, `/de/`, `/it/`, `/nl/`, `/pl/`, `/cs/`, `/hu/`, `/hr/`, `/sv/`, `/tr/`, `/ru/`, `/ar/`, `/fa/`, `/hi/`, `/id/`, `/ja/`, `/ko/` and `/zh/`. Articles are in English only for now.
+The whole site is available in 21 languages: English at `/` and translations at `/es/`, `/pt/`, `/fr/`, `/de/`, `/it/`, `/nl/`, `/pl/`, `/cs/`, `/hu/`, `/hr/`, `/sv/`, `/tr/`, `/ru/`, `/ar/`, `/fa/`, `/hi/`, `/id/`, `/ja/`, `/ko/` and `/zh/`. That covers the homepage and test, every article, the static pages, the blog index and the category pages. A translated page keeps the English slug, for example `/fr/stroop-effect-explained/`.
 
 - Each language is one file in `src/i18n/` (`en.mjs` is the source). It holds the colour words used in the test, the neutral words, the page text, the test messages and the search title, description and keywords.
 - The test itself is translated: people read the colour words in their own language, which the Stroop effect depends on. English uses letter keys (R, B, G, Y); every other language uses number keys 1–6.
 - Arabic and Persian pages are right to left.
 - Every language version links to all the others (`hreflang`), both in the page head and in the sitemap, with English as the default.
-- `npm run check-i18n` fails if a translation is missing a string or drops a `{placeholder}`.
+- Translated articles live in `src/content/i18n/<code>/posts/<slug>.md` and translated pages in `src/content/i18n/<code>/pages/<slug>.md`, using the same slug as the English file. The front matter holds only the words (title, seoTitle, description, imageAlt, excerpt, keywords, summary for posts; title and description for pages). The date, category and image come from the English file.
+- In a translated article, internal links point at the English paths (`/stroop-effect-explained/`). The build rewrites them to the same language (`/fr/stroop-effect-explained/`).
+- An FAQ section only becomes an accordion with FAQ schema when its heading matches `blog.faqHeading` in that language's file exactly.
+- `npm run check-i18n` fails if a translation is missing a string or drops a `{placeholder}`. It also compares every translated article and page with the English one and fails if images, internal links, call-to-action boxes, the number of `##` headings or the number of summary points differ.
 
 To add a language, copy `src/i18n/es.mjs` to a new file, translate it, and add its code to `CODES` in `src/i18n/index.mjs`.
 
@@ -108,7 +111,7 @@ The workflow asks Pages where the site is served from. Until the custom domain i
 
    Set the records to **DNS only** (grey cloud) at first, so GitHub can issue the HTTPS certificate. Once *Enforce HTTPS* is available in the Pages settings, tick it. You can then switch the records back to **Proxied** (orange cloud) with SSL/TLS mode **Full (strict)**.
 5. **Security headers.** GitHub Pages can't send custom headers. With Cloudflare proxying, add them with *Rules → Transform Rules → Modify Response Header*, using the values in `static/_headers`. (If you'd rather host on Cloudflare Pages or Netlify, `_headers` is picked up automatically: build command `npm run build`, output directory `dist`.)
-6. **Search Console.** The verification tag is already in the page head. The sitemaps have the same layout as the WordPress ones: `/sitemap_index.xml` points to `post-sitemap.xml`, `page-sitemap.xml` and `category-sitemap.xml`. Search Console keeps reading the index it already knows. `/sitemap.xml` is a single full list as well.
+6. **Search Console.** The verification tag is already in the page head. The English sitemaps have the same layout as the WordPress ones: `/sitemap_index.xml` points to `post-sitemap.xml`, `page-sitemap.xml` and `category-sitemap.xml`. Each other language has its own sitemap (`es-sitemap.xml`, `fr-sitemap.xml` and so on), also listed in the index, so every language is indexed and reported on separately. Search Console keeps reading the index it already knows. `/sitemap.xml` is a single full list as well.
 7. **Email.** The site lists `contact@strooptester.com`. Make sure that mailbox exists, for example with Cloudflare Email Routing, or change `contactEmail` in `src/data/site.json`.
 8. Keep a backup of the WordPress site, then shut it down.
 

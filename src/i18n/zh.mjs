@@ -26,7 +26,7 @@ export default {
     research: '基于始于 J. R. 斯特鲁普 1935 年论文的研究。',
     disclaimer: '仅供教育用途。本网站不对任何疾病作出诊断。如果你担心自己的注意力、记忆或思维，请咨询专业医务人员。',
     explore: '浏览',
-    exploreLinks: { test: '斯特鲁普测试在线版', blog: '博客（英文）', what: '什么是斯特鲁普测试？（英文）', score: '多少分算好？（英文）' },
+    exploreLinks: { test: '斯特鲁普测试在线版', blog: '博客', what: '什么是斯特鲁普测试？', score: '多少分算好？' },
     site: '网站',
     siteLinks: { about: '关于我们与编辑原则', contact: '联系我们', privacy: '隐私政策', cookies: 'Cookie 设置' },
     copyright: '除另有说明外，本网站的文字和图片归 Stroop Tester 所有。',
@@ -35,7 +35,52 @@ export default {
     allow: '允许统计',
     deny: '不用了',
     languages: '语言',
-    englishOnly: '文章目前只有英文版。',
+  },
+
+  blog: {
+    home: '首页',
+    blog: '博客',
+    indexTitle: '博客：斯特鲁普测试指南与注意力研究',
+    indexHeading: '我们的博客',
+    indexIntro: '用通俗的语言介绍斯特鲁普测试、你的分数代表什么，以及背后关于注意力和执行功能的研究。',
+    categoryTitle: '{name}相关文章',
+    categories: {
+      'stroop-test-basics': {
+        name: '斯特鲁普测试入门',
+        description: '斯特鲁普测试是什么、从何而来、有哪三种试次类型，以及一步一步教你完成测试。',
+      },
+      'the-stroop-effect': {
+        name: '斯特鲁普效应',
+        description: '为什么用另一种颜色写的颜色词会让你变慢，以及是哪些研究者最先弄清了其中的原因。',
+      },
+      'scores-interpretation': {
+        name: '分数与解读',
+        description: '斯特鲁普测试结果中的各个数字代表什么、多少算常见，以及如何公平地比较不同时间的分数。',
+      },
+      'adhd-and-clinical-uses': {
+        name: 'ADHD与临床应用',
+        description: '研究人员和临床医生如何使用斯特鲁普任务，以及在线测试能告诉你什么、不能告诉你什么。',
+      },
+      'core-cognitive-abilities': {
+        name: '核心认知能力',
+        description: '执行功能、抑制控制、工作记忆，以及在日常生活中支撑它们的各项能力，用通俗的语言讲清楚。',
+      },
+    },
+    inShort: '要点',
+    onThisPage: '本页内容',
+    tryTitle: '亲自试一试。',
+    tryText: '免费测试大约需要两分钟，马上就能得到你的干扰分数。',
+    tryBtn: '开始测试',
+    byline: '作者：<a href="/about/">Stroop Tester 编辑团队</a>',
+    published: '发布于 {date}',
+    updated: '更新于 {date}',
+    lastUpdated: '最后更新：{date}',
+    minRead: '阅读约 {n} 分钟',
+    disclaimer: '本文仅供一般科普参考，不构成医疗建议，在线测试也无法诊断任何疾病。',
+    keepReading: '继续阅读',
+    ctaText: '大约两分钟就能看到你自己的干扰分数。免费、无需注册，你的答案只保存在你的浏览器里。',
+    ctaBtn: '免费做斯特鲁普测试',
+    faqHeading: '常见问题',
   },
 
   ui: {

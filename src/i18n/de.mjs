@@ -26,7 +26,7 @@ export default {
     research: 'Gestützt auf Forschung, die mit J. R. Stroops Arbeit von 1935 begann.',
     disclaimer: 'Nur zu Bildungszwecken. Diese Website stellt keine Diagnosen. Wenn Sie sich Sorgen um Ihre Aufmerksamkeit, Ihr Gedächtnis oder Ihr Denken machen, wenden Sie sich an eine Ärztin oder einen Arzt.',
     explore: 'Entdecken',
-    exploreLinks: { test: 'Stroop-Test online', blog: 'Blog (auf Englisch)', what: 'Was ist der Stroop-Test? (auf Englisch)', score: 'Was ist ein guter Wert? (auf Englisch)' },
+    exploreLinks: { test: 'Stroop-Test online', blog: 'Blog', what: 'Was ist der Stroop-Test?', score: 'Was ist ein guter Wert?' },
     site: 'Website',
     siteLinks: { about: 'Über uns und redaktionelle Grundsätze', contact: 'Kontakt', privacy: 'Datenschutz', cookies: 'Cookie-Einstellungen' },
     copyright: 'Texte und Bilder dieser Website gehören Stroop Tester, sofern nicht anders angegeben.',
@@ -35,7 +35,52 @@ export default {
     allow: 'Statistik erlauben',
     deny: 'Nein, danke',
     languages: 'Sprachen',
-    englishOnly: 'Die Artikel gibt es vorerst nur auf Englisch.',
+  },
+
+  blog: {
+    home: 'Startseite',
+    blog: 'Blog',
+    indexTitle: 'Blog: Ratgeber zum Stroop-Test und Forschung zur Aufmerksamkeit',
+    indexHeading: 'Unser Blog',
+    indexIntro: 'Verständliche Ratgeber zum Stroop-Test, zur Bedeutung deiner Werte und zur Forschung über Aufmerksamkeit und exekutive Funktionen.',
+    categoryTitle: 'Artikel: {name}',
+    categories: {
+      'stroop-test-basics': {
+        name: 'Stroop-Test-Grundlagen',
+        description: 'Was der Stroop-Test ist, woher er kommt, die drei Durchgangsarten und eine Schritt-für-Schritt-Anleitung zum Mitmachen.',
+      },
+      'the-stroop-effect': {
+        name: 'Der Stroop-Effekt',
+        description: 'Warum ein Farbwort in der falschen Druckfarbe dich ausbremst, und wer das herausgefunden hat.',
+      },
+      'scores-interpretation': {
+        name: 'Werte und Auswertung',
+        description: 'Was die Zahlen in deinem Stroop-Ergebnis bedeuten, was üblich ist und wie du deine Werte über die Zeit fair vergleichst.',
+      },
+      'adhd-and-clinical-uses': {
+        name: 'ADHS und klinischer Einsatz',
+        description: 'Wie Forschung und Klinik Stroop-Aufgaben einsetzen, und was ein Online-Test verraten kann und was nicht.',
+      },
+      'core-cognitive-abilities': {
+        name: 'Kognitive Grundfähigkeiten',
+        description: 'Exekutive Funktionen, Hemmung, Arbeitsgedächtnis und die Fähigkeiten, die dahinterstehen.',
+      },
+    },
+    inShort: 'Kurz gesagt',
+    onThisPage: 'Auf dieser Seite',
+    tryTitle: 'Probier es selbst.',
+    tryText: 'Der kostenlose Test dauert etwa zwei Minuten und zeigt dir sofort deinen Interferenzwert.',
+    tryBtn: 'Test starten',
+    byline: 'Vom <a href="/about/">Redaktionsteam von Stroop Tester</a>',
+    published: 'Veröffentlicht am {date}',
+    updated: 'Aktualisiert am {date}',
+    lastUpdated: 'Zuletzt aktualisiert am {date}',
+    minRead: '{n} Min. Lesezeit',
+    disclaimer: 'Dieser Artikel dient der allgemeinen Information. Er ist keine medizinische Beratung, und ein Online-Test kann keine Erkrankung diagnostizieren.',
+    keepReading: 'Weiterlesen',
+    ctaText: 'Finde in etwa zwei Minuten deinen eigenen Interferenzwert heraus. Kostenlos, ohne Anmeldung, und deine Antworten bleiben in deinem Browser.',
+    ctaBtn: 'Kostenlosen Stroop-Test machen',
+    faqHeading: 'Häufige Fragen',
   },
 
   ui: {

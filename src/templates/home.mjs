@@ -43,7 +43,6 @@ export function homePage({ site, L, posts, postCard, picture, version, path, alt
     })
     .join('');
   const bands = ['verySmall', 'typical', 'larger', 'large'];
-  const isEn = L.code === 'en';
 
   const body = `
 <script type="application/json" id="i18n">${JSON.stringify({ lang: L.lang, colors: L.colors, colorNames: L.colorNames, neutral: L.neutral, keys: L.keys, ui: L.ui }).replace(/</g, '\\u003c')}</script>
@@ -290,8 +289,8 @@ export function homePage({ site, L, posts, postCard, picture, version, path, alt
 
 <section class="section" aria-labelledby="blog-heading">
   <div class="wrap">
-    <div class="section__head"><span class="kicker">${H.blogKicker}</span><h2 id="blog-heading">${H.blogH2}</h2>${isEn ? '' : `<p class="note">${L.layout.englishOnly}</p>`}</div>
-    <div class="post-grid"${isEn ? '' : ' lang="en" dir="ltr"'}>${posts.map((p) => postCard(p)).join('')}</div>
+    <div class="section__head"><span class="kicker">${H.blogKicker}</span><h2 id="blog-heading">${H.blogH2}</h2></div>
+    <div class="post-grid">${posts.map((p) => postCard(p, L)).join('')}</div>
     <p style="margin-top:28px"><a class="btn btn--ghost" href="/blog/">${H.blogAll}</a></p>
   </div>
 </section>

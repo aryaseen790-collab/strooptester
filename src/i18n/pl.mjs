@@ -26,7 +26,7 @@ export default {
     research: 'Oparty na badaniach, które zapoczątkował artykuł J. R. Stroopa z 1935 roku.',
     disclaimer: 'Wyłącznie w celach edukacyjnych. Ta strona niczego nie diagnozuje. Jeśli martwi Cię Twoja uwaga, pamięć lub myślenie, porozmawiaj z lekarzem lub psychologiem.',
     explore: 'Odkrywaj',
-    exploreLinks: { test: 'Test Stroopa online', blog: 'Blog (po angielsku)', what: 'Czym jest test Stroopa? (po angielsku)', score: 'Jaki wynik jest dobry? (po angielsku)' },
+    exploreLinks: { test: 'Test Stroopa online', blog: 'Blog', what: 'Czym jest test Stroopa?', score: 'Jaki wynik jest dobry?' },
     site: 'Strona',
     siteLinks: { about: 'O nas i zasady redakcyjne', contact: 'Kontakt', privacy: 'Polityka prywatności', cookies: 'Ustawienia cookies' },
     copyright: 'Teksty i obrazy w tym serwisie należą do Stroop Tester, chyba że zaznaczono inaczej.',
@@ -35,7 +35,52 @@ export default {
     allow: 'Zezwól na statystyki',
     deny: 'Nie, dziękuję',
     languages: 'Języki',
-    englishOnly: 'Na razie artykuły są dostępne tylko po angielsku.',
+  },
+
+  blog: {
+    home: 'Strona główna',
+    blog: 'Blog',
+    indexTitle: 'Blog: poradniki o teście Stroopa i badania nad uwagą',
+    indexHeading: 'Nasz blog',
+    indexIntro: 'Przystępne poradniki o teście Stroopa, o tym, co znaczą twoje wyniki, i o badaniach nad uwagą i funkcjami wykonawczymi.',
+    categoryTitle: 'Artykuły: {name}',
+    categories: {
+      'stroop-test-basics': {
+        name: 'Podstawy testu Stroopa',
+        description: 'Czym jest test Stroopa, skąd się wziął, trzy rodzaje prób i instrukcja krok po kroku, jak go wykonać.',
+      },
+      'the-stroop-effect': {
+        name: 'Efekt Stroopa',
+        description: 'Dlaczego nazwa koloru wydrukowana innym kolorem cię spowalnia i kto to odkrył.',
+      },
+      'scores-interpretation': {
+        name: 'Wyniki i ich interpretacja',
+        description: 'Co oznaczają liczby w twoim wyniku testu Stroopa, co jest typowe i jak uczciwie porównywać wyniki w czasie.',
+      },
+      'adhd-and-clinical-uses': {
+        name: 'ADHD i zastosowania kliniczne',
+        description: 'Jak badacze i klinicyści korzystają z zadań Stroopa i czego test online może, a czego nie może ci powiedzieć.',
+      },
+      'core-cognitive-abilities': {
+        name: 'Podstawowe zdolności poznawcze',
+        description: 'Funkcje wykonawcze, hamowanie, pamięć robocza i umiejętności, które za nimi stoją.',
+      },
+    },
+    inShort: 'W skrócie',
+    onThisPage: 'Na tej stronie',
+    tryTitle: 'Sprawdź sam.',
+    tryText: 'Darmowy test trwa około dwóch minut i od razu pokazuje twój wynik interferencji.',
+    tryBtn: 'Rozpocznij test',
+    byline: 'Autor: <a href="/about/">zespół redakcyjny Stroop Tester</a>',
+    published: 'Opublikowano {date}',
+    updated: 'Zaktualizowano {date}',
+    lastUpdated: 'Ostatnia aktualizacja: {date}',
+    minRead: '{n} min czytania',
+    disclaimer: 'Ten artykuł ma charakter edukacyjny. Nie jest poradą medyczną, a test online nie może zdiagnozować żadnego zaburzenia.',
+    keepReading: 'Czytaj dalej',
+    ctaText: 'Poznaj swój wynik interferencji w około dwie minuty. Za darmo, bez rejestracji, a twoje odpowiedzi zostają w przeglądarce.',
+    ctaBtn: 'Zrób darmowy test Stroopa',
+    faqHeading: 'Najczęściej zadawane pytania',
   },
 
   ui: {

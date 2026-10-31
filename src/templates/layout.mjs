@@ -4,7 +4,8 @@ export const esc = (s = '') =>
 
 // page.L is the page's locale (English unless a translated page says otherwise).
 // page.alternates lists the language versions of this page for hreflang.
-// page.languages lists every locale, for the language menu.
+// page.languages lists every locale, for the language menu; each entry links to this page in that
+// language when it exists (page.alternates), otherwise to that language's homepage.
 export function layout(site, page) {
   const L = page.L;
   const T = L.layout;
@@ -22,14 +23,14 @@ export function layout(site, page) {
   ];
   const nav = NAV.map(([href, label, key]) => `<li><a href="${href}"${page.nav === key ? ' aria-current="page"' : ''}>${label}</a></li>`).join('');
   const alternates = page.alternates || [];
-  const hreflang = alternates.length
+  const hreflang = alternates.length > 1
     ? alternates.map((a) => `<link rel="alternate" hreflang="${a.lang}" href="${site.url}${a.path}">`).join('\n') +
       `\n<link rel="alternate" hreflang="x-default" href="${site.url}${alternates.find((a) => a.lang === 'en').path}">`
     : '';
   const ogAlt = alternates.filter((a) => a.lang !== L.lang).map((a) => `<meta property="og:locale:alternate" content="${a.ogLocale}">`).join('\n');
   const langs = page.languages || [];
   const langLinks = langs
-    .map((x) => `<li><a href="${x.code === 'en' ? '/' : `/${x.code}/`}" hreflang="${x.lang}" lang="${x.lang}"${x.code === L.code ? ' aria-current="true"' : ''}>${x.name}</a></li>`)
+    .map((x) => `<li><a href="${alternates.find((a) => a.code === x.code)?.path || (x.code === 'en' ? '/' : `/${x.code}/`)}" hreflang="${x.lang}" lang="${x.lang}"${x.code === L.code ? ' aria-current="true"' : ''}>${x.name}</a></li>`)
     .join('');
   const keywords = page.keywords?.length ? `<meta name="keywords" content="${esc(page.keywords.join(', '))}">` : '';
   const tags = (page.tags || []).map((k) => `<meta property="article:tag" content="${esc(k)}">`).join('\n');
