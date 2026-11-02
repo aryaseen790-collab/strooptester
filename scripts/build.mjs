@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { marked } from 'marked';
+import { minify } from 'html-minifier-terser';
 import { layout, esc } from '../src/templates/layout.mjs';
 import { homePage } from '../src/templates/home.mjs';
 import { LOCALES, EN } from '../src/i18n/index.mjs';
@@ -540,6 +541,46 @@ ${content
   write('llms-full.txt', full);
 }
 
+// Shrink every HTML page: drop comments and the whitespace between tags, and
+// tighten the inline CSS and JS. Attribute quotes and optional tags stay, so the
+// markup still reads as normal HTML and the link checker parses it the same way.
+async function minifyHtml() {
+  const options = {
+    collapseWhitespace: true,
+    conservativeCollapse: false,
+    removeComments: true,
+    collapseBooleanAttributes: true,
+    removeRedundantAttributes: false,
+    removeScriptTypeAttributes: false,
+    useShortDoctype: true,
+    minifyCSS: true,
+    minifyJS: true,
+    processScripts: ['application/ld+json', 'application/json'],
+    sortAttributes: false,
+    keepClosingSlash: false,
+  };
+  const files = [];
+  const walk = (dir) => {
+    for (const f of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, f.name);
+      if (f.isDirectory()) walk(p);
+      else if (f.name.endsWith('.html')) files.push(p);
+    }
+  };
+  walk(OUT);
+  let before = 0;
+  let after = 0;
+  for (const p of files) {
+    const src = fs.readFileSync(p, 'utf8');
+    const out = await minify(src, options);
+    before += Buffer.byteLength(src);
+    after += Buffer.byteLength(out);
+    fs.writeFileSync(p, out);
+  }
+  const kb = (n) => Math.round(n / 1024).toLocaleString('en');
+  console.log(`HTML minified: ${kb(before)} KB -> ${kb(after)} KB (${Math.round((1 - after / before) * 100)}% smaller)`);
+}
+
 // Prefix every root-relative link with BASE so the same build works in a sub-folder.
 function applyBase() {
   if (!BASE) return;
@@ -565,3 +606,4 @@ function applyBase() {
 
 build();
 applyBase();
+await minifyHtml();
