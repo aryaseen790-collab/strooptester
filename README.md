@@ -49,7 +49,7 @@ To add a language, copy `src/i18n/es.mjs` to a new file, translate it, and add i
 
 ## Page size
 
-The last build step minifies every HTML page with `html-minifier-terser`. It removes comments and the whitespace between tags, and compacts the inline JSON. Attribute quotes and optional tags stay. The build prints the size before and after. Cloudflare then serves the pages with Brotli compression, so the homepage downloads as roughly 12 KB.
+The build minifies everything it publishes. `site.css` goes through `clean-css`, and the scripts in `assets/js` go through `terser`: the module files as ES modules, and `site.js` and `motion.js` as classic scripts. Only the copies in `dist/` change; the files in `src/` stay readable. Then every HTML page goes through `html-minifier-terser`. It removes comments and the whitespace between tags, and compacts the inline JSON. Attribute quotes and optional tags stay. The build prints the size before and after. Cloudflare then serves the pages with Brotli compression, so the homepage downloads as roughly 12 KB.
 
 ## Search engines and AI assistants
 

@@ -4,6 +4,8 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { marked } from 'marked';
 import { minify } from 'html-minifier-terser';
+import { minify as minifyJs } from 'terser';
+import CleanCSS from 'clean-css';
 import { layout, esc } from '../src/templates/layout.mjs';
 import { homePage } from '../src/templates/home.mjs';
 import { LOCALES, EN } from '../src/i18n/index.mjs';
@@ -541,6 +543,37 @@ ${content
   write('llms-full.txt', full);
 }
 
+// Shrink the stylesheet and scripts in dist/assets. The source files in src/
+// stay readable; only the published copies are minified. Files loaded with
+// type="module" are minified as modules; site.js and motion.js are classic scripts.
+const CLASSIC_SCRIPTS = new Set(['site.js', 'motion.js']);
+async function minifyAssets() {
+  let before = 0;
+  let after = 0;
+  const cssDir = path.join(OUT, 'assets/css');
+  for (const f of fs.readdirSync(cssDir).filter((f) => f.endsWith('.css'))) {
+    const p = path.join(cssDir, f);
+    const src = fs.readFileSync(p, 'utf8');
+    const out = new CleanCSS({ level: 1 }).minify(src);
+    if (out.errors.length) throw new Error(`${f}: ${out.errors.join('; ')}`);
+    before += Buffer.byteLength(src);
+    after += Buffer.byteLength(out.styles);
+    fs.writeFileSync(p, out.styles);
+  }
+  const jsDir = path.join(OUT, 'assets/js');
+  for (const f of fs.readdirSync(jsDir).filter((f) => f.endsWith('.js'))) {
+    const p = path.join(jsDir, f);
+    const src = fs.readFileSync(p, 'utf8');
+    const isModule = !CLASSIC_SCRIPTS.has(f);
+    const out = await minifyJs(src, { module: isModule, compress: { passes: 2 }, mangle: true, format: { comments: false } });
+    before += Buffer.byteLength(src);
+    after += Buffer.byteLength(out.code);
+    fs.writeFileSync(p, out.code);
+  }
+  const kb = (n) => Math.round(n / 1024).toLocaleString('en');
+  console.log(`CSS and JS minified: ${kb(before)} KB -> ${kb(after)} KB (${Math.round((1 - after / before) * 100)}% smaller)`);
+}
+
 // Shrink every HTML page: drop comments and the whitespace between tags, and
 // tighten the inline CSS and JS. Attribute quotes and optional tags stay, so the
 // markup still reads as normal HTML and the link checker parses it the same way.
@@ -606,4 +639,5 @@ function applyBase() {
 
 build();
 applyBase();
+await minifyAssets();
 await minifyHtml();
