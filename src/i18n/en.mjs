@@ -12,9 +12,9 @@ export default {
   keys: { RED: 'r', BLUE: 'b', GREEN: 'g', YELLOW: 'y', PURPLE: 'p', ORANGE: 'o', WHITE: 'w' },
 
   seo: {
-    title: 'Stroop Test Online – Free Color Word Test, Instant Results',
+    title: 'Stroop Test Online – Free Stroop Effect Test, Instant Results',
     description:
-      'Take the Stroop test online for free. This Stroop color word test times every answer and shows your interference score, accuracy and response time instantly. No sign-up.',
+      'Take the Stroop test online for free. This Stroop effect test (the classic color word test) times every answer and shows your interference score and accuracy. No sign-up.',
     keywords: ['stroop test online', 'free stroop test', 'stroop effect test', 'stroop color word test', 'stroop task online', 'stroop test results', 'interference score'],
     imageAlt: 'An eye reflecting the colour words red, green, blue and yellow',
     appName: 'Free Online Stroop Test',
@@ -192,11 +192,11 @@ export default {
     btnCsv: 'Download raw data (CSV)',
 
     aboutKicker: 'The science',
-    aboutH2: 'What is the Stroop test?',
+    aboutH2: 'Where the Stroop test comes from',
     aboutP: [
       'In 1935 an American psychologist called John Ridley Stroop published a paper with a dry title, <em>Studies of Interference in Serial Verbal Reactions</em>. In one of its experiments, people named the ink colours of 100 printed words. When the words were colour names in a different ink (GREEN printed in red, say), naming the inks took about 74% longer than naming plain coloured squares.',
       'The reason is that reading is so practised it happens whether you want it to or not. The word arrives in your head first and has to be pushed aside before you can say the colour. That pushing aside takes time, and the time is what this test measures.',
-      'Since then the task has become one of the most studied in psychology. Colin MacLeod\'s 1991 review already counted more than 700 papers on it. It turns up in research on attention, ageing, brain injury, ADHD and much more, mostly because it is simple, quick and works on nearly anyone who can read. If you\'d like the long version, start with <a href="/what-is-the-stroop-test/">what the Stroop test is</a> or the story of <a href="/john-ridley-stroop/">John Ridley Stroop himself</a>.',
+      'Since then the task has become one of the most studied in psychology. Colin MacLeod\'s 1991 review already counted more than 700 papers on it. It turns up in research on attention, ageing, brain injury, ADHD and much more, mostly because it is simple, quick and works on nearly anyone who can read. For the full explanation, read our guide <a href="/what-is-the-stroop-test/">What is the Stroop test?</a> or the story of <a href="/john-ridley-stroop/">John Ridley Stroop himself</a>.',
     ],
     raceKicker: 'The race in your head',
     raceReplay: 'Replay ↻',
@@ -217,11 +217,11 @@ export default {
       ['Neutral', "An ordinary word in a coloured ink. There's nothing to fight, so this shows your plain colour-naming speed. About 30% of trials."],
       ['Clashing (incongruent)', 'The word names a different colour from its ink. You have to hold back the word to answer, which costs time and causes most mistakes. About 40% of trials.'],
     ],
-    calcH3: 'How your interference score is calculated',
+    calcH3: 'The interference formula',
     formula: 'Interference = median clashing time − median matching time',
     gapInterference: 'Interference',
     gapAria: 'Example: matching 560 ms, clashing 650 ms, interference 90 ms',
-    calcP: "Only correct answers between 200 ms and 3 seconds count, so guesses and lapses don't distort it. We also show the same gap as a percentage of your matching-word time, which takes your general speed out of the picture.",
+    calcP: "Only correct answers between 200 ms and 3 seconds count, so guesses and lapses don't distort it. We also show the same gap as a percentage of your matching-word time, which takes your general speed out of the picture. The <a href=\"/stroop-interference-score/\">interference score guide</a> walks through the calculation step by step.",
 
     howKicker: 'How it works',
     howH2: 'Four levels, one idea',
@@ -234,7 +234,7 @@ export default {
     howNote: "Before each word you'll see a small cross for a random 0.4 to 0.7 seconds, so you can't fall into a rhythm and guess when the next one is coming. The clock starts on the screen frame that draws the word and stops on your key press or tap.",
 
     scoresKicker: 'Your report',
-    scoresH2: 'What your Stroop test results mean',
+    scoresH2: 'The numbers in your report',
     scoreCards: [
       ['Interference', 'clashing − matching (ms)', 'The headline number: how much the clashing words slowed you down. Smaller means you pushed the word aside more easily. On keyboard and touch versions of the task, most adults land somewhere between about 40 and 120 ms.'],
       ['Relative interference', 'interference ÷ matching time × 100', 'The same gap as a percentage of your own baseline. Someone who is quick overall and someone who is slower overall can be compared fairly this way, and it changes much less with age than the raw gap does.'],
@@ -249,13 +249,13 @@ export default {
       ['120 – 200 ms', 'Common when tired, distracted, new to the keys, or with age.'],
       ['200 ms or more', "Worth retesting when rested. One high score on its own doesn't mean anything is wrong."],
     ],
-    guideNote: "These bands come from the range of results typically reported for computer and phone versions of the task. They are not a validated normative sample, and they aren't adjusted for age, education or device. The fairest comparison is always with your own earlier results.",
+    guideNote: "These bands come from the range of results typically reported for computer and phone versions of the task. They are not a validated normative sample, and they aren't adjusted for age, education or device. The fairest comparison is always with your own earlier results. For average results, norms by age and how to interpret yours, see <a href=\"/good-stroop-test-score/\">What is a good Stroop test score?</a>",
 
     researchKicker: 'The research',
     researchH2: 'What happens in the brain',
     researchP: [
       "Brain imaging points to two regions near the front of the brain. In 1990 a PET study by José Pardo and colleagues found the <strong>anterior cingulate cortex</strong> became more active when people named the ink of clashing words. A decade later Angus MacDonald and colleagues used fMRI to separate the roles: the cingulate seems to flag that there's a conflict, while the <strong>dorsolateral prefrontal cortex</strong> keeps attention on the rule you've been given.",
-      'The same year as the PET study, Jonathan Cohen, Kevin Dunbar and James McClelland published a computer model of the effect. It explained the slowdown as two pathways of different strength (practised reading and less practised colour naming) competing for the same response. That idea of competing pathways still shapes how the task is understood.',
+      'The same year as the PET study, Jonathan Cohen, Kevin Dunbar and James McClelland published a computer model of the effect. It explained the slowdown as two pathways of different strength (practised reading and less practised colour naming) competing for the same response. That idea of competing pathways still shapes how the task is understood. For a plain-English walk-through of <a href="/stroop-effect-explained/">what the Stroop effect is and why it happens</a>, read our guide.',
     ],
     whoH3: 'Who uses it',
     whoP: 'Versions of the task appear in neuropsychological test batteries, in research on ageing, brain injury, depression and ADHD, and in studies of sleep loss and stress. Clinicians use standardised paper versions with their own norms, such as the Golden Stroop, and they read the score next to many other tests and a full history. A browser test like this one is for curiosity and self-tracking, not diagnosis.',
