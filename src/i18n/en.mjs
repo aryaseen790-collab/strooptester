@@ -12,9 +12,9 @@ export default {
   keys: { RED: 'r', BLUE: 'b', GREEN: 'g', YELLOW: 'y', PURPLE: 'p', ORANGE: 'o', WHITE: 'w' },
 
   seo: {
-    title: 'Stroop Test Online – Free Color Word Test, Instant Results',
+    title: 'Stroop Test Online – Free Stroop Effect Test, Instant Results',
     description:
-      'Take the Stroop test online for free. This Stroop color word test times every answer and shows your interference score, accuracy and response time instantly. No sign-up.',
+      'Take the Stroop test online for free. This Stroop effect test (the classic color word test) times every answer and shows your interference score and accuracy. No sign-up.',
     keywords: ['stroop test online', 'free stroop test', 'stroop effect test', 'stroop color word test', 'stroop task online', 'stroop test results', 'interference score'],
     imageAlt: 'An eye reflecting the colour words red, green, blue and yellow',
     appName: 'Free Online Stroop Test',
@@ -255,7 +255,7 @@ export default {
     researchH2: 'What happens in the brain',
     researchP: [
       "Brain imaging points to two regions near the front of the brain. In 1990 a PET study by José Pardo and colleagues found the <strong>anterior cingulate cortex</strong> became more active when people named the ink of clashing words. A decade later Angus MacDonald and colleagues used fMRI to separate the roles: the cingulate seems to flag that there's a conflict, while the <strong>dorsolateral prefrontal cortex</strong> keeps attention on the rule you've been given.",
-      'The same year as the PET study, Jonathan Cohen, Kevin Dunbar and James McClelland published a computer model of the effect. It explained the slowdown as two pathways of different strength (practised reading and less practised colour naming) competing for the same response. That idea of competing pathways still shapes how the task is understood.',
+      'The same year as the PET study, Jonathan Cohen, Kevin Dunbar and James McClelland published a computer model of the effect. It explained the slowdown as two pathways of different strength (practised reading and less practised colour naming) competing for the same response. That idea of competing pathways still shapes how the task is understood. For a plain-English walk-through of <a href="/stroop-effect-explained/">what the Stroop effect is and why it happens</a>, read our guide.',
     ],
     whoH3: 'Who uses it',
     whoP: 'Versions of the task appear in neuropsychological test batteries, in research on ageing, brain injury, depression and ADHD, and in studies of sleep loss and stress. Clinicians use standardised paper versions with their own norms, such as the Golden Stroop, and they read the score next to many other tests and a full history. A browser test like this one is for curiosity and self-tracking, not diagnosis.',
