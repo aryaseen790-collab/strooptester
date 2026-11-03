@@ -1,9 +1,9 @@
 ---
 title: What Is a Good Stroop Test Score? Norms by Age Explained
-seoTitle: What Is a Good Stroop Test Score? Average Results & Norms
+seoTitle: What Is a Good Stroop Test Score? Results, Scoring & Norms
 description: What a good Stroop test score looks like: average Stroop test results, typical response times and interference, how scoring works, norms by age and how to read yours.
 date: 2026-06-09
-updated: 2026-10-31
+updated: 2026-11-03
 category: scores-interpretation
 image: /wp-content/uploads/2026/06/Good-Stroop-Test-Score-Gauge.webp
 imageAlt: Score gauge with accuracy, speed and interference panels
@@ -16,7 +16,7 @@ You've taken the test, the results are on screen, and you want to know if they'r
 
 This guide goes through each number on your report, what's typical, and how to compare yourself fairly. If you haven't done the test yet, [take it first](/#test). The rest will make more sense with your own results in front of you. For background on the task itself, start with [what the Stroop test is](/what-is-the-stroop-test/).
 
-## Your result is several numbers, not one
+## How Stroop test scoring works: several numbers, not one
 
 Our report gives you a few figures:
 
@@ -98,7 +98,7 @@ You might have seen other Stroop sites (including older versions of this one) te
 
 So the report gives you plain-language bands and, more usefully, a history of your own results. Your own earlier scores, on the same device and under similar conditions, are the fairest comparison there is.
 
-## So what counts as good?
+## Interpreting your Stroop test results: what counts as good?
 
 Putting it together, a good Stroop result usually looks like this:
 

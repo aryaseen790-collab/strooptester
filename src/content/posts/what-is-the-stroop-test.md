@@ -3,7 +3,7 @@ title: What Is the Stroop Test?
 seoTitle: What Is the Stroop Test? Purpose, Procedure & What It Measures
 description: What the Stroop test is: its purpose, the procedure, the three trial types and what it measures (selective attention, processing speed, inhibitory control).
 date: 2026-06-04
-updated: 2026-10-31
+updated: 2026-11-03
 category: stroop-test-basics
 image: /wp-content/uploads/2026/06/Stroop-test-colour-and-word-cards.webp
 imageAlt: Cards showing colour words printed in mismatched bright ink colours
@@ -92,7 +92,7 @@ Whatever the version, the procedure follows the same pattern:
 
 In computer versions like ours, the trial types are mixed in a random order and every response is timed. In paper versions, each condition is a separate card and you name as many items as you can in a fixed time.
 
-## Versions you might come across
+## Types of Stroop tests you might come across
 
 Over the years the task has been turned into several standard tests. Clinicians often use the **Golden Stroop** (Charles Golden, 1978), where you name as many items as you can in 45 seconds across three printed cards. The **Victoria Stroop** is a shorter version. The **Color-Word Interference Test** in the D-KEFS battery adds a switching condition. Each has its own scoring rules and norms, so their scores can't be compared directly with each other or with an online test.
 
@@ -106,7 +106,7 @@ You don't need a clinic or a deck of printed cards. Our [free Stroop test](/) ru
 
 Find somewhere quiet first, because noise and interruptions slow you down. There's a short practice round to get used to the keys before anything counts. Then the scored trials start, one word at a time, and your only job is to answer quickly without getting sloppy. A pile of fast wrong answers makes for a messy score. When the last trial ends, your results appear straight away. For a full walkthrough, see our [step-by-step instructions](/how-to-take-the-stroop-test-instructions/).
 
-## How the score works
+## How the Stroop test is scored
 
 Most reports give you three numbers that matter: your typical response time, your accuracy and your interference score. The interference score is the gap between your speed on clashing trials and on matching ones. A small gap suggests strong attention control. A large one means the clash really slowed you down.
 
