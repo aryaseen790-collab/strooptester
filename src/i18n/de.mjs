@@ -10,7 +10,7 @@ export default {
   keys: null,
 
   seo: {
-    title: 'Stroop-Test online kostenlos: Ergebnis sofort',
+    title: 'Stroop-Test online kostenlos auf Deutsch: Ergebnis sofort',
     description: 'Machen Sie den Stroop-Test online und kostenlos. Messen Sie, wie stark Farbwörter in der falschen Farbe bremsen: Interferenz, Genauigkeit und Reaktionszeit sofort.',
     keywords: ['stroop test', 'stroop test online', 'stroop test kostenlos', 'stroop effekt', 'farbe wort interferenztest', 'stroop aufgabe'],
     imageAlt: 'Ein Auge, in dem sich die Wörter Rot, Grün, Blau und Gelb spiegeln',
@@ -162,7 +162,7 @@ export default {
 
     testKicker: 'Der Test',
     testH2: 'Machen Sie den kostenlosen Stroop-Effekt-Test',
-    testP: 'Auch Stroop-Aufgabe oder Farbe-Wort-Interferenztest genannt. Wählen Sie eine Stufe, machen Sie beim ersten Mal die kurze Übungsrunde und antworten Sie dann so schnell wie möglich, ohne zu raten.',
+    testP: 'Auch Strooptest, Stroop-Aufgabe oder Farbe-Wort-Interferenztest genannt. Wählen Sie eine Stufe, machen Sie beim ersten Mal die kurze Übungsrunde und antworten Sie dann so schnell wie möglich, ohne zu raten.',
     chooseLevel: 'Stufe wählen',
     modeDesc: { easy: '20 Durchgänge · 4 Farben', standard: '40 Durchgänge · 4 Farben', hard: '60 Durchgänge · 6 Farben · 1,5 s Limit', cvd: '30 Durchgänge · Blau, Gelb, Weiß' },
     howAnswer: 'So antworten Sie',

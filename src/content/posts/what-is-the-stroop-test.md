@@ -3,7 +3,7 @@ title: What Is the Stroop Test?
 seoTitle: What Is the Stroop Test? Purpose, Procedure & What It Measures
 description: What the Stroop test is: its purpose, the procedure, the three trial types and what it measures (selective attention, processing speed, inhibitory control).
 date: 2026-06-04
-updated: 2026-11-03
+updated: 2026-11-13
 category: stroop-test-basics
 image: /wp-content/uploads/2026/06/Stroop-test-colour-and-word-cards.webp
 imageAlt: Cards showing colour words printed in mismatched bright ink colours
@@ -44,7 +44,7 @@ The test is named after John Ridley Stroop, who was working on his doctorate at 
 
 Stroop wasn't the first person to notice that words and colours interfere, but he measured it properly and gave it a clear shape. The paper then sat fairly quietly until interest picked up in the 1960s. It's now one of the most cited studies in the history of experimental psychology. You can read more about the man in our article on [John Ridley Stroop](/john-ridley-stroop/).
 
-## What it actually measures
+## What does the Stroop test measure?
 
 A common misunderstanding is that the test is about colour vision or reading ability. It's neither. It targets a few connected mental skills that psychologists group under [executive function](/what-is-executive-function/).
 
@@ -94,7 +94,7 @@ In computer versions like ours, the trial types are mixed in a random order and 
 
 ## Types of Stroop tests you might come across
 
-Over the years the task has been turned into several standard tests. Clinicians often use the **Golden Stroop** (Charles Golden, 1978), where you name as many items as you can in 45 seconds across three printed cards. The **Victoria Stroop** is a shorter version. The **Color-Word Interference Test** in the D-KEFS battery adds a switching condition. Each has its own scoring rules and norms, so their scores can't be compared directly with each other or with an online test.
+Over the years the task has been turned into several standard tests. Clinicians often use the **Golden Stroop** (Charles Golden, 1978), where you name as many items as you can in 45 seconds across three printed cards. The **Victoria Stroop** is a shorter version. The **Color-Word Interference Test** in the D-KEFS battery adds a switching condition. Each has its own scoring rules and norms, so their scores can't be compared directly with each other or with an online test. Researchers also use variants such as the emotional Stroop, which swaps colour names for emotionally loaded words, and the numerical Stroop, where the digits shown clash with how many of them there are.
 
 Computer versions, like ours, show one word at a time and time each answer, which gives much finer detail about speed and mistakes.
 
