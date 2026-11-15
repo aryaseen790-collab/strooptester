@@ -50,7 +50,7 @@ A common misunderstanding is that the test is about colour vision or reading abi
 
 ### Selective attention
 
-Your ability to focus on what matters and filter out the rest. In every clashing trial, the word is noise you're supposed to ignore. Answering with the ink means giving your attention to the colour and not letting the word run off with it.
+Your ability to focus on what matters and filter out the rest. In every clashing trial, the word is noise you're supposed to ignore. Answering with the ink means giving your attention to the colour and not letting the word run off with it. For more on how that filtering works day to day, see our guide to [selective attention](/selective-attention/).
 
 ### Processing speed
 

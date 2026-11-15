@@ -46,7 +46,7 @@ Gyakori tévhit, hogy a teszt a színlátásról vagy az olvasási készségről
 
 ### Szelektív figyelem
 
-Az a képességed, hogy a fontosra összpontosíts, és kiszűrd a többit. Minden ütköző próbában a szó zaj, amelyet figyelmen kívül kellene hagynod. Ha a tinta színével válaszolsz, a színnek adod a figyelmedet, és nem hagyod, hogy a szó elvigye.
+Az a képességed, hogy a fontosra összpontosíts, és kiszűrd a többit. Minden ütköző próbában a szó zaj, amelyet figyelmen kívül kellene hagynod. Ha a tinta színével válaszolsz, a színnek adod a figyelmedet, és nem hagyod, hogy a szó elvigye. Hogy ez a szűrő hogyan működik a hétköznapokban, arról a [szelektív figyelemről](/selective-attention/) szóló útmutatónkban olvashatsz.
 
 ### Feldolgozási sebesség
 

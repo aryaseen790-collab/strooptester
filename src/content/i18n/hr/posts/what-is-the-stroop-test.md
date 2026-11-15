@@ -46,7 +46,7 @@ Stroop nije prvi primijetio da se riječi i boje ometaju, ali je to dobro izmjer
 
 ### Selektivna pažnja
 
-Tvoja sposobnost da se usredotočiš na bitno i filtriraš ostalo. U svakom sukobljenom zadatku riječ je šum koji trebaš zanemariti. Odgovoriti bojom tinte znači pažnju posvetiti boji i ne dopustiti da je riječ odnese.
+Tvoja sposobnost da se usredotočiš na bitno i filtriraš ostalo. U svakom sukobljenom zadatku riječ je šum koji trebaš zanemariti. Odgovoriti bojom tinte znači pažnju posvetiti boji i ne dopustiti da je riječ odnese. Kako taj filtar radi u svakodnevici, objašnjava naš vodič o [selektivnoj pažnji](/selective-attention/).
 
 ### Brzina obrade
 

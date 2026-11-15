@@ -46,7 +46,7 @@ On croit souvent que le test porte sur la vision des couleurs ou la capacité de
 
 ### L’attention sélective
 
-Votre capacité à vous concentrer sur ce qui compte et à filtrer le reste. Dans chaque essai en conflit, le mot est un bruit que vous êtes censé ignorer. Répondre avec l’encre, c’est donner votre attention à la couleur sans laisser le mot l’emporter.
+Votre capacité à vous concentrer sur ce qui compte et à filtrer le reste. Dans chaque essai en conflit, le mot est un bruit que vous êtes censé ignorer. Répondre avec l’encre, c’est donner votre attention à la couleur sans laisser le mot l’emporter. Pour voir comment ce filtre fonctionne au quotidien, lisez notre guide sur l’[attention sélective](/selective-attention/).
 
 ### La vitesse de traitement
 

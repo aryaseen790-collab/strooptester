@@ -46,7 +46,7 @@ Un error frecuente es pensar que el test va de la visión del color o de la capa
 
 ### Atención selectiva
 
-Tu capacidad para centrarte en lo importante y filtrar el resto. En cada ensayo conflictivo, la palabra es ruido que debes ignorar. Responder con la tinta significa dar tu atención al color y no dejar que la palabra se la lleve.
+Tu capacidad para centrarte en lo importante y filtrar el resto. En cada ensayo conflictivo, la palabra es ruido que debes ignorar. Responder con la tinta significa dar tu atención al color y no dejar que la palabra se la lleve. Si quieres saber cómo funciona ese filtro en el día a día, lee nuestra guía sobre la [atención selectiva](/selective-attention/).
 
 ### Velocidad de procesamiento
 

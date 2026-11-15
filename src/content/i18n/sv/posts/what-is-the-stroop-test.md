@@ -46,7 +46,7 @@ Ett vanligt missförstånd är att testet handlar om färgseende eller läsförm
 
 ### Selektiv uppmärksamhet
 
-Din förmåga att fokusera på det viktiga och filtrera bort resten. I varje krockande försök är ordet brus som du ska strunta i. Att svara med bläcket betyder att ge färgen din uppmärksamhet och inte låta ordet springa iväg med den.
+Din förmåga att fokusera på det viktiga och filtrera bort resten. I varje krockande försök är ordet brus som du ska strunta i. Att svara med bläcket betyder att ge färgen din uppmärksamhet och inte låta ordet springa iväg med den. Hur det filtret fungerar i vardagen förklarar vi i vår guide om [selektiv uppmärksamhet](/selective-attention/).
 
 ### Bearbetningshastighet
 

@@ -46,7 +46,7 @@ Częste nieporozumienie polega na tym, że test ma dotyczyć widzenia barw albo 
 
 ### Uwaga selektywna
 
-Twoja zdolność do skupienia się na tym, co ważne, i odfiltrowania reszty. W każdej sprzecznej próbie słowo jest szumem, który masz zignorować. Odpowiedź kolorem druku oznacza, że oddajesz uwagę kolorowi i nie pozwalasz, żeby słowo ją porwało.
+Twoja zdolność do skupienia się na tym, co ważne, i odfiltrowania reszty. W każdej sprzecznej próbie słowo jest szumem, który masz zignorować. Odpowiedź kolorem druku oznacza, że oddajesz uwagę kolorowi i nie pozwalasz, żeby słowo ją porwało. Jak ten filtr działa na co dzień, wyjaśniamy w poradniku o [uwadze selektywnej](/selective-attention/).
 
 ### Szybkość przetwarzania
 

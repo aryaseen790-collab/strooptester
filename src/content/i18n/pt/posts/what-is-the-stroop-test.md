@@ -46,7 +46,7 @@ Um engano comum é achar que o teste avalia a visão de cores ou a capacidade de
 
 ### Atenção seletiva
 
-Sua capacidade de focar no que importa e filtrar o resto. Em cada tentativa conflitante, a palavra é um ruído que você deve ignorar. Responder com a tinta significa dar atenção à cor e não deixar a palavra levá-la embora.
+Sua capacidade de focar no que importa e filtrar o resto. Em cada tentativa conflitante, a palavra é um ruído que você deve ignorar. Responder com a tinta significa dar atenção à cor e não deixar a palavra levá-la embora. Para entender como esse filtro funciona no dia a dia, veja nosso guia sobre [atenção seletiva](/selective-attention/).
 
 ### Velocidade de processamento
 

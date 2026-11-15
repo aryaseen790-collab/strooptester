@@ -46,7 +46,7 @@ Een veelvoorkomend misverstand is dat de test over kleurenzien of leesvaardighei
 
 ### Selectieve aandacht
 
-Je vermogen om je te richten op wat ertoe doet en de rest weg te filteren. Bij elke botsende opgave is het woord ruis die je moet negeren. Antwoorden met de inkt betekent je aandacht bij de kleur houden en het woord er niet mee vandoor laten gaan.
+Je vermogen om je te richten op wat ertoe doet en de rest weg te filteren. Bij elke botsende opgave is het woord ruis die je moet negeren. Antwoorden met de inkt betekent je aandacht bij de kleur houden en het woord er niet mee vandoor laten gaan. Hoe dat filter in het dagelijks leven werkt, lees je in onze gids over [selectieve aandacht](/selective-attention/).
 
 ### Verwerkingssnelheid
 

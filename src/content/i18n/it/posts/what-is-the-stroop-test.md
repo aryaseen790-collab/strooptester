@@ -46,7 +46,7 @@ Un equivoco diffuso è che il test riguardi la vista dei colori o la capacità d
 
 ### Attenzione selettiva
 
-La capacità di concentrarti su ciò che conta e filtrare il resto. In ogni prova in conflitto, la parola è rumore che dovresti ignorare. Rispondere con l’inchiostro significa dare la tua attenzione al colore senza lasciare che la parola se la porti via.
+La capacità di concentrarti su ciò che conta e filtrare il resto. In ogni prova in conflitto, la parola è rumore che dovresti ignorare. Rispondere con l’inchiostro significa dare la tua attenzione al colore senza lasciare che la parola se la porti via. Per capire come funziona questo filtro nella vita di tutti i giorni, leggi la nostra guida all’[attenzione selettiva](/selective-attention/).
 
 ### Velocità di elaborazione
 
