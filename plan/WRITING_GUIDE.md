@@ -10,7 +10,7 @@ The plan data is in `plan/blog-plan.json`, which comes from the owner's "New Str
 ## 1. Draft run (every 3 days)
 
 1. **Check the branch.** Work on `claude/brave-archimedes-h40qo9`. If that branch's pull request is already merged, restart the branch from `origin/main`, keeping any unmerged commits.
-2. **Stop if a draft is already waiting.** If any post in `plan/STATUS.md` is `drafted`, do not draft another one. Remind the owner which post is waiting for images, and stop.
+2. **Note any drafts still waiting.** If posts in `plan/STATUS.md` are already `drafted`, list them in your message to the owner so they know which images are still needed. Keep drafting anyway. Drafts are published in week order once their images arrive.
 3. **Pick the post.** Take the lowest week with status `planned`, and read its entry in `plan/blog-plan.json`. Use these fields:
    - title
    - primary keyword
