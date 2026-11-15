@@ -13,7 +13,7 @@ Updated by each scheduled run. Statuses: `planned` → `drafted` (draft and imag
 | 7 | 7 | Who Discovered the Stroop Effect? John Ridley Stroop and the 1935 Study | /john-ridley-stroop | /john-ridley-stroop/ | published |
 | 8 | 12 | Understanding Your Stroop Interference Score | /stroop-interference-score | /stroop-interference-score/ | published |
 | 9 | 17 | Can an Online Test Detect ADHD? Honest Answers | /adhd-attention-test-online | /online-adhd-attention-test/ | published |
-| 10 | 22 | Selective Attention: How Your Brain Filters Distractions | /selective-attention |  | planned |
+| 10 | 22 | Selective Attention: How Your Brain Filters Distractions | /selective-attention |  | drafted |
 | 11 | 3 | Stroop Test Examples: Congruent, Incongruent & Neutral Trials | /stroop-test-examples |  | planned |
 | 12 | 8 | What Causes the Stroop Effect? The Neuroscience of Interference | /what-causes-the-stroop-effect |  | planned |
 | 13 | 13 | What Is a Normal Reaction Time by Age? | /average-reaction-time-by-age |  | planned |
