@@ -27,7 +27,8 @@ The plan data is in `plan/blog-plan.json`, which comes from the owner's "New Str
    - mark the one you picked
 7. **Update the status.** Set the post to `drafted` in `plan/STATUS.md`.
 8. **Commit and push.** Run `npm run ci` first. The drafts live outside `src/`, so they are not built, but the run must stay green.
-9. **Message the owner.** Give the post title, the three image prompts, and the file names and sizes you expect. Ask them to send the images.
+9. **Export the plain text for the owner's AI check** to `plan/drafts/<site-slug>/plain-text-for-ai-check.txt`: the body only, with no front matter, no image lines, no `{{cta}}` line and no Markdown or URLs. The owner checks this text, not the raw Markdown.
+10. **Message the owner.** Give the post title, the three image prompts, and the file names and sizes you expect. Ask them to send the images.
 
 ## 2. Publish step (after the owner sends images)
 
@@ -87,6 +88,8 @@ The owner wants text that reads as written by a person, not generated. The perso
 - **Keep it concrete.** Use everyday examples (traffic lights, a phone buzzing during a meeting, reading a menu in a noisy café) rather than abstract claims.
 - **Don't over-format.** Use bullet lists only where the content really is a list, at most two per post. Mostly write paragraphs.
 - **Read it aloud once before you finish.** Rewrite any line that sounds like a brochure.
+- **Use the opening voice of the approved Selective Attention post as a model.** That means a specific scene to open with, a short honest opinion, details about how each study was run (who, what they did, what people noticed), uneven paragraph lengths, the odd fragment, and FAQ answers that don't all follow one template.
+- **Never invent personal experiences** ("when I tried this…") or anecdotes presented as fact. Opinions are fine; made-up events are not.
 
 No tool can promise a particular score on an AI detector. The aim is genuinely natural, specific writing, and that is also what readers and Google reward.
 
