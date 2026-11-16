@@ -46,7 +46,7 @@ Stroop nebyl první, kdo si všiml, že se slova a barvy ruší, ale pořádně 
 
 ### Selektivní pozornost
 
-Vaše schopnost soustředit se na to podstatné a zbytek odfiltrovat. V každém neshodném pokusu je slovo šum, který máte ignorovat. Odpovědět barvou písma znamená věnovat pozornost barvě a nenechat ji slovem unést.
+Vaše schopnost soustředit se na to podstatné a zbytek odfiltrovat. V každém neshodném pokusu je slovo šum, který máte ignorovat. Odpovědět barvou písma znamená věnovat pozornost barvě a nenechat ji slovem unést. Jak tento filtr funguje v běžném životě, vysvětluje náš průvodce [selektivní pozorností](/selective-attention/).
 
 ### Rychlost zpracování
 

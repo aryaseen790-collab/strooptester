@@ -1059,5 +1059,68 @@
     "src": "/wp-content/uploads/2026/09/Take-the-free-test-480x320.webp"
    }
   ]
+ },
+ "/wp-content/uploads/2026/11/Selective-attention-spotlight.webp": {
+  "w": 1672,
+  "h": 941,
+  "variants": [
+   {
+    "w": 1024,
+    "h": 576,
+    "src": "/wp-content/uploads/2026/11/Selective-attention-spotlight-1024x576.webp"
+   },
+   {
+    "w": 768,
+    "h": 432,
+    "src": "/wp-content/uploads/2026/11/Selective-attention-spotlight-768x432.webp"
+   },
+   {
+    "w": 480,
+    "h": 270,
+    "src": "/wp-content/uploads/2026/11/Selective-attention-spotlight-480x270.webp"
+   }
+  ]
+ },
+ "/wp-content/uploads/2026/11/Selective-attention-filter-diagram.webp": {
+  "w": 1672,
+  "h": 941,
+  "variants": [
+   {
+    "w": 1024,
+    "h": 576,
+    "src": "/wp-content/uploads/2026/11/Selective-attention-filter-diagram-1024x576.webp"
+   },
+   {
+    "w": 768,
+    "h": 432,
+    "src": "/wp-content/uploads/2026/11/Selective-attention-filter-diagram-768x432.webp"
+   },
+   {
+    "w": 480,
+    "h": 270,
+    "src": "/wp-content/uploads/2026/11/Selective-attention-filter-diagram-480x270.webp"
+   }
+  ]
+ },
+ "/wp-content/uploads/2026/11/Cocktail-party-effect.webp": {
+  "w": 1672,
+  "h": 941,
+  "variants": [
+   {
+    "w": 1024,
+    "h": 576,
+    "src": "/wp-content/uploads/2026/11/Cocktail-party-effect-1024x576.webp"
+   },
+   {
+    "w": 768,
+    "h": 432,
+    "src": "/wp-content/uploads/2026/11/Cocktail-party-effect-768x432.webp"
+   },
+   {
+    "w": 480,
+    "h": 270,
+    "src": "/wp-content/uploads/2026/11/Cocktail-party-effect-480x270.webp"
+   }
+  ]
  }
 }

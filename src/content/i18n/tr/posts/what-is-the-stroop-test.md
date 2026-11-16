@@ -46,7 +46,7 @@ Yaygın bir yanılgı, testin renk görme ya da okuma becerisiyle ilgili olduğu
 
 ### Seçici dikkat
 
-Önemli olana odaklanıp gerisini süzme yeteneğiniz. Her çatışan denemede kelime, görmezden gelmeniz gereken bir gürültüdür. Mürekkeple cevap vermek, dikkatinizi renge vermek ve kelimenin onu kaçırmasına izin vermemek demektir.
+Önemli olana odaklanıp gerisini süzme yeteneğiniz. Her çatışan denemede kelime, görmezden gelmeniz gereken bir gürültüdür. Mürekkeple cevap vermek, dikkatinizi renge vermek ve kelimenin onu kaçırmasına izin vermemek demektir. Bu filtrenin gündelik hayatta nasıl çalıştığını [seçici dikkat](/selective-attention/) rehberimizde anlatıyoruz.
 
 ### İşlem hızı
 

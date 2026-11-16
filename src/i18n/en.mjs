@@ -14,7 +14,7 @@ export default {
   seo: {
     title: 'Stroop Test Online – Free Stroop Effect Test, Instant Results',
     description:
-      'Take the Stroop test online for free. This Stroop effect test (the classic color word test) times every answer and shows your interference score and accuracy. No sign-up.',
+      'Take the Stroop test online for free. This Stroop effect test, also called the Stroop color word test, times every answer and shows your interference score and accuracy.',
     keywords: ['stroop test online', 'free stroop test', 'stroop effect test', 'stroop color word test', 'stroop task online', 'stroop test results', 'interference score'],
     imageAlt: 'An eye reflecting the colour words red, green, blue and yellow',
     appName: 'Free Online Stroop Test',
@@ -153,7 +153,7 @@ export default {
 
     testKicker: 'The test',
     testH2: 'Take the free Stroop effect test',
-    testP: "Also called the Stroop task or the Stroop Color and Word Test. Pick a level, do the short practice round if it's your first time, then answer as quickly as you can without guessing.",
+    testP: "Also called the Stroop task, the Stroop color test or the Stroop Color and Word Test. Think of it as an interactive Stroop effect experiment, or a Stroop effect game against your own reading habit. Pick a level, do the short practice round if it's your first time, then answer as quickly as you can without guessing.",
     chooseLevel: 'Choose a level',
     modeDesc: { easy: '20 trials · 4 colours', standard: '40 trials · 4 colours', hard: '60 trials · 6 colours · 1.5 s limit', cvd: '30 trials · blue, yellow, white' },
     howAnswer: 'How to answer',

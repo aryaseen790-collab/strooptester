@@ -46,7 +46,7 @@ Un error frecuente es pensar que el test va de la visión del color o de la capa
 
 ### Atención selectiva
 
-Tu capacidad para centrarte en lo importante y filtrar el resto. En cada ensayo conflictivo, la palabra es ruido que debes ignorar. Responder con la tinta significa dar tu atención al color y no dejar que la palabra se la lleve.
+Tu capacidad para centrarte en lo importante y filtrar el resto. En cada ensayo conflictivo, la palabra es ruido que debes ignorar. Responder con la tinta significa dar tu atención al color y no dejar que la palabra se la lleve. Si quieres saber cómo funciona ese filtro en el día a día, lee nuestra guía sobre la [atención selectiva](/selective-attention/).
 
 ### Velocidad de procesamiento
 
@@ -90,7 +90,7 @@ En las versiones por ordenador, como la nuestra, los tipos de ensayo se mezclan 
 
 ## Versiones con las que te puedes encontrar
 
-Con los años, la tarea se ha convertido en varios tests estandarizados. Los clínicos suelen usar el **Stroop de Golden** (Charles Golden, 1978), en el que nombras todos los elementos que puedas en 45 segundos en tres láminas impresas. El **Stroop Victoria** es una versión más corta. El **Color-Word Interference Test** de la batería D-KEFS añade una condición de alternancia. Cada uno tiene sus propias reglas de puntuación y sus baremos, así que sus resultados no se pueden comparar directamente entre sí ni con un test online.
+Con los años, la tarea se ha convertido en varios tests estandarizados. Los clínicos suelen usar el **Stroop de Golden** (Charles Golden, 1978), en el que nombras todos los elementos que puedas en 45 segundos en tres láminas impresas. El **Stroop Victoria** es una versión más corta. El **Color-Word Interference Test** de la batería D-KEFS añade una condición de alternancia. Cada uno tiene sus propias reglas de puntuación y sus baremos, así que sus resultados no se pueden comparar directamente entre sí ni con un test online. En investigación también se usan variantes como el Stroop emocional, que cambia los nombres de colores por palabras con carga emocional, y el Stroop numérico, en el que los dígitos no coinciden con cuántos aparecen.
 
 Las versiones por ordenador, como la nuestra, muestran una palabra cada vez y cronometran cada respuesta, lo que da mucho más detalle sobre la velocidad y los errores.
 

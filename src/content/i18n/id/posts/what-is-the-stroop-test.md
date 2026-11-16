@@ -46,7 +46,7 @@ Salah paham yang umum adalah menganggap tes ini tentang penglihatan warna atau k
 
 ### Perhatian selektif
 
-Kemampuan Anda untuk fokus pada yang penting dan menyaring sisanya. Di setiap percobaan yang bertentangan, kata itu adalah gangguan yang harus Anda abaikan. Menjawab dengan warna tinta berarti memberi perhatian pada warna dan tidak membiarkan kata merebutnya.
+Kemampuan Anda untuk fokus pada yang penting dan menyaring sisanya. Di setiap percobaan yang bertentangan, kata itu adalah gangguan yang harus Anda abaikan. Menjawab dengan warna tinta berarti memberi perhatian pada warna dan tidak membiarkan kata merebutnya. Untuk melihat cara kerja penyaring itu sehari-hari, baca panduan kami tentang [perhatian selektif](/selective-attention/).
 
 ### Kecepatan pemrosesan
 

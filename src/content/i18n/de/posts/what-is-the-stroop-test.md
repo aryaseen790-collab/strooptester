@@ -46,7 +46,7 @@ Ein verbreitetes Missverständnis ist, dass es beim Test um Farbsehen oder Lesef
 
 ### Selektive Aufmerksamkeit
 
-Die Fähigkeit, dich auf das Wichtige zu konzentrieren und den Rest auszufiltern. In jedem widersprüchlichen Durchgang ist das Wort ein Störsignal, das du ignorieren sollst. Mit der Druckfarbe zu antworten heißt, deine Aufmerksamkeit der Farbe zu geben und sie dir nicht vom Wort entführen zu lassen.
+Die Fähigkeit, dich auf das Wichtige zu konzentrieren und den Rest auszufiltern. In jedem widersprüchlichen Durchgang ist das Wort ein Störsignal, das du ignorieren sollst. Mit der Druckfarbe zu antworten heißt, deine Aufmerksamkeit der Farbe zu geben und sie dir nicht vom Wort entführen zu lassen. Wie dieser Filter im Alltag arbeitet, erklärt unser Leitfaden zur [selektiven Aufmerksamkeit](/selective-attention/).
 
 ### Verarbeitungsgeschwindigkeit
 

@@ -11,7 +11,7 @@ export default {
 
   seo: {
     title: 'Test de Stroop online gratis: resultados al instante',
-    description: 'Haz el test de Stroop online gratis. Mide cuánto te frenan las palabras que no coinciden con su color: interferencia, precisión y tiempo de respuesta al instante.',
+    description: 'Haz el test de Stroop online gratis y comprueba el efecto Stroop en ti: interferencia, precisión y tiempo de reacción de cada respuesta, al instante.',
     keywords: ['test de stroop', 'test de stroop online', 'test de stroop gratis', 'efecto stroop', 'prueba de stroop', 'test de colores y palabras'],
     imageAlt: 'Un ojo que refleja las palabras rojo, verde, azul y amarillo',
     appName: 'Test de Stroop online gratis',
@@ -162,7 +162,7 @@ export default {
 
     testKicker: 'El test',
     testH2: 'Haz gratis el test del efecto Stroop',
-    testP: 'También se llama tarea de Stroop o test de colores y palabras de Stroop. Elige un nivel, haz la ronda de práctica si es tu primera vez y responde lo más rápido que puedas sin adivinar.',
+    testP: 'También se llama tarea de Stroop, prueba de Stroop o test de colores y palabras de Stroop. Elige un nivel, haz la ronda de práctica si es tu primera vez y responde lo más rápido que puedas sin adivinar.',
     chooseLevel: 'Elige un nivel',
     modeDesc: { easy: '20 ensayos · 4 colores', standard: '40 ensayos · 4 colores', hard: '60 ensayos · 6 colores · límite de 1,5 s', cvd: '30 ensayos · azul, amarillo, blanco' },
     howAnswer: 'Cómo responder',
