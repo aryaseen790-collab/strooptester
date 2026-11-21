@@ -28,6 +28,17 @@ A Google saját adatvédelmi irányelvei itt olvashatók: [policies.google.com/p
 
 A sütikkel kapcsolatos döntésedet a böngésző helyi tárhelyén tároljuk, hogy ne kérdezzünk rá minden oldalon.
 
+## Hirdetések
+
+Azt tervezzük, hogy a Google AdSense segítségével hirdetéseket jelenítünk meg ezen az oldalon. A hirdetések segítenek ingyenesen tartani a tesztet. Soha nem változtatnak a teszt működésén, és a válaszaidat, eredményeidet soha nem osztjuk meg hirdetőkkel.
+
+- Külső szolgáltatók, köztük a Google, cookie-kat használnak arra, hogy a korábbi látogatásaid alapján jelenítsenek meg hirdetéseket ezen vagy más webhelyeken.
+- A hirdetési cookie-k révén a Google és partnerei az ezen az oldalon és/vagy más internetes oldalakon tett látogatásaid alapján jeleníthetnek meg neked hirdetéseket.
+- A személyre szabott hirdetéseket a Google [hirdetésbeállításaiban](https://www.google.com/settings/ads) kapcsolhatod ki. Egyes külső szolgáltatóknál a [aboutads.info](https://www.aboutads.info/choices/) oldalon is letilthatod a cookie-k személyre szabott hirdetésekhez való használatát.
+- Ahol a jogszabály előírja (például az EGT-ben, az Egyesült Királyságban és Svájcban), a hozzájárulásodat kérjük, mielőtt személyre szabáshoz cookie-kat használó hirdetések jelennek meg.
+
+Arról, hogy a Google hogyan használja a hirdetéseit megjelenítő oldalak adatait, [itt olvashatsz: hogyan használja a Google a szolgáltatásait igénybe vevő webhelyek és alkalmazások adatait](https://policies.google.com/technologies/partner-sites).
+
 ## Tárhely
 
 Az oldal statikus fájlokból áll. Tárhely- és hálózati szolgáltatóink (például a GitHub és a Cloudflare) szokásos technikai adatokat kezelnek, például az IP-címedet, hogy kiszolgálják az oldalakat és védjenek a visszaélések ellen. A teszteredményeidet nem kapják meg.

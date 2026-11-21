@@ -28,6 +28,17 @@ Het privacybeleid van Google zelf staat op [policies.google.com/privacy](https:/
 
 We bewaren je cookiekeuze in de lokale opslag van je browser, zodat we het niet op elke pagina opnieuw vragen.
 
+## Advertenties
+
+We zijn van plan om op deze site advertenties te tonen via Google AdSense. Advertenties helpen om de test gratis te houden. Ze veranderen nooit hoe de test werkt, en je antwoorden en scores worden nooit met adverteerders gedeeld.
+
+- Externe leveranciers, waaronder Google, gebruiken cookies om advertenties te tonen op basis van je eerdere bezoeken aan deze of andere websites.
+- Door advertentiecookies te gebruiken kunnen Google en zijn partners je advertenties tonen op basis van je bezoeken aan deze site en/of andere sites op internet.
+- Je kunt gepersonaliseerde advertenties uitzetten in de [advertentie-instellingen](https://www.google.com/settings/ads) van Google. Via [aboutads.info](https://www.aboutads.info/choices/) kun je ook het gebruik van cookies voor gepersonaliseerde advertenties door sommige externe leveranciers weigeren.
+- Waar de wet dat vereist (bijvoorbeeld in de EER, het Verenigd Koninkrijk en Zwitserland), vragen we je toestemming voordat er advertenties worden getoond die cookies gebruiken voor personalisatie.
+
+Hoe Google informatie gebruikt van sites die zijn advertenties tonen, lees je bij [hoe Google informatie gebruikt van sites of apps die onze services gebruiken](https://policies.google.com/technologies/partner-sites).
+
 ## Hosting
 
 De site bestaat uit statische bestanden. Onze hosting- en netwerkleveranciers (zoals GitHub en Cloudflare) verwerken gangbare technische gegevens, zoals je IP-adres, om pagina's te leveren en misbruik tegen te gaan. Zij krijgen je testuitslagen niet.

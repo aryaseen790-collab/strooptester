@@ -1,7 +1,7 @@
 ---
 title: Privacy Policy
 description: What data Stroop Tester collects, what stays on your device, how analytics cookies work, and your choices.
-updated: 2026-10-26
+updated: 2026-11-21
 nav: about-page
 ---
 
@@ -29,6 +29,17 @@ With your permission, we use Google Analytics 4 to understand how many people vi
 Google's own privacy policy is at [policies.google.com/privacy](https://policies.google.com/privacy).
 
 We store your cookie choice in your browser's local storage so we don't ask you on every page.
+
+## Advertising
+
+We intend to show ads on this site through Google AdSense. Ads help pay for keeping the test free. They never change how the test works, and your test answers and scores are never shared with advertisers.
+
+- Third-party vendors, including Google, use cookies to serve ads based on your previous visits to this website or other websites.
+- Google's use of advertising cookies enables it and its partners to serve ads to you based on your visits to this site and/or other sites on the internet.
+- You can opt out of personalised advertising in Google's [Ads Settings](https://www.google.com/settings/ads). You can also opt out of some third-party vendors' use of cookies for personalised advertising at [aboutads.info](https://www.aboutads.info/choices/).
+- Where the law requires it (for example in the EEA, the UK and Switzerland), we'll ask for your consent before ads that use cookies for personalisation are shown.
+
+To learn how Google uses information from sites that show its ads, see [How Google uses information from sites or apps that use our services](https://policies.google.com/technologies/partner-sites).
 
 ## Hosting
 
