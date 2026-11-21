@@ -72,6 +72,7 @@ ${tags}
 <link rel="alternate" type="application/rss+xml" title="${esc(site.name)} blog" href="/feed.xml">
 <link rel="alternate" type="text/plain" title="LLM-readable summary" href="/llms.txt">
 <link rel="stylesheet" href="/assets/css/site.css?v=${page.version}">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2457177873851211" crossorigin="anonymous"></script>
 ${page.head || ''}
 ${jsonld}
 </head>

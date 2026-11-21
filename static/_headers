@@ -6,7 +6,7 @@
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; img-src 'self' data: https://*.google-analytics.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; frame-ancestors 'self'; base-uri 'self'; form-action 'self' mailto:
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://*.adtrafficquality.google https://*.google https://*.googlesyndication.com https://*.doubleclick.net; connect-src 'self' https://*.google https://*.googlesyndication.com https://*.doubleclick.net https://*.adtrafficquality.google https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; img-src 'self' data: https: https://*.google-analytics.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; frame-src https://*.googlesyndication.com https://*.doubleclick.net https://*.google; frame-ancestors 'self'; base-uri 'self'; form-action 'self' mailto:
 
 /assets/*
   Cache-Control: public, max-age=86400
