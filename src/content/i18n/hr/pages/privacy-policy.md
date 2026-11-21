@@ -28,6 +28,17 @@ Googleova pravila o privatnosti nalaze se na [policies.google.com/privacy](https
 
 Tvoj izbor o kolačićima spremamo u lokalnu pohranu preglednika kako te ne bismo pitali na svakoj stranici.
 
+## Oglašavanje
+
+Na ovoj stranici namjeravamo prikazivati oglase putem servisa Google AdSense. Oglasi pomažu da test ostane besplatan. Nikada ne mijenjaju način rada testa, a vaši odgovori i rezultati nikada se ne dijele s oglašivačima.
+
+- Vanjski dobavljači, uključujući Google, koriste kolačiće za prikazivanje oglasa na temelju vaših prethodnih posjeta ovoj ili drugim web-stranicama.
+- Zahvaljujući kolačićima za oglašavanje Google i njegovi partneri mogu vam prikazivati oglase na temelju vaših posjeta ovoj stranici i/ili drugim stranicama na internetu.
+- Personalizirane oglase možete isključiti u Googleovim [postavkama oglasa](https://www.google.com/settings/ads). Na stranici [aboutads.info](https://www.aboutads.info/choices/) možete odbiti i korištenje kolačića za personalizirano oglašavanje kod nekih vanjskih dobavljača.
+- Ondje gdje to zakon zahtijeva (na primjer u EGP-u, Ujedinjenom Kraljevstvu i Švicarskoj), tražit ćemo vašu privolu prije prikazivanja oglasa koji koriste kolačiće za personalizaciju.
+
+Kako Google koristi podatke sa stranica koje prikazuju njegove oglase, pročitajte na stranici [kako Google upotrebljava podatke s web-lokacija ili aplikacija koje koriste naše usluge](https://policies.google.com/technologies/partner-sites).
+
 ## Smještaj stranice
 
 Stranica je skup statičnih datoteka. Naši pružatelji smještaja i mrežnih usluga (poput GitHuba i Cloudflarea) obrađuju uobičajene tehničke podatke, poput tvoje IP adrese, kako bi isporučili stranice i zaštitili ih od zlouporabe. Oni ne dobivaju tvoje rezultate testa.

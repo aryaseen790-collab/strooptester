@@ -28,6 +28,17 @@ Google'ın kendi gizlilik politikası [policies.google.com/privacy](https://poli
 
 Çerez tercihinizi, her sayfada yeniden sormamak için tarayıcınızın yerel depolamasında saklarız.
 
+## Reklamlar
+
+Bu sitede Google AdSense aracılığıyla reklam göstermeyi planlıyoruz. Reklamlar testin ücretsiz kalmasına yardımcı olur. Testin işleyişini asla değiştirmez; test yanıtlarınız ve puanlarınız da reklamverenlerle asla paylaşılmaz.
+
+- Google dahil üçüncü taraf sağlayıcılar, bu siteye veya başka sitelere yaptığınız önceki ziyaretlere göre reklam göstermek için çerez kullanır.
+- Google, reklam çerezleri sayesinde kendisi ve iş ortaklarıyla birlikte size bu siteye ve/veya internetteki diğer sitelere yaptığınız ziyaretlere göre reklam gösterebilir.
+- Kişiselleştirilmiş reklamları Google'ın [Reklam Ayarları](https://www.google.com/settings/ads) sayfasından kapatabilirsiniz. Bazı üçüncü taraf sağlayıcıların kişiselleştirilmiş reklam için çerez kullanımını da [aboutads.info](https://www.aboutads.info/choices/) üzerinden reddedebilirsiniz.
+- Yasanın gerektirdiği yerlerde (örneğin AEA, Birleşik Krallık ve İsviçre'de), kişiselleştirme için çerez kullanan reklamlar gösterilmeden önce onayınızı isteyeceğiz.
+
+Google'ın reklamlarını gösteren sitelerden gelen bilgileri nasıl kullandığını öğrenmek için [Google'ın, hizmetlerimizi kullanan site veya uygulamalardan gelen bilgileri nasıl kullandığı](https://policies.google.com/technologies/partner-sites) sayfasına bakın.
+
 ## Barındırma
 
 Site, statik dosyalardan oluşur. Barındırma ve ağ sağlayıcılarımız (GitHub ve Cloudflare gibi), sayfaları sunmak ve kötüye kullanıma karşı korumak için IP adresiniz gibi standart teknik verileri işler. Test sonuçlarınızı almazlar.

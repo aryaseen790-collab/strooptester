@@ -28,6 +28,17 @@ Polityka prywatności Google jest dostępna pod adresem [policies.google.com/pri
 
 Twój wybór dotyczący cookies zapisujemy w pamięci lokalnej przeglądarki, żeby nie pytać na każdej stronie.
 
+## Reklamy
+
+Zamierzamy wyświetlać na tej stronie reklamy za pośrednictwem Google AdSense. Reklamy pomagają utrzymać test za darmo. Nigdy nie zmieniają działania testu, a Twoje odpowiedzi i wyniki nigdy nie są udostępniane reklamodawcom.
+
+- Zewnętrzni dostawcy, w tym Google, używają plików cookie do wyświetlania reklam na podstawie Twoich wcześniejszych wizyt na tej lub innych stronach.
+- Dzięki reklamowym plikom cookie Google i jego partnerzy mogą wyświetlać Ci reklamy na podstawie Twoich wizyt na tej stronie i/lub innych stronach w internecie.
+- Reklamy spersonalizowane możesz wyłączyć w [ustawieniach reklam](https://www.google.com/settings/ads) Google. Na stronie [aboutads.info](https://www.aboutads.info/choices/) możesz też zrezygnować z używania plików cookie do reklam spersonalizowanych przez niektórych zewnętrznych dostawców.
+- Tam, gdzie wymaga tego prawo (na przykład w EOG, Wielkiej Brytanii i Szwajcarii), poprosimy o Twoją zgodę przed wyświetleniem reklam, które używają plików cookie do personalizacji.
+
+Aby dowiedzieć się, jak Google wykorzystuje informacje ze stron wyświetlających jego reklamy, zobacz [jak Google wykorzystuje informacje z witryn i aplikacji, które korzystają z naszych usług](https://policies.google.com/technologies/partner-sites).
+
 ## Hosting
 
 Strona to zestaw plików statycznych. Nasi dostawcy hostingu i sieci (np. GitHub i Cloudflare) przetwarzają standardowe dane techniczne, takie jak adres IP, aby dostarczać strony i chronić je przed nadużyciami. Nie otrzymują twoich wyników testu.

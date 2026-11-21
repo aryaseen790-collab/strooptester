@@ -28,6 +28,17 @@ L’informativa sulla privacy di Google è su [policies.google.com/privacy](http
 
 Salviamo la tua scelta sui cookie nella memoria locale del browser, così non te lo chiediamo su ogni pagina.
 
+## Pubblicità
+
+Intendiamo mostrare annunci su questo sito tramite Google AdSense. Gli annunci aiutano a mantenere il test gratuito. Non cambiano mai il funzionamento del test, e le tue risposte e i tuoi punteggi non vengono mai condivisi con gli inserzionisti.
+
+- Fornitori terzi, tra cui Google, utilizzano cookie per pubblicare annunci basati sulle tue visite precedenti a questo sito o ad altri siti.
+- L'uso dei cookie pubblicitari consente a Google e ai suoi partner di mostrarti annunci basati sulle tue visite a questo sito e/o ad altri siti su internet.
+- Puoi disattivare la pubblicità personalizzata nelle [Impostazioni annunci](https://www.google.com/settings/ads) di Google. Puoi anche disattivare l'uso dei cookie per la pubblicità personalizzata da parte di alcuni fornitori terzi su [aboutads.info](https://www.aboutads.info/choices/).
+- Dove la legge lo richiede (per esempio nel SEE, nel Regno Unito e in Svizzera), ti chiederemo il consenso prima di mostrare annunci che usano cookie per la personalizzazione.
+
+Per sapere come Google utilizza le informazioni dei siti che mostrano i suoi annunci, consulta [come Google utilizza le informazioni dei siti o delle app che utilizzano i suoi servizi](https://policies.google.com/technologies/partner-sites).
+
 ## Hosting
 
 Il sito è un insieme di file statici. I nostri fornitori di hosting e di rete (come GitHub e Cloudflare) trattano dati tecnici standard, come il tuo indirizzo IP, per servire le pagine e proteggerle dagli abusi. Non ricevono i tuoi risultati del test.

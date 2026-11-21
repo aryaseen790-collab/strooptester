@@ -28,6 +28,17 @@ Google 自己的隐私政策见 [policies.google.com/privacy](https://policies.g
 
 我们把你对 Cookie 的选择保存在浏览器的本地存储中，这样就不必在每个页面都询问你。
 
+## 广告
+
+我们计划通过 Google AdSense 在本站展示广告。广告有助于让测试保持免费。广告绝不会改变测试的运作方式，你的测试回答和分数也绝不会分享给广告主。
+
+- 包括 Google 在内的第三方供应商会使用 Cookie，根据你以前访问本网站或其他网站的情况来投放广告。
+- Google 使用广告 Cookie，使其及其合作伙伴能够根据你访问本网站和/或互联网上其他网站的情况向你展示广告。
+- 你可以在 Google 的[广告设置](https://www.google.com/settings/ads)中停用个性化广告。也可以在 [aboutads.info](https://www.aboutads.info/choices/) 拒绝部分第三方供应商将 Cookie 用于个性化广告。
+- 在法律有要求的地区（例如欧洲经济区、英国和瑞士），我们会在展示使用 Cookie 进行个性化的广告之前征得你的同意。
+
+想了解 Google 如何使用展示其广告的网站上的信息，请参阅[Google 如何使用来自使用我们服务的网站或应用的信息](https://policies.google.com/technologies/partner-sites)。
+
 ## 托管
 
 本网站由静态文件构成。我们的托管和网络服务商（如 GitHub 和 Cloudflare）会为了提供页面和防止滥用而处理 IP 地址等常规技术数据。他们不会收到你的测试结果。

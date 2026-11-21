@@ -28,6 +28,17 @@ Googles egen integritetspolicy finns på [policies.google.com/privacy](https://p
 
 Vi sparar ditt cookieval i webbläsarens lokala lagring så att vi inte behöver fråga på varje sida.
 
+## Annonser
+
+Vi planerar att visa annonser på den här webbplatsen via Google AdSense. Annonserna hjälper till att hålla testet gratis. De ändrar aldrig hur testet fungerar, och dina svar och resultat delas aldrig med annonsörer.
+
+- Tredjepartsleverantörer, däribland Google, använder cookies för att visa annonser baserade på dina tidigare besök på den här eller andra webbplatser.
+- Med hjälp av annonscookies kan Google och dess partner visa annonser för dig baserat på dina besök på den här webbplatsen och/eller andra webbplatser på internet.
+- Du kan stänga av anpassade annonser i Googles [annonsinställningar](https://www.google.com/settings/ads). På [aboutads.info](https://www.aboutads.info/choices/) kan du också välja bort vissa tredjepartsleverantörers användning av cookies för anpassad annonsering.
+- Där lagen kräver det (till exempel i EES, Storbritannien och Schweiz) ber vi om ditt samtycke innan annonser som använder cookies för anpassning visas.
+
+Hur Google använder information från webbplatser som visar dess annonser kan du läsa om i [hur Google använder information från webbplatser och appar som använder våra tjänster](https://policies.google.com/technologies/partner-sites).
+
 ## Webbhotell
 
 Sajten består av statiska filer. Våra leverantörer av webbhotell och nätverk (till exempel GitHub och Cloudflare) behandlar vanliga tekniska uppgifter, som din IP-adress, för att leverera sidor och skydda mot missbruk. De får inte dina testresultat.

@@ -28,6 +28,17 @@ Zásady ochrany soukromí samotného Googlu najdete na [policies.google.com/priv
 
 Vaši volbu ohledně cookies ukládáme do místního úložiště prohlížeče, abychom se neptali na každé stránce.
 
+## Reklama
+
+Na tomto webu plánujeme zobrazovat reklamy prostřednictvím Google AdSense. Reklamy pomáhají udržet test zdarma. Nikdy nemění to, jak test funguje, a vaše odpovědi a výsledky se nikdy nesdílejí s inzerenty.
+
+- Externí dodavatelé, včetně společnosti Google, používají soubory cookie k zobrazování reklam na základě vašich předchozích návštěv tohoto nebo jiných webů.
+- Díky reklamním souborům cookie může Google a jeho partneři zobrazovat reklamy na základě vašich návštěv tohoto webu a/nebo jiných webů na internetu.
+- Personalizované reklamy můžete vypnout v [nastavení reklam](https://www.google.com/settings/ads) Google. Na webu [aboutads.info](https://www.aboutads.info/choices/) můžete také odmítnout používání souborů cookie pro personalizované reklamy u některých externích dodavatelů.
+- Tam, kde to vyžaduje zákon (například v EHP, Spojeném království a Švýcarsku), vás před zobrazením reklam, které používají soubory cookie k personalizaci, požádáme o souhlas.
+
+Jak Google využívá informace z webů, které zobrazují jeho reklamy, se dočtete v článku [Jak Google využívá informace z webů a aplikací, které používají naše služby](https://policies.google.com/technologies/partner-sites).
+
 ## Hosting
 
 Web tvoří statické soubory. Naši poskytovatelé hostingu a sítě (například GitHub a Cloudflare) zpracovávají běžné technické údaje, jako je vaše IP adresa, aby mohli stránky doručit a chránit je před zneužitím. Vaše výsledky testu nedostávají.

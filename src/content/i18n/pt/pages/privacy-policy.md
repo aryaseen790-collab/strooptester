@@ -28,6 +28,17 @@ A política de privacidade do próprio Google está em [policies.google.com/priv
 
 Guardamos sua escolha sobre cookies no armazenamento local do navegador para não perguntar de novo em cada página.
 
+## Publicidade
+
+Pretendemos exibir anúncios neste site por meio do Google AdSense. Os anúncios ajudam a manter o teste gratuito. Eles nunca alteram o funcionamento do teste, e suas respostas e pontuações nunca são compartilhadas com anunciantes.
+
+- Fornecedores terceiros, incluindo o Google, usam cookies para exibir anúncios com base nas suas visitas anteriores a este site ou a outros sites.
+- O uso de cookies de publicidade pelo Google permite que ele e seus parceiros exibam anúncios para você com base nas suas visitas a este site e/ou a outros sites na internet.
+- Você pode desativar a publicidade personalizada nas [Configurações de anúncios](https://www.google.com/settings/ads) do Google. Também pode desativar o uso de cookies para publicidade personalizada por alguns fornecedores terceiros em [aboutads.info](https://www.aboutads.info/choices/).
+- Quando a lei exigir (por exemplo, no EEE, no Reino Unido e na Suíça), pediremos seu consentimento antes de exibir anúncios que usam cookies para personalização.
+
+Para saber como o Google usa as informações dos sites que exibem seus anúncios, veja [como o Google usa informações de sites ou apps que utilizam nossos serviços](https://policies.google.com/technologies/partner-sites).
+
 ## Hospedagem
 
 O site é um conjunto de arquivos estáticos. Nossos provedores de hospedagem e rede (como GitHub e Cloudflare) tratam dados técnicos comuns, como seu endereço IP, para entregar as páginas e protegê-las contra abusos. Eles não recebem seus resultados do teste.

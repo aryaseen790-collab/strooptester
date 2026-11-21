@@ -28,6 +28,17 @@ Die Datenschutzerklärung von Google findest du unter [policies.google.com/priva
 
 Deine Cookie-Entscheidung speichern wir im lokalen Speicher deines Browsers, damit wir dich nicht auf jeder Seite erneut fragen.
 
+## Werbung
+
+Wir beabsichtigen, auf dieser Website Anzeigen über Google AdSense zu zeigen. Die Anzeigen helfen dabei, den Test kostenlos zu halten. Sie ändern nichts an der Funktionsweise des Tests, und deine Antworten und Ergebnisse werden nie an Werbetreibende weitergegeben.
+
+- Drittanbieter, einschließlich Google, verwenden Cookies, um Anzeigen auf Grundlage deiner früheren Besuche dieser oder anderer Websites auszuliefern.
+- Mithilfe von Werbe-Cookies können Google und seine Partner dir Anzeigen auf Grundlage deiner Besuche dieser und/oder anderer Websites im Internet zeigen.
+- Personalisierte Werbung kannst du in den [Anzeigeneinstellungen](https://www.google.com/settings/ads) von Google deaktivieren. Die Verwendung von Cookies für personalisierte Werbung durch einige Drittanbieter kannst du außerdem unter [aboutads.info](https://www.aboutads.info/choices/) ablehnen.
+- Wo das Gesetz es verlangt (zum Beispiel im EWR, im Vereinigten Königreich und in der Schweiz), bitten wir um deine Einwilligung, bevor Anzeigen gezeigt werden, die Cookies zur Personalisierung nutzen.
+
+Wie Google Informationen von Websites nutzt, auf denen seine Anzeigen erscheinen, erfährst du unter [Wie Google Daten von Websites oder Apps verwendet, auf bzw. in denen unsere Dienste genutzt werden](https://policies.google.com/technologies/partner-sites).
+
 ## Hosting
 
 Die Website besteht aus statischen Dateien. Unsere Hosting- und Netzwerkanbieter (etwa GitHub und Cloudflare) verarbeiten übliche technische Daten wie deine IP-Adresse, um Seiten auszuliefern und vor Missbrauch zu schützen. Deine Testergebnisse erhalten sie nicht.

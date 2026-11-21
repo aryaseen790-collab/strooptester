@@ -28,6 +28,17 @@ Kebijakan privasi Google sendiri ada di [policies.google.com/privacy](https://po
 
 Kami menyimpan pilihan cookie Anda di penyimpanan lokal browser agar tidak perlu bertanya di setiap halaman.
 
+## Iklan
+
+Kami berencana menampilkan iklan di situs ini melalui Google AdSense. Iklan membantu tes ini tetap gratis. Iklan tidak pernah mengubah cara kerja tes, dan jawaban serta skor tes Anda tidak pernah dibagikan kepada pengiklan.
+
+- Vendor pihak ketiga, termasuk Google, menggunakan cookie untuk menayangkan iklan berdasarkan kunjungan Anda sebelumnya ke situs ini atau situs lain.
+- Penggunaan cookie iklan memungkinkan Google dan partnernya menayangkan iklan kepada Anda berdasarkan kunjungan Anda ke situs ini dan/atau situs lain di internet.
+- Anda bisa menonaktifkan iklan yang dipersonalisasi di [Setelan Iklan](https://www.google.com/settings/ads) Google. Anda juga bisa menolak penggunaan cookie untuk iklan yang dipersonalisasi oleh beberapa vendor pihak ketiga di [aboutads.info](https://www.aboutads.info/choices/).
+- Jika diwajibkan hukum (misalnya di EEA, Inggris, dan Swiss), kami akan meminta persetujuan Anda sebelum menampilkan iklan yang menggunakan cookie untuk personalisasi.
+
+Untuk mengetahui cara Google menggunakan informasi dari situs yang menampilkan iklannya, lihat [cara Google menggunakan informasi dari situs atau aplikasi yang menggunakan layanan kami](https://policies.google.com/technologies/partner-sites).
+
 ## Hosting
 
 Situs ini berupa kumpulan file statis. Penyedia hosting dan jaringan kami (seperti GitHub dan Cloudflare) memproses data teknis standar, seperti alamat IP Anda, untuk menampilkan halaman dan melindunginya dari penyalahgunaan. Mereka tidak menerima hasil tes Anda.
